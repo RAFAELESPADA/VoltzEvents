@@ -1,0 +1,59 @@
+name: SRKitPvP
+version: 3.0.0
+authors: [Rafael Auler]
+main: net.helix.pvp.HelixPvP
+description: Plugin de kitpvp da loja SRPlugins
+depend: [Core, DecentHolograms, PlaceholderAPI, ajLeaderboards]
+
+commands:
+   spawn:
+   skit:
+   youtuber:
+   evento:
+   tpall:
+   sc:
+   report:
+   crash:
+   setarena:
+   regras:
+   req:
+   set1v1:
+   givecoins:
+   site:
+   loja:
+   sudo:
+   warpinfo:
+   fly:
+   kitpvp:
+   reporttoggle:
+   sealend123:
+   lavainiciar:
+   arenainiciar:
+   membro:
+   shutdownserver:
+   pinfo:
+   givekills:
+   givedeaths:
+   resetkdr:
+   givekit:
+   v:
+   vanish:
+   medalhas:
+   medalha:
+   consolesudo:
+   requisitos:
+   discord:
+   sethologram:
+   rank:
+      aliases: [ranks]
+   scoreboard:
+      aliases: [score]
+   verrank:
+      aliases: [profile]
+   sortearplayer:
+      aliases: [sortear]   
+   sorteio:
+   actionbar:
+   
+   
+   

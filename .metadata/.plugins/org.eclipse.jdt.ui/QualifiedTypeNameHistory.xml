@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="net.helixpvp.kit2.Monk"/>
+    <fullyQualifiedTypeName name="org.bukkit.plugin.java.JavaPlugin"/>
+    <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+    <fullyQualifiedTypeName name="net.helixpvp.kit2.GladiatorListener"/>
+    <fullyQualifiedTypeName name="org.bukkit.Location"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
+    <fullyQualifiedTypeName name="org.bukkit.ChatColor"/>
+    <fullyQualifiedTypeName name="net.helix.pvp.evento.EventoUtils"/>
+    <fullyQualifiedTypeName name="net.helix.pvp.kit.KitManager"/>
+    <fullyQualifiedTypeName name="net.helixpvp.kit2.Ninja"/>
+</qualifiedTypeNameHistroy>
