@@ -1,0 +1,10 @@
+name: SladeDiscord
+version: ${project.version}
+main: me.kp.moon.moondiscord.plugin.Main
+api-version: 1.8.8
+authors: [ Rafael Auler ]
+description: Integração entre Discord e Servidor
+website: sladepvp.com
+commands:
+  vinculardiscord:
+    description: Sincronize sua conta do Minecraft ao Discord
