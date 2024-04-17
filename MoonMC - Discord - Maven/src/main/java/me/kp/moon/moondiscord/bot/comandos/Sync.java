@@ -21,6 +21,9 @@ public class Sync extends ListenerAdapter {
 
     public void onMessageReceived(MessageReceivedEvent e) {
         if (!e.isFromGuild()) return;
+        if (!(e.getChannel() instanceof TextChannel)) {
+            return;
+        }
         String args = e.getMessage().getContentRaw();
         TextChannel channel = e.getChannel().asTextChannel();
 

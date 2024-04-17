@@ -30,6 +30,9 @@ public class Ip extends ListenerAdapter {
 
     public void onMessageReceived(MessageReceivedEvent e) {
         String args = e.getMessage().getContentRaw();
+        if (!(e.getChannel() instanceof TextChannel)) {
+            return;
+        }
         TextChannel channel = e.getChannel().asTextChannel();
         if (!e.isFromGuild()) return;
         if (e.getMember() == null) {

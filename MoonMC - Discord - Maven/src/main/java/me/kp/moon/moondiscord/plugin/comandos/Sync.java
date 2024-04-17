@@ -20,6 +20,7 @@ public class Sync implements CommandExecutor {
             sender.sendMessage(DefaultMessages.APENAS_PLAYERS.getMessage());
             return true;
         }
+
         Player player = (Player) sender;
 
 

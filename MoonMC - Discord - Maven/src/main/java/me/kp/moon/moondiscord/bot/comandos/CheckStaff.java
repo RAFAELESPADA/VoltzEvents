@@ -19,8 +19,10 @@ public class CheckStaff extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent e) {
         String args = e.getMessage().getContentRaw();
         if (!e.isFromGuild()) return;
+        if (!(e.getChannel() instanceof TextChannel)) {
+            return;
+        }
         TextChannel channel = e.getChannel().asTextChannel();
-
         if (e.getMember() == null) {
             return;
         }

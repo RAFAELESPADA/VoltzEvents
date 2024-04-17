@@ -1,0 +1,43 @@
+Ops:
+  - Rafael_Melo
+  - LuanTresoldi
+  - Punishy
+Command: 'ban {playername} Você não tem autorização para ter OP'
+Command2: 'lp user {playername} clear'
+AnchorX: 100
+AnchorY: 60
+AnchorZ: 100
+DamagerX: 0
+DamagerY: 150
+DamagerZ: 100
+NinjaX: 1000
+NinjaY: 100
+NinjaZ: 1500
+SpawnZ: 0
+SpawnY: 50
+SpawnX: 0
+SpawnPitch: 50
+SpawnYaw: 100
+AnchorNPCX: 0
+AnchorNPCY: 50
+AnchorNPCZ: 60
+AnchorNPCPitch: 3
+AnchorNPCYaw: 3
+NinjaNPCX: 5
+NinjaNPCY: 50
+NinjaNPCZ: 5
+NinjaNPCPitch: 3
+NinjaNPCYaw: 3
+DamagerNPCX: 10
+DamagerNPCY: 50
+DamagerNPCZ: 5
+DamagerNPCPitch: 3
+DamagerNPCYaw: 3
+BuracoX: -64
+BuracoY: 55
+BuracoZ: -488
+BuracoNPCX: -4
+BuracoNPCY: 62
+BuracoNPCZ: 18
+BuracoNPCPitch: 1.3 
+BuracoNPCYaw: 5.1

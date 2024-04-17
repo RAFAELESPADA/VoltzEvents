@@ -1,0 +1,5 @@
+name: KitPvP
+version: 1.0
+main: com.github.kitpvp.main.Main
+authors: [Rafael Auler , FlezyCodes]
+description: Plugin de kitpvp para postar na net

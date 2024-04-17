@@ -1,0 +1,93 @@
+# project information for Bukkit in order to register our plugin with all it components
+# ${-} are variables from Maven (pom.xml) which will be replaced after the build
+name: ${project.parent.name}
+version: ${project.version}-${git.commit.id.abbrev}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+
+# meta information for plugin managers
+authors: [games647, 'https://github.com/games647/ChangeSkin/graphs/contributors']
+description: |
+    ${project.description}
+website: ${project.url}
+dev-url: ${project.url}
+
+# Without ProtocolLib the plugin does not work at all
+depend: [ProtocolLib]
+
+# This plugin don't have to be transformed for compatibility with Minecraft >= 1.13
+api-version: 1.13
+
+commands:
+    setskin:
+        description: 'Sets a new skin'
+        usage: /<command> [player] <name/uuid>
+        aliases: [${project.parent.artifactId}, skin, set-skin]
+        permission: ${project.parent.artifactId}.command.setskin
+
+    skinupdate:
+        description: 'Invalidates the database entry and fetches the fresh skin from the Mojang servers'
+        aliases: [skin-update]
+        permission: ${project.parent.artifactId}.command.skinupdate
+
+    skinupload:
+        description: 'Upload a skin to a mojang account'
+        permission: ${project.parent.artifactId}.command.skinupload
+        aliases: [skin-upload, uploadskin, upload-skin]
+        usage: /<command> <url> [name]
+
+    skinselect:
+        description: 'Choose a skin from the database which has a specified name'
+        permission: ${project.parent.artifactId}.command.skinselect
+        aliases: [skin-select]
+        usage: /<command> <name>
+
+    skinskull:
+        description: 'Changes the skin of a holding skull from the database which has a specified name'
+        permission: ${project.parent.artifactId}.command.skinskull
+        aliases: [skin-skull]
+        usage: /<command> <name>
+
+    skin-info:
+        description: 'Show details about the currently assigned skin'
+        permission: ${project.parent.artifactId}.command.skininfo
+        usage: /<command>
+
+permissions:
+    ${project.parent.artifactId}.command.*:
+        children:
+            ${project.parent.artifactId}.command.setskin.*: true
+            ${project.parent.artifactId}.command.skinupdate: true
+            ${project.parent.artifactId}.command.skinupload: true
+            ${project.parent.artifactId}.command.skinname: true
+            ${project.parent.artifactId}.command.skinselect: true
+            ${project.parent.artifactId}.command.skinupdate.other.*: true
+            ${project.parent.artifactId}.command.skininfo: true
+
+    ${project.parent.artifactId}.command.skinupdate:
+        description: 'Updates the current skin'
+    ${project.parent.artifactId}.command.skinupload:
+        description: 'Upload a skin to a mojang account'
+    ${project.parent.artifactId}.command.skinname:
+        description: 'Gives your current skin a name'
+    ${project.parent.artifactId}.command.skinselect:
+        description: 'Choose a skin from the database which has a specified name'
+    ${project.parent.artifactId}.command.skininfo:
+        description: 'Show details about the currently assigned skin'
+
+    ${project.parent.artifactId}.command.skinupdate.other.*:
+        children:
+            ${project.parent.artifactId}.command.skinupdate: true
+            ${project.parent.artifactId}.command.skinupdate.other: true
+
+    ${project.parent.artifactId}.command.setskin.*:
+        children:
+            ${project.parent.artifactId}.command.setskin: true
+            ${project.parent.artifactId}.command.setskin.other: true
+
+    ${project.parent.artifactId}.command.setskin:
+        description: 'Sets a new skin for yourself'
+
+    ${project.parent.artifactId}.command.setskin.other:
+        description: 'Sets a skin for another player'
+        children:
+            ${project.parent.artifactId}.command.setskin: true

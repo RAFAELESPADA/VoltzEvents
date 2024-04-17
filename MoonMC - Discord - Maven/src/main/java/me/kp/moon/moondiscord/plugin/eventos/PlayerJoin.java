@@ -52,6 +52,8 @@ public class PlayerJoin implements Listener {
                     mySQL.updateDisplayTAG(uuid, "§3§lBUILDER §3");// "§e§lHELPER §e" + player.getName();
                 else if (player.hasPermission("helix.tag.helper"))
                     mySQL.updateDisplayTAG(uuid, "§e§lHELPER §e");// "§e§lHELPER §e" + player.getName();
+                else if (player.hasPermission("betterrtp"))
+                    mySQL.updateDisplayTAG(uuid, "§7§lMEMBRO §7");// "§e§lHELPER §e" + player.getName();
                 else if (player.hasPermission("helix.tag.estagiario"))
                     mySQL.updateDisplayTAG(uuid, "§d§lESTÁGIO §d");
             });

@@ -29,6 +29,9 @@ public class StaffChat extends ListenerAdapter implements Listener {
 
     public void onMessageReceived(MessageReceivedEvent event) {
         if (!event.isFromGuild()) return;
+        if (!(event.getChannel() instanceof TextChannel)) {
+            return;
+        }
         TextChannel channel = event.getChannel().asTextChannel();
         String message = event.getMessage().getContentDisplay();
         if (event.getMember() == null || event.getMember().getUser().isBot()) return;
