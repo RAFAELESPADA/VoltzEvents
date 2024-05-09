@@ -1,0 +1,81 @@
+EspadaMeta-Data1: 1
+EspadaMeta-Data2: 2
+EspadaMeta-Data3: 3
+EspadaMeta-Data4: 4
+EspadaMeta-Data5: 5
+MachadoMeta-Data1: 10
+MachadoMeta-Data2: 11
+MachadoMeta-Data3: 12
+MachadoMeta-Data4: 13
+MachadoMeta-Data5: 14
+
+MundoBloqueado: 'lobby'
+MundoBloqueado2: 'lobby2'
+MundoBloqueado3: 'lobby3'
+
+LivroMessage:
+  - '&eAqui você pode escolher texturas de espadas e armaduras'
+  - 'Para sua ferramenta!'
+  - 'Algumas delas são apenas para doadores!'
+
+EspadaPrincipal: '&x&B&5&0&D&E&7Espadas'
+MachadoPrincipal: '&x&B&5&0&D&E&7Machados'
+ArmaduraPrincipal: '&x&B&5&0&D&E&7Armaduras'
+LivroInfoPrincipal: '&x&B&5&0&D&E&7Informações'
+LivroInfoPrincipal2: '&x&B&5&0&D&E&7Informações'
+
+TexturaMachado-Selected: '&x&a&5&3&D&d&4Você selecionou a textura %number% do machado'
+TexturaEspada-Selected: '&x&a&5&3&D&d&4Você selecionou a textura %number% da espada'
+TexturaMachado-Removed: '&x&a&5&3&A&d&4Você retirou a textura do machado'
+TexturaEspada-Removed: '&x&a&5&3&A&d&4Você retirou a textura da espada'
+
+LivroInfoDesc:
+  - 'Aqui você poderá mudar as texturas dos items'
+LivroInfoDesc2:
+  - 'Aqui você poderá mudar as texturas dos items'
+EspadaInventarioDesc:
+  - '&7Sou uma espada muito top :)'
+MachadoInventarioDesc:
+  - '&7Sou um machado muito top :)'
+Machado5Desc: 
+  - '&fMachado do demônio'
+Machado4Desc: 
+  - '&fMachado do diabo'
+Machado3Desc: 
+  - '&fMachado do thor'
+Machado2Desc: 
+  - '&fMachado vampirico'
+Machado1Desc: 
+  - '&fMachado de Sangue'
+Espada1Desc:
+  - '&7Espada de sangue'
+Espada2Desc:
+  - '&7Espada flamejante'
+Espada3Desc:
+  - '&7Katana'
+Espada4Desc:
+  - '&7Espada do diabo'
+Espada5Desc:
+  - '&7Espada de deus'
+MachadoMenuNome: 'Selecione seu Machado'
+EspadaMenuNome: 'Selecione sua espada'
+EspadaNoInv-NOME: '&x&B&5&0&D&E&7Espada'
+MachadoNoInv-NOME: '&x&B&5&0&D&E&7Machado'
+NotSelected: '&x&F&B&3&0&2&0Não Selecionado'
+Selected: '&x&A&B&3&0&1&0Selecionado'
+MachadoBloqueado: '&x&F&F&0&0&0&0Essa textura está bloqueada! Compre ela em www.prismapvp.com'
+EspadaBloqueada: '&x&F&F&0&0&0&0Essa textura está bloqueada! Compre ela em www.prismapvp.com'
+EspadaDescInvBlocked: '&x&F&F&0&0&0&0Essa textura está bloqueada! Compre ela em www.prismapvp.com'
+MachadoDescInvBlocked: '&x&F&F&0&0&0&0Essa textura está bloqueada! Compre ela em www.prismapvp.com'
+TexturaAlreadySelected: '&x&F&F&0&0&0&0Você deselecionou a espada!'
+TexturaMAlreadySelected: '&x&F&F&0&0&0&0Você deselecionou o machado!' 
+Espada1-NOME: '&x&B&5&0&D&E&7Textura da Espada 1'
+Espada2-NOME: '&x&B&5&0&D&E&7Textura da Espada 2'
+Espada3-NOME: '&x&B&5&0&D&E&7Textura da Espada 3'
+Espada4-NOME: '&x&B&5&0&D&E&7Textura da Espada 4'
+Espada5-NOME: '&x&B&5&0&D&E&7Textura da Espada 5'
+Machado1-NOME: '&x&B&5&0&D&E&7Textura do Machado 1'
+Machado2-NOME: '&x&B&5&0&D&E&7Textura do Machado 2'
+Machado3-NOME: '&x&B&5&0&D&E&7Textura do Machado 3'
+Machado4-NOME: '&x&B&5&0&D&E&7Textura do Machado 4'
+Machado5-NOME: '&x&B&5&0&D&E&7Textura do Machado 5'

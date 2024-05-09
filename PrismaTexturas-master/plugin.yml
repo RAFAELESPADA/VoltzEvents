@@ -1,0 +1,9 @@
+name: MudarTexturas
+version: 1.0.0
+authors: [EvilNaraku, Rafael Auler]
+main: me.rafaelauler.espadas.Main
+api-version: 1.20
+description: Plugin de mudar texturas de alguns items por NBT
+commands:
+   cosmeticos:
+   
