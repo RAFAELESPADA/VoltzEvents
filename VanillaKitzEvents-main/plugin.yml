@@ -1,0 +1,16 @@
+name: KomboEvents
+main: me.rafaelauler.events.Main
+version: BUILD-1
+author: Rafael_Auler or Rafael Auler
+description: Event plugin.
+api-version: 1.18
+#PERMISSIONS ARENT HERE
+#SEE ALL PERMISSIONS HERE: https://pastebin.com/JuMPHpRD
+commands:
+   event:
+        description: Main Command
+   setwarp:     
+        description: Set Warp
+   vanish:
+   v:
+        
