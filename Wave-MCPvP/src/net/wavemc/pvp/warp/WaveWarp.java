@@ -3,6 +3,7 @@ package net.wavemc.pvp.warp;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -23,7 +24,7 @@ import net.wavemc.pvp.kit.Habilidade;
 import net.wavemc.pvp.kit.Habilidade2;
 import net.wavemc.warp.provider.ArenaBuild;
 import net.wavemc.warp.provider.Duels;
-import net.wavemc.warp.provider.GladWarp;
+import net.wavemc.warp.provider.GladWarp2;
 import net.wavemc.warp.provider.Gladiator;
 import net.wavemc.warp.provider.Lobby2;
 import net.wavemc.warp.provider.OneVsOne;
@@ -35,7 +36,7 @@ public enum WaveWarp {
 	SPAWN("Spawn", new Spawn(),new ItemStack( Material.AIR)),
 
 	LOBBY("Lobby", new Lobby2(),new ItemStack( Material.AIR)),
-	GLADIATOR("Gladiator", new GladWarp(),new ItemStack( Material.AIR)),
+	GLADIATOR("Gladiator", new GladWarp2(),new ItemStack( Material.AIR)),
 	
 	ARENABUILD("ArenaBuild", new ArenaBuild(),new ItemStack( Material.AIR)),
 	FPS("FPS", new net.wavemc.warp.provider.FPS(),new  ItemStack( Material.AIR)),
@@ -122,6 +123,11 @@ public enum WaveWarp {
 	public int getPlayerCount() {
 		return players.size();
 	}
+	
+	
+    
+
+	
 	
 	public WarpHandle getHandler() {
 		return handler;

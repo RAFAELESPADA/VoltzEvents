@@ -81,7 +81,7 @@ import net.wavemc.pvp.command.AvisoT;
 import net.wavemc.pvp.command.ClearCMD;
 import net.wavemc.pvp.command.DarKit;
 import net.wavemc.pvp.command.DuelJoin;
-import net.wavemc.pvp.command.Euforia2;
+import net.wavemc.pvp.command.Euforia3;
 import net.wavemc.pvp.command.Fly;
 import net.wavemc.pvp.command.GamemodeCMD;
 import net.wavemc.pvp.command.GiveCoins;
@@ -407,6 +407,24 @@ net.wavemc.pvp.listener.RTP.broadcast(ChatColor.RED + "A arena BUILD está sendo
 					
 					}}.runTaskTimer(this, 0, 1 * 1L);
 		});
+
+
+		WaveBukkit.getExecutorService().submit(() -> {
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					for (WavePlayer w : WaveBukkit.getInstance().getPlayerManager().getPlayers()) {
+					Player p = Bukkit.getPlayer(w.getName());
+					if (p == null) {
+						return;
+					}
+					if (!p.isOnline()) {
+						net.wavemc.pvp.warp.WaveWarp.removeHandle(p.getName());
+					}
+					}
+					
+					}}.runTaskTimer(this, 0, 1 * 1L);
+		});
 		
 		WaveBukkit.getExecutorService().submit(() -> {
 			new BukkitRunnable() {
@@ -583,7 +601,7 @@ net.wavemc.pvp.listener.RTP.broadcast(ChatColor.RED + "A arena BUILD está sendo
 		getCommand("warpjoin").setExecutor(new WarpJoin());
 		getCommand("givekills").setExecutor(new GiveKills());
 
-		getCommand("furia").setExecutor(new Euforia2());
+		getCommand("furia").setExecutor(new Euforia3());
 		getCommand("givedeaths").setExecutor(new GiveDeaths());
 		getCommand("build").setExecutor(new NoBreakEvent());
 		getCommand("resetkdr").setExecutor(new ResetKDR());

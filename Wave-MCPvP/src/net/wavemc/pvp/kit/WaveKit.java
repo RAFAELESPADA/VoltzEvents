@@ -26,7 +26,7 @@ import net.wavemc.pvp.kit.provider.Grandpa;
 import net.wavemc.pvp.kit.provider.Grappler;
 import net.wavemc.pvp.kit.provider.Hulk;
 import net.wavemc.pvp.kit.provider.Kangaroo;
-import net.wavemc.pvp.kit.provider.MeteorC;
+import net.wavemc.pvp.kit.provider.MeteorBla;
 import net.wavemc.pvp.kit.provider.Milkman;
 import net.wavemc.pvp.kit.provider.Monk;
 import net.wavemc.pvp.kit.provider.Nenhum;
@@ -74,7 +74,7 @@ public enum WaveKit {
 	SWITCHER("Switcher", WavePvP.getInstance().getConfig().getInt("SwitcherPrice"), 0, new Switcher(), new ItemStack(Material.SNOWBALL), WavePvP.getInstance().getConfig().getString("SwitcherLore"), 2,30),
 	FLASH("Flash", 15000, 500, new Flash(), new ItemStack(Material.REDSTONE_TORCH), "Teleporte para onde você clicar", 2,36),
 	REAPER("Reaper", 13000, 500, new Reaper(), new ItemStack(Material.WOODEN_HOE), "De wither com sua foice!", 2,37),
-	METEOR("Meteor", 12000, 0, new MeteorC(), new ItemStack(Material.FIRE_CHARGE), "Vire um meteoro!" , 1,39),
+	METEOR("Meteor", 12000, 0, new MeteorBla(), new ItemStack(Material.FIRE_CHARGE), "Vire um meteoro!" , 1,39),
 	GLADIATOR("Gladiator", 15000, 500, new GladiatorListener2(), new ItemStack(Material.IRON_BARS), "Desafie seus inimigos para 1v1",2, 38);
   
 	private final String name;

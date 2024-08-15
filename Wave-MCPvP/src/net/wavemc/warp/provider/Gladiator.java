@@ -371,9 +371,11 @@ public class Gladiator extends WarpDuoBattleHandle3 {
 		int loserWithdrawnCoins = random.nextInt(20 + 1 - 5) + 5;
 		loserWavePlayer.getPvp().adddeathsX1(1);
 		loserWavePlayer.getPvp().setKillstreak(0);
+		loserWavePlayer.getPvp().setWinstreakx1(0);
 		
 		loser.sendMessage("§cVocê perdeu a batalha contra " + winner.getName() + "§c.");
-		
+
+		loser.spigot().respawn();
 		if ((victimWavePlayer.getPvp().getXp() - 8) >= 0) {
 			victimWavePlayer.getPvp().setXp(victimWavePlayer.getPvp().getXp() - 8);
 			loser.sendMessage("§c§l[-] §c8 XP");

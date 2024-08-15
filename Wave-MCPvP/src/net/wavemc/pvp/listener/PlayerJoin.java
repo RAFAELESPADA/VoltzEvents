@@ -21,6 +21,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
@@ -67,18 +68,25 @@ public class PlayerJoin implements Listener {
 }
 	  
 	  @EventHandler
-	  public void onMove(EntityDamageEvent e) {
-	    if (!(e.getEntity() instanceof Player))
-	      return; 
-	    Player p = (Player)e.getEntity();
-	    if (e.getCause() == EntityDamageEvent.DamageCause.VOID && !KitManager.getPlayer(p.getName()).hasKit() && WaveWarp.SPAWN.hasPlayer(p.getName())) {
+	  public void onMove(PlayerMoveEvent e) {
+	   
+	    Player p = e.getPlayer();
+	    if (p.getLocation().getY() < -2 && !KitManager.getPlayer(p.getName()).hasKit() && WaveWarp.SPAWN.hasPlayer(p.getName())) {
 	      WaveWarp.SPAWN.send(p, true);
+	      p.sendMessage(ChatColor.GREEN + " Eu te trouxe de volta a segurança.");
+	      return;
 	    }
-	    if (e.getCause() == EntityDamageEvent.DamageCause.VOID && !KitManager.getPlayer(p.getName()).hasKit() && !KitManager2.getPlayer(p.getName()).haskit2() && WaveWarp.SPAWN.hasPlayer(p.getName())) {
+	    if (p.getLocation().getY() < -2 && !KitManager.getPlayer(p.getName()).hasKit() && !KitManager2.getPlayer(p.getName()).haskit2() && WaveWarp.SPAWN.hasPlayer(p.getName())) {
 		      WaveWarp.SPAWN.send(p, true);
+
+		      p.sendMessage(ChatColor.GREEN + " Eu te trouxe de volta a segurança.");
+		      return;
 		    }
-	    else if (e.getCause() == EntityDamageEvent.DamageCause.VOID && !KitManager.getPlayer(p.getName()).hasKit() && WaveWarp.LOBBY.hasPlayer(p.getName())) {
+	    else if (p.getLocation().getY() < -2 && !KitManager.getPlayer(p.getName()).hasKit() && WaveWarp.LOBBY.hasPlayer(p.getName())) {
 		      WaveWarp.LOBBY.send(p, true);
+
+		      p.sendMessage(ChatColor.GREEN + " Eu te trouxe de volta a segurança.");
+		      return;
 		    }
 	  }
 	  @EventHandler
