@@ -35,7 +35,7 @@ public enum WaveWarp {
 	SPAWN("Spawn", new Spawn(),new ItemStack( Material.AIR)),
 
 	LOBBY("Lobby", new Lobby2(),new ItemStack( Material.AIR)),
-	GLADIATOR("Gladiator", new GladdWarp(),new ItemStack( Material.AIR)),
+	GLADIATOR("Gladiator", new Gladwa(),new ItemStack( Material.AIR)),
 	
 	ARENABUILD("ArenaBuild", new ArenaBuild(),new ItemStack( Material.AIR)),
 	FPS("FPS", new net.wavemc.warp.provider.FPS(),new  ItemStack( Material.AIR)),

@@ -62,11 +62,14 @@ public class LAVA implements Listener {
 				player.setFireTicks(0);
 				player.spigot().respawn();
 			}
-		}.runTaskLater(WavePvP.getInstance(), 10);
+		}.runTaskLater(WavePvP.getInstance(), 1);
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				player.spigot().respawn();
+			}
+		}.runTaskLater(WavePvP.getInstance(), 100);
 		player.setFireTicks(0);
-
-		
-		WaveWarp.LAVACHALLENGE.send(player, true);
 		player.sendMessage(ChatColor.YELLOW + "Você respawnou na warp lava. para voltar use /lobby");
 		}
 }
