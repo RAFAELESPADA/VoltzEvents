@@ -76,7 +76,7 @@ public enum WaveKit {
 	FLASH("Flash", 15000, 500, new Flash(), new ItemStack(Material.REDSTONE_TORCH), "Teleporte para onde você clicar", 2,36),
 	REAPER("Reaper", 13000, 500, new Reaper(), new ItemStack(Material.WOODEN_HOE), "De wither com sua foice!", 2,37),
 	METEOR("Meteor", 12000, 0, new Meteor4(), new ItemStack(Material.FIRE_CHARGE), "Vire um meteoro!" , 1,39),
-	PYRO("Meteor", 6000, 0, new Pyro(), new ItemStack(Material.FIRE_CHARGE), "Atire bolas de fogo!" , 1,40),
+	PYRO("Pyro", 6000, 0, new Pyro(), new ItemStack(Material.CHAINMAIL_CHESTPLATE), "Atire bolas de fogo!" , 1,40),
 	
 	GLADIATOR("Gladiator", 15000, 500, new GladiatorListener2(), new ItemStack(Material.IRON_BARS), "Desafie seus inimigos para 1v1",2, 38);
   

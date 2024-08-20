@@ -65,40 +65,20 @@ public void onInteract(PlayerInteractEvent event) {
 		if (!inCooldown(event.getPlayer())) {
 
 			new BukkitRunnable() {
-				@Override
-				public void run() {
-			p.launchProjectile(Fireball.class);
-				}
-			}.runTaskLater(WavePvP.getInstance(), 10);
+	            int fireballs = 0;
+	            int total = 5; // total de bolas de fogo
 
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-			p.launchProjectile(Fireball.class);
-				}
-			}.runTaskLater(WavePvP.getInstance(), 20);
+	            @Override
+	            public void run() {
+	                fireballs++;
+	                p.launchProjectile(Fireball.class);
+	                if(fireballs >= total) {
+	                    cancel();
+	                }
+	            }
+	        }.runTaskTimer(WavePvP.getInstance(), 0, 10);
 
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-			p.launchProjectile(Fireball.class);
-				}
-			}.runTaskLater(WavePvP.getInstance(), 30);
-
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-			p.launchProjectile(Fireball.class);
-				}
-			}.runTaskLater(WavePvP.getInstance(), 40);
-
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-			p.launchProjectile(Fireball.class);
-				}
-			}.runTaskLater(WavePvP.getInstance(), 50);
-			addCooldown(p, 15);
+			addCooldown(p, 25);
 }
 }
 }
