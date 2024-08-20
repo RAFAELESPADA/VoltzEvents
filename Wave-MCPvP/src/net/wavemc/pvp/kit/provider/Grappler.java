@@ -53,7 +53,7 @@ public class Grappler extends KitHandler{
 		Player p = e.getPlayer();
 
 		Player target = p;
-		MeteorBla meteor = new MeteorBla();
+		Meteor4 meteor = new Meteor4();
 		if (Jump.recebeu.containsKey(p.getName()) && EnderMageReal.isSpawn(p.getLocation())
 				&& e.getPlayer().getLocation().getY() > WavePvP.getInstance().getConfig().getInt("SpawnAltura")
 				&& !GladiatorListener2.combateGlad.containsKey(target)

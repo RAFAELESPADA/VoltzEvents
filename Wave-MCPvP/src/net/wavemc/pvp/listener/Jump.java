@@ -481,6 +481,15 @@ public void Items(Player player) {
 						);
 						Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed gladiator kit!");
 						}
+
+					if (KitManager.getPlayer(player.getName()).hasKit( WaveKit.PYRO)) {
+						player.getInventory().setItem(1, new ItemBuilder("§bAtirar!", Material.FIRE_CHARGE)
+								.nbt("kit-handler", "pyro")
+								.nbt("cancel-drop")
+								.toStack()
+						);
+						Bukkit.getConsoleSender().sendMessage(player.getName() + " Choosed pyro kit!");
+						}
 	
 					if (KitManager.getPlayer(player.getName()).hasKit( WaveKit.KANGAROO)) {
 						player.getInventory().setItem(1, new ItemBuilder("§aPular!", Material.FIREWORK_ROCKET)

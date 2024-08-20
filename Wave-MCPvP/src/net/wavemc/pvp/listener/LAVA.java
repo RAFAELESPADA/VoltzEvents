@@ -54,12 +54,13 @@ public class LAVA implements Listener {
 		}
 		event.getDrops().clear();
 		drops.clear();
-		player.spigot().respawn();
+		
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				WaveWarp.LAVACHALLENGE.send(player, true);			
 				player.setFireTicks(0);
+				player.spigot().respawn();
 			}
 		}.runTaskLater(WavePvP.getInstance(), 10);
 		player.setFireTicks(0);

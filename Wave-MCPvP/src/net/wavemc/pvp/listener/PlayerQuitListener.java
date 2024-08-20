@@ -28,6 +28,12 @@ public class PlayerQuitListener implements Listener {
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		event.setQuitMessage(null);
+
+		WaveWarp.removeHandle(player.getName());
+	  NoBreakEvent.embuild.remove(player);
+	KitManager.remove(player.getName());
+	Habilidade.removeAbility(player);
+	
 		 Scoreboard s = player.getScoreboard();
 		  if (player.getScoreboard().getObjective("pvp") == null && player.getScoreboard().getObjective("pvp2") == null && player.getScoreboard().getObjective("pvpg") == null && player.getScoreboard().getObjective("pvppt") == null && player.getScoreboard().getObjective("pvp3") == null && player.getScoreboard().getObjective("pvp4") == null && player.getScoreboard().getObjective("pvp5") == null && player.getScoreboard().getObjective("pvp6") == null  && player.getScoreboard().getObjective("pvp7") == null) {
 				return;
@@ -61,11 +67,7 @@ Player p = player;
 		  if (Duels.protector.containsKey(player.getName())) {
 			    Duels.protector.remove(player.getName());
 			    }
-		  NoBreakEvent.embuild.remove(player);
-		WaveWarp.removeHandle(player.getName());
-		KitManager.remove(player.getName());
-		Habilidade.removeAbility(player);
-		event.setQuitMessage(null);
+
 		 if (GladiatorListener2.combateGlad.containsKey(player)) {
              final Player winner = GladiatorListener2.combateGlad.get(player);
              final Player loser = player;

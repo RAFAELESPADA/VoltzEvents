@@ -66,7 +66,7 @@ public class KitInventory22 {
 							.toStack()
 					);
 			} else {
-		    	inventory.setItem(10 , new ItemBuilder("§c" + WaveKit2.BOXER.getName(), new ItemStack(Material.RED_STAINED_GLASS_PANE))
+		    	inventory.setItem(11 , new ItemBuilder("§c" + WaveKit2.BOXER.getName(), new ItemStack(Material.RED_STAINED_GLASS_PANE))
 		    			.lore("§f" + WaveKit2.BOXER.getDescription())
 		    					.addFlags(ItemFlag.HIDE_ATTRIBUTES,
 		    							ItemFlag.HIDE_DESTROYS,

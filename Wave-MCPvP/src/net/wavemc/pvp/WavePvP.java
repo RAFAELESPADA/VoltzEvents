@@ -81,7 +81,7 @@ import net.wavemc.pvp.command.AvisoT;
 import net.wavemc.pvp.command.ClearCMD;
 import net.wavemc.pvp.command.DarKit;
 import net.wavemc.pvp.command.DuelJoin;
-import net.wavemc.pvp.command.Euforia3;
+import net.wavemc.pvp.command.EuforiaB;
 import net.wavemc.pvp.command.Fly;
 import net.wavemc.pvp.command.GamemodeCMD;
 import net.wavemc.pvp.command.GiveCoins;
@@ -601,7 +601,7 @@ net.wavemc.pvp.listener.RTP.broadcast(ChatColor.RED + "A arena BUILD está sendo
 		getCommand("warpjoin").setExecutor(new WarpJoin());
 		getCommand("givekills").setExecutor(new GiveKills());
 
-		getCommand("furia").setExecutor(new Euforia3());
+		getCommand("furia").setExecutor(new EuforiaB());
 		getCommand("givedeaths").setExecutor(new GiveDeaths());
 		getCommand("build").setExecutor(new NoBreakEvent());
 		getCommand("resetkdr").setExecutor(new ResetKDR());

@@ -24,7 +24,6 @@ import net.wavemc.pvp.kit.Habilidade;
 import net.wavemc.pvp.kit.Habilidade2;
 import net.wavemc.warp.provider.ArenaBuild;
 import net.wavemc.warp.provider.Duels;
-import net.wavemc.warp.provider.GladWarp2;
 import net.wavemc.warp.provider.Gladiator;
 import net.wavemc.warp.provider.Lobby2;
 import net.wavemc.warp.provider.OneVsOne;
@@ -36,7 +35,7 @@ public enum WaveWarp {
 	SPAWN("Spawn", new Spawn(),new ItemStack( Material.AIR)),
 
 	LOBBY("Lobby", new Lobby2(),new ItemStack( Material.AIR)),
-	GLADIATOR("Gladiator", new GladWarp2(),new ItemStack( Material.AIR)),
+	GLADIATOR("Gladiator", new GladdWarp(),new ItemStack( Material.AIR)),
 	
 	ARENABUILD("ArenaBuild", new ArenaBuild(),new ItemStack( Material.AIR)),
 	FPS("FPS", new net.wavemc.warp.provider.FPS(),new  ItemStack( Material.AIR)),
@@ -68,10 +67,9 @@ public enum WaveWarp {
 	}
 
 	public static void removeHandle(String username) {
-		getWarps().stream().filter(
-				warp -> warp.players.contains(username)
-		).forEach(warp -> warp.players.remove(username));
-	}
+        getWarps().stream().forEach(warp -> warp.players.remove(username));
+        Bukkit.getConsoleSender().sendMessage("[DEBUG] " + "Removendo " + username + " das warps");
+        }
 	
 	WaveWarp(String name, WarpHandle handle, ItemStack icon) {
 		this.name = name;
