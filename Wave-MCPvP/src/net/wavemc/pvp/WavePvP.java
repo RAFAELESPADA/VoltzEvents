@@ -175,7 +175,7 @@ public class WavePvP extends JavaPlugin implements Listener, PluginMessageListen
 	}
 	public static boolean euforia;
 	public JDABuilder bot;
-	public final String TOKEN = "MTIxMTg3MzIwMTE5ODQ2NTA5NA.G4YgAY.Cu4M-taQDQsVkm2KfFmKfTW1bxBZ8pITMGD51s";
+	public final String TOKEN = "SEU TOKEN AQUI";
 
 	
 	public ArrayList<EnchantingInventory> inventories;
