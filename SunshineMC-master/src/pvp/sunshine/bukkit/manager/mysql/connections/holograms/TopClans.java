@@ -59,10 +59,10 @@ public class TopClans
     public static void updateHologram() {
         List<String> hologramTopClans = getTopClans();
 
-        World world = Bukkit.getWorld("lobbypvp");
-        double x = 4.010;
-        double y =  69.78413;
-        double z = 6.979;
+        World world = Bukkit.getWorld("lobbypvp2");
+        double x = 510.114;
+        double y =  17.84010;
+        double z =  634.766;
         Location hologramLocation = new Location(world, x, y, z);
 
         Bukkit.getScheduler().runTask((Plugin) BukkitMain.getInstance(), () -> {

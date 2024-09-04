@@ -44,6 +44,8 @@ public class PlayerLoad implements Listener {
             }
             SQLPvP.registerPvP(e.getUniqueId(), e.getName());
             SQLRank.registerXP(e.getName());
+
+            SQL1v1.register1v1(e.getUniqueId(), e.getName());
             SQLShop.registerShop(e.getName());
             SQLClan.registerClan(e.getName());
             SQLClan.registerClan("Nenhum", "Nenhuma", 0);

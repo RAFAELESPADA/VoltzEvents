@@ -18,14 +18,14 @@ import pvp.sunshine.bukkit.utils.PvPUtil;
 import pvp.sunshine.bukkit.utils.TagUtil;
 import pvp.sunshine.bukkit.utils.TitleUtil;
 
-public class PlayerJoinListener implements Listener {
+public class PlayerJoinListener2 implements Listener {
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
-		PvPUtil.setTab(event.getPlayer(), "\n §b§lREDESLOWER \n",
-				"\n §eTwitter §f@RedeSlower \n §eDiscord: §fhttps://discord.gg/cMjU5x9PrT\n \n §a       Obtenha seus planos §d§lVIPS§a acessando: §fhttps://discord.gg/cMjU5x9PrT \n ");
+		PvPUtil.setTab(event.getPlayer(), "\n §b§lKOMBOPVP \n",
+				"\n §eTwitter §f@KomboPvP \n §eDiscord: §fhttps://discord.gg/6WKMUSyuph\n \n §a       Obtenha seus planos §d§lVIPS§a acessando: §fhttps://discord.gg/6WKMUSyuph \n ");
 		Bukkit.getScheduler().scheduleSyncDelayedTask(BukkitMain.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -53,8 +53,8 @@ public class PlayerJoinListener implements Listener {
 	}
 
 	private void teleportToSpawnLocation(Player player) {
-		Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-        player.teleport(spawnLocation);
+
+        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);player.teleport(spawnLocation);
         
 	}
 
@@ -62,7 +62,7 @@ public class PlayerJoinListener implements Listener {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				TitleUtil.sendTitle(player, 0, 0, 0, "§b§lREDESLOWER", "§fDivirta-se!");
+				TitleUtil.sendTitle(player, 0, 0, 0, "§e§lKOMBOPVP", "§fDivirta-se!");
 			}
 		}.runTaskLater(BukkitMain.getInstance(), 20L);
 

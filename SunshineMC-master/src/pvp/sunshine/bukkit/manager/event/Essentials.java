@@ -582,8 +582,8 @@ public class Essentials implements Listener {
     public void entityDamageByVoid(EntityDamageEvent e) {
         if (e.getCause() == EntityDamageEvent.DamageCause.VOID
                 && RegisterAbility.getAbility((Player) e.getEntity()) == "Nenhum") {
-        	Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-	        ((Player)e.getEntity()).teleport(spawnLocation);
+//510.137 12.000000 620.218
+            Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);((Player)e.getEntity()).teleport(spawnLocation);
             e.setCancelled(true);
         }
     }

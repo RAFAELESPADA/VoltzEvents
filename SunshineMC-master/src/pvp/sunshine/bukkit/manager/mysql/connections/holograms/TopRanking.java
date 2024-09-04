@@ -123,11 +123,11 @@ public class TopRanking extends Storage {
     public static void updateHologram() {
         List<String> hologramTopXP = getTopXP();
 
-        World world = Bukkit.getWorld("lobbypvp");
+        World world = Bukkit.getWorld("lobbypvp2");
 
-        double x = -9.893;
-        double y =  68.78314;
-        double z =  -0.640;
+        double x = 498.317;
+        double y = 17.84010;
+        double z =  620.868;
         Location hologramLocation = new Location(world, x, y, z);
 
         Bukkit.getScheduler().runTask(BukkitMain.getInstance(), () -> {

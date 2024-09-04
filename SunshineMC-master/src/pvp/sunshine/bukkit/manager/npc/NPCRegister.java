@@ -66,13 +66,13 @@ public class NPCRegister implements Listener {
         this.plugin = plugin;
         npcLib = new NPCLib(plugin);
         Bukkit.getPluginManager().registerEvents(this, plugin);
-        World lobbyWorld = Bukkit.getWorld("lobbypvp");
+        World lobbyWorld = Bukkit.getWorld("lobbypvp2");
         lobbyWorld.loadChunk(-1, 1);
         lobbyWorld.loadChunk(0, 1);
         lobbyWorld.loadChunk(1, 0);
         lobbyWorld.loadChunk(1, -1);
 
-        location = new Location(Bukkit.getWorld("lobbypvp"), -4.335, 65.00000000, -10.458, -86.0F, 0.9F);
+        location = new Location(Bukkit.getWorld("lobbypvp2"), -4.335, 65.00000000, -10.458, -86.0F, 0.9F);
         shopNPC = npcLib.createNPC(Arrays.asList("§d§lLOJA DE KITS",
                 "§eKits e Combate", "§7Clique para visualizar!"));
         shopNPC.setSkin(new Skin(
@@ -82,7 +82,7 @@ public class NPCRegister implements Listener {
         shopNPC.setLocation(location);
         shopNPC.create();
 
-        location = new Location(Bukkit.getWorld("lobbypvp"), 18.773, 68.0000000, 4.700, -163.0F, 3.4F);
+        location = new Location(Bukkit.getWorld("lobbypvp2"), 18.773, 68.0000000, 4.700, -163.0F, 3.4F);
         assistenteNPC = npcLib.createNPC(Arrays.asList("§d§lASSISTENTE", "§eLuna"));
         assistenteNPC.setSkin(new Skin(
                 "ewogICJ0aW1lc3RhbXAiIDogMTcwMTUzMDIyNTEwMiwKICAicHJvZmlsZUlkIiA6ICJlN2E3MzZhMjFlM2I0YzA2YmVhOGVmMjVmODg0MmJhZiIsCiAgInByb2ZpbGVOYW1lIiA6ICJKZWVwMDIwNiIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS81ZTJkMzVjZTM5YTNhNWNhM2U4ZTQ3MWU5YjliNWY2YTRmYmU3YjEwYzBlZjA2YWJlN2I0YTRmMTc2NDUzYzUyIiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=",
@@ -91,7 +91,7 @@ public class NPCRegister implements Listener {
         assistenteNPC.setLocation(location);
         assistenteNPC.create();
 
-        location = new Location(Bukkit.getWorld("lobbypvp"), 20.887, 68.00000000000, -4.700, -5.1F, 5.5F);
+        location = new Location(Bukkit.getWorld("lobbypvp2"), 20.887, 68.00000000000, -4.700, -5.1F, 5.5F);
         caixasNPC = npcLib.createNPC(Arrays.asList("§6§lMESTRE DAS CAIXAS", "§eManoel Gomes"));
         caixasNPC.setSkin(new Skin(
                 "ewogICJ0aW1lc3RhbXAiIDogMTY4MTg1OTk1Mzk0NywKICAicHJvZmlsZUlkIiA6ICJmZDIwMGYwMDE4OTI0NzgxODI5OWIzZjE5Yzc4Y2E3MSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0dXNnIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2FjM2MzYmRlNTE3YjNmZjJjMDFjOGQ3MGFlNTk2YWFmZGQwMDgwZjhjNjE4ZjJkZDBkZTZjM2RlZTcwMTcxNmIiCiAgICB9CiAgfQp9",
@@ -100,7 +100,7 @@ public class NPCRegister implements Listener {
         caixasNPC.setLocation(location);
         caixasNPC.create();
 
-        location = new Location(Bukkit.getWorld("lobbypvp"), -9.567, 65.000000000, 8.407, -106.9F, -0.0F);
+        location = new Location(Bukkit.getWorld("lobbypvp2"), -9.567, 65.000000000, 8.407, -106.9F, -0.0F);
         comboNPC = npcLib.createNPC(Arrays.asList("§6§lNOVO!", "§bWarp ComboFly", "§e" + WarpType.ComboFly + " jogadores"));
         comboNPC.setSkin(new Skin(
                 "ewogICJ0aW1lc3RhbXAiIDogMTU5NDk1ODk4NzA3NSwKICAicHJvZmlsZUlkIiA6ICI3MzgyZGRmYmU0ODU0NTVjODI1ZjkwMGY4OGZkMzJmOCIsCiAgInByb2ZpbGVOYW1lIiA6ICJ4cWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmJkZTVmY2Q0Y2FkMzEzZjI1MjZmYzY5ZDVhMDI2NzJmMTJmNzk3NGY4NmYzMTZhYjg4NDQxOTNhMmU5OTFiNiIKICAgIH0KICB9Cn0=",
@@ -109,7 +109,7 @@ public class NPCRegister implements Listener {
         comboNPC.setLocation(location);
         comboNPC.create();
 
-        location = new Location(Bukkit.getWorld("lobbypvp"), -11.419, 65.0000000000, 4.473, -106.9F, -0.0F);
+        location = new Location(Bukkit.getWorld("lobbypvp2"), -11.419, 65.0000000000, 4.473, -106.9F, -0.0F);
         GappleNPC = npcLib.createNPC(Arrays.asList("§6§lNOVO!", "§bWarp Gapple", "§e" + WarpType.Gapple + " jogadores"));
         GappleNPC.setSkin(new Skin(
                 "ewogICJ0aW1lc3RhbXAiIDogMTY4MzMwMjg2NjUxMCwKICAicHJvZmlsZUlkIiA6ICJjMTNkYzkxZjg1YjA0ZWM4OGU2NDk5YzdjZDc4Zjk3MSIsCiAgInByb2ZpbGVOYW1lIiA6ICJjYXNzdGhlY3J5cHRpZCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9mNjhlZjliYmJiZTM0NDIzMDcxZDk5N2QyZDhhNmQwZWE2MDM3YTA1Y2UwYjliZDkyZDZlMDJmNzE0OTg0NzkyIgogICAgfQogIH0KfQ==",
@@ -118,7 +118,7 @@ public class NPCRegister implements Listener {
         GappleNPC.setLocation(location);
         GappleNPC.create();
 
-        location = new Location(Bukkit.getWorld("lobbypvp"), -12.329, 65.0000000000, 0.486, -96.1F, -3.6F);
+        location = new Location(Bukkit.getWorld("lobbypvp2"), -12.329, 65.0000000000, 0.486, -96.1F, -3.6F);
         sumoNPC = npcLib.createNPC(Arrays.asList("§6§lNOVO!", "§bWarp Knockback", "§e" + WarpType.Knockback + " jogadores"));
         sumoNPC.setSkin(new Skin(
                 "ewogICJ0aW1lc3RhbXAiIDogMTY5MzcxNzc1MjA2NCwKICAicHJvZmlsZUlkIiA6ICJkYmE4OTUzOThiYTc0MzZlOTQ2YzVkZTk4N2UzZGVkNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJTb21lQ29tbW9uIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzY0NTgzODYxZGZjZjQwNmY2NWJhODlhNTUzYzllMWY1MTc3ZDlmMTE1OTQ4YTZiYjc5M2I1NmQwMGY2YjljYzMiCiAgICB9CiAgfQp9",
@@ -127,7 +127,7 @@ public class NPCRegister implements Listener {
         sumoNPC.setLocation(location);
         sumoNPC.create();
 
-        location = new Location(Bukkit.getWorld("lobbypvp"), -11.273, 65.0000000000, -3.361, -88.8F, -7.4F);
+        location = new Location(Bukkit.getWorld("lobbypvp2"), -11.273, 65.0000000000, -3.361, -88.8F, -7.4F);
         potionNPC = npcLib.createNPC(Arrays.asList("§6§lNOVO!", "§bWarp 1v1", "§e" + WarpType.x1 + " jogadores"));
         potionNPC.setSkin(new Skin(
                 "ewogICJ0aW1lc3RhbXAiIDogMTY1MzE3NzM5Njg3MSwKICAicHJvZmlsZUlkIiA6ICJmMTA0NzMxZjljYTU0NmI0OTkzNjM4NTlkZWY5N2NjNiIsCiAgInByb2ZpbGVOYW1lIiA6ICJ6aWFkODciLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmNmYjU2MDcyODMyMjFiNzIwMTJlOWJkOTA0MjRiMDM5ZDI0MWFmM2VhNTczNzFmYWFlNTI3NDE4M2ZhYjhkYiIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9",

@@ -30,6 +30,9 @@ public class Flag implements Listener {
 
     @EventHandler
     public void onDamageFallLava(EntityDamageEvent e) {
+    	if (!(e.getEntity() instanceof Player)) {
+    		return;
+    	}
         if (RegisterAbility.getAbility((Player) e.getEntity()).equals("Lava") && e.getCause() == EntityDamageEvent.DamageCause.FALL) {
             e.setCancelled(true);
         } else if (RegisterAbility.getAbility((Player) e.getEntity()).equals("Sumo") && e.getCause() == EntityDamageEvent.DamageCause.FALL) {

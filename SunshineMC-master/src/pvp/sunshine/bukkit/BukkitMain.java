@@ -169,7 +169,7 @@ public class BukkitMain extends JavaPlugin {
     public void loadChunks() {
         for (int x = -150; x < 150; x++) {
             for (int z = -150; z < 150; z++) {
-                Chunk chunk = Bukkit.getWorld("lobbypvp").getBlockAt(x, 64, z).getChunk();
+                Chunk chunk = Bukkit.getWorld("lobbypvp2").getBlockAt(x, 64, z).getChunk();
                 if (chunk.isLoaded()) {
                     continue;
                 }
@@ -223,7 +223,7 @@ public class BukkitMain extends JavaPlugin {
         registerListener(new Flag(), pluginManager);
         registerListener(new PlayerLoad(), pluginManager);
         Bukkit.getServer().getPluginManager().registerEvents(new Essentials(playerFakeTags), this);
-        registerListener(new PlayerJoinListener(), pluginManager);
+        registerListener(new PlayerJoinListener2(), pluginManager);
         registerListener(new PlayerDeathListener(), pluginManager);
         registerListener(new PlayerRespawnListener(), pluginManager);
         registerListener(new AdminCMD(), pluginManager);
@@ -327,10 +327,15 @@ public class BukkitMain extends JavaPlugin {
         try {
             String prefix = " \n §4§lAVISO";
             final String[] messages = {
-                    String.valueOf(prefix) + " §8» §fSiga-nos no Twitter: §e@RedeSlower \n ",
-                    String.valueOf(prefix) + " §8» §fJunte-se ao nosso §3Discord Oficial§f agora! Acesse: §bhttps://discord.gg/cMjU5x9PrT \n ",
-                    String.valueOf(prefix) + " §8» §fAdquira seu §aGalatic§f agora! Visite: §dhttps://discord.gg/cMjU5x9PrT \n ",
-                    String.valueOf(prefix) + " §8» §fQuer fazer parte da nossa equipe? Envie sua inscrição em: §9https://discord.gg/cMjU5x9PrT \n ",
+                    String.valueOf(prefix) + " §8» §fSiga-nos no Twitter: §e@KomboPvP77 \n ",
+                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
+                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
+                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
+                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
+                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
+                    String.valueOf(prefix) + " §8» §fJunte-se ao nosso §3Discord Oficial§f agora! Acesse: §bhttps://discord.gg/6WKMUSyuph \n ",
+                    String.valueOf(prefix) + " §8» §fAdquira seu §aGalatic§f agora! Visite: §dhttps://discord.gg/6WKMUSyuph \n ",
+                    String.valueOf(prefix) + " §8» §fQuer fazer parte da nossa equipe? Envie sua inscrição em: §9https://discord.gg/6WKMUSyuph \n ",
                     String.valueOf(prefix) + " §8» §fEstamos aceitando §6Mercado Pago, Pix e PayPal§f como formas de pagamento! \n ",
                     String.valueOf(prefix) + " §8» §fDesconfiado de algum jogador? Utilize §c/report (jogador) (motivo)§f e colabore com nossa moderação! \n ",
                     String.valueOf(prefix) + " §8» §fConfira todos os Rankings com §a/ranks§f! \n ",
@@ -341,7 +346,6 @@ public class BukkitMain extends JavaPlugin {
                     String.valueOf(prefix) + " §8» §fProblemas com a senha? Redefina com §e/trocarsenha§f! Sua privacidade é nossa prioridade. \n ",
                     String.valueOf(prefix) + " §8» §fUse §b/account (jogador)§f para ver informações de outras contas! \n ",
                     String.valueOf(prefix) + " §8» §fO §dTop Ranking's§f é baseado no XP total! \n ",
-                    String.valueOf(prefix) + " §8» §fEnvie seu vídeo para nós através do nosso sistema automático de solicitação de tags! Use o comando §b/solicitar§f e envie para a nossa equipe seu vídeo ou sua transmissão ao vivo em tempo real! \n ",
                     String.valueOf(prefix) + " §8» §fO modo §eSumô§f é §eRanqueado§f - Ganhe XP e destaque-se! \n ",
                     String.valueOf(prefix) + " §8» §fOs §bTop Clans§f são classificados pelo XP total! \n "
             };

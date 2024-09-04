@@ -107,10 +107,10 @@ public class TopCoins extends Storage {
     public static void updateHologram() {
         List<String> hologramTopCoins = getTopCoins();
 
-        World world = Bukkit.getWorld("lobbypvp");
-        double x = 3.156;
-        double y =  71.000000;
-        double z =  -10.538;
+        World world = Bukkit.getWorld("lobbypvp2");
+        double x = 524.307;
+        double y =  17.84010;
+        double z =  620.415;
         Location hologramLocation = new Location(world, x, y, z);
         Bukkit.getScheduler().runTask(BukkitMain.getInstance(), () -> {
             if (topKillsHologram == null) {

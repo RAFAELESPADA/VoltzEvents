@@ -48,8 +48,8 @@ public class PlayerDeathListener implements Listener {
 			new BukkitRunnable() {
 				@Override
 				public void run() {
-		            Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-		            player.teleport(spawnLocation);
+
+	                Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);player.teleport(spawnLocation);
 				}
 			}.runTaskLater(BukkitMain.getInstance(), 3);
 			event.getEntity().sendMessage("§c§lDEATH §fVocê morreu no evento, seus status não foram alterados!");
@@ -163,8 +163,8 @@ public class PlayerDeathListener implements Listener {
 
 		Flag.setProtection(victim, true);
 
-        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-       
+
+        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);
         (new BukkitRunnable() {
 			public void run() {
 				 victim.teleport(spawnLocation);
@@ -177,8 +177,8 @@ public class PlayerDeathListener implements Listener {
 
 	private void respawnPlayer(Player player) {
 
-        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-        player.teleport(spawnLocation);
+
+        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);player.teleport(spawnLocation);
 	}
 
 	@EventHandler

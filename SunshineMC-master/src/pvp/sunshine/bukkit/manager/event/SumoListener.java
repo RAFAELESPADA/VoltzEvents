@@ -56,8 +56,8 @@ public class SumoListener implements Listener {
             } else {
                 if (WarpType.Sumo.containsKey(event.getPlayer().getName())) {
 Player p = event.getPlayer();
-                    Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-                    p.teleport(spawnLocation);
+
+Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);  p.teleport(spawnLocation);
                 }
             }
         }
@@ -117,8 +117,8 @@ Player p = event.getPlayer();
             WarpType.Sumo.remove(target.getName());
             WarpType.Sumo.remove(p.getName());
 
-            Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-            target.teleport(spawnLocation);
+
+            Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);target.teleport(spawnLocation);
             target.getInventory().setArmorContents(null);
             target.getInventory().clear();
             target.setFoodLevel(20);
@@ -170,8 +170,8 @@ Player p = event.getPlayer();
         p.setFoodLevel(20);
         p.setHealth(20);
 
-        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp"), 21.893, 68.000000000, 0.000000, 90.0F, 1.0F);
-        p.teleport(spawnLocation);
+
+        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000); p.teleport(spawnLocation);
        
         target.getInventory().setArmorContents(null);
         target.getInventory().clear();

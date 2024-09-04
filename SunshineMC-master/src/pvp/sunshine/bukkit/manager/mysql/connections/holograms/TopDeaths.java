@@ -132,10 +132,10 @@ public class TopDeaths extends Storage {
     public static void updateHologram() {
         List<String> hologramTopDeaths = getTopDeaths();
 
-        World world = Bukkit.getWorld("lobbypvp");
-        double x = 5.385;
-        double y = 71.39104;
-        double z = -16.330;
+        World world = Bukkit.getWorld("lobbypvp2");
+        double x = 521.261;
+        double y =  17.84010 ;
+        double z = 627.213;
         Location hologramLocation = new Location(world, x, y, z);
 
         Bukkit.getScheduler().runTask(BukkitMain.getInstance(), () -> {
