@@ -41,6 +41,9 @@ public class SQLPvP extends Storage {
         (new BukkitRunnable() {
             public void run() {
                 try {
+                	loadCache(nick);
+                	 Bukkit.getConsoleSender().sendMessage("SETANDO CACHE DE KILLS PARA: " + nick + "( " + uuid + " )");
+                     
                     PreparedStatement ps = SQLPvP.getStatement(
                             "INSERT INTO `PvP` (`uuid`, `nick`, `kills`, `deaths`, `coins`) VALUES (?, ?, '0', '0', '0')");
                     ResultSet resultSet = ps.executeQuery("select * from PvP where uuid = '" + uuid + "'");
