@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
 
+import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -49,6 +50,7 @@ import pvp.sunshine.bukkit.manager.inventory.cosmetic.ParticleInventory;
 import pvp.sunshine.bukkit.manager.inventory.cosmetic.TagMenuType;
 import pvp.sunshine.bukkit.manager.mysql.PlayerLoad;
 import pvp.sunshine.bukkit.manager.mysql.Storage;
+import pvp.sunshine.bukkit.manager.mysql.connections.SQLPvP;
 import pvp.sunshine.bukkit.manager.mysql.connections.holograms.*;
 import pvp.sunshine.bukkit.manager.npc.NPCRegister;
 import pvp.sunshine.bukkit.manager.particle.MovimentPlayer;
@@ -354,6 +356,18 @@ public class BukkitMain extends JavaPlugin {
                     }
                 }
             }.runTaskTimerAsynchronously(this, 0L, 20L * 600L);
+
+            new BukkitRunnable() {
+                public void run() {
+                    for (Player p : Bukkit.getOnlinePlayers()) {
+                        if (p.isOnline()) {
+                        	if (SQLPvP.getKills(p) == null || SQLPvP.getDeaths(p) == null || SQLPvP.getCoins(p) == null) {
+                            	p.kickPlayer(ChatColor.RED + "ENCONTRAMOS UM ERRO COM SUA CONTA! RELOGUE PARA ARRUMAR");
+                            }
+                        }
+                    }
+                }
+            }.runTaskTimer(this, 0L, 2L * 2L);
         } catch (Exception ex) {
             getLogger().log(Level.SEVERE, "Erro ao enviar mensagens de broadcast.", ex);
         }

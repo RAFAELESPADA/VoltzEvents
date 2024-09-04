@@ -24,8 +24,8 @@ public class PlayerJoinListener implements Listener {
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
-		PvPUtil.setTab(event.getPlayer(), "\n §b§lKOMBOPVP \n",
-				"\n §eTwitter §f@KOMBOPVP \n §eDiscord: §fhttps://discord.gg/6WKMUSyuph\n \n §a       Obtenha seus planos §d§lVIPS§a acessando: §fhttps://discord.gg/6WKMUSyuph \n ");
+		PvPUtil.setTab(event.getPlayer(), "\n §b§lREDE KOMBOPVP \n",
+				"\n §eTwitter §f@REDE_KOMBOPVP \n §eDiscord: §fhttps://discord.gg/6WKMUSyuph\n \n §a       Obtenha seus planos §d§lVIPS§a acessando: §fhttps://discord.gg/6WKMUSyuph \n ");
 		Bukkit.getScheduler().scheduleSyncDelayedTask(BukkitMain.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -62,7 +62,7 @@ public class PlayerJoinListener implements Listener {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				TitleUtil.sendTitle(player, 0, 0, 0, "§e§lKOMBOPVP", "§fDivirta-se!");
+				TitleUtil.sendTitle(player, 0, 0, 0, "§e§lREDE KOMBOPVP", "§fDivirta-se!");
 			}
 		}.runTaskLater(BukkitMain.getInstance(), 20L);
 

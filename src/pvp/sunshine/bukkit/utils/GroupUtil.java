@@ -17,7 +17,7 @@ public class GroupUtil {
 		groupPermissions.put("tag.trial", "§d§lTRIAL");
 		groupPermissions.put("tag.ajudante", "§e§lAJUDANTE");
 		groupPermissions.put("tag.builder", "§6§lBUILDER");
-		groupPermissions.put("tag.slower", "§b§lSLOWER");
+		groupPermissions.put("tag.KOMBOPVP", "§b§lKOMBOPVP");
 		groupPermissions.put("tag.beta", "§1§lBETA");
 		groupPermissions.put("tag.investidor", "§a§lINVST");
 		groupPermissions.put("tag.astrion", "§e§lASTRION");

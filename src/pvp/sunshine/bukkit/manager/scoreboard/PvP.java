@@ -9,6 +9,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
 
+import net.md_5.bungee.api.ChatColor;
 import pvp.sunshine.bukkit.BukkitMain;
 import pvp.sunshine.bukkit.SunshineFormat;
 import pvp.sunshine.bukkit.api.KillStreakAPI;
@@ -53,7 +54,9 @@ public class PvP {
 		Scoreboard board = manager.getNewScoreboard();
 		Objective obj = board.registerNewObjective("PvP", "dummy");
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-
+		if (SQLPvP.getKills(p) == null || SQLPvP.getDeaths(p) == null || SQLPvP.getCoins(p) == null) {
+        	p.kickPlayer(ChatColor.RED + "ENCONTRAMOS UM ERRO COM SUA CONTA! RELOGUE PARA ARRUMAR");
+        }
 		addLine(board, "§3", 9);
 		addLine(board, "§f  Kills: §7" + SunshineFormat.format(SQLPvP.getKills(p)), 8);
 		addLine(board, "§f  Deaths: §7" + SunshineFormat.format(SQLPvP.getDeaths(p)), 7);

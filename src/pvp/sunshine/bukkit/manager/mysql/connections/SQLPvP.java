@@ -125,9 +125,6 @@ public class SQLPvP extends Storage {
         int kills = getKills(p);
         int coins = getCoins(p);
         int deaths = getDeaths(p);
-        if (getKills(p) == null || getDeaths(p) == null || getCoins(p) == null) {
-        	p.kickPlayer(ChatColor.RED + "ENCONTRAMOS UM ERRO COM SUA CONTA! RELOGUE PARA ARRUMAR");
-        }
         try {
             PreparedStatement ps = Storage.getConnection().prepareStatement(
                     "UPDATE `PvP` SET `Kills`=?, `Coins`=?, `NICK`=?, `Deaths`=? WHERE `UUID`=?;");
