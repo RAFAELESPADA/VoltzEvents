@@ -223,7 +223,7 @@ public class BukkitMain extends JavaPlugin {
         registerListener(new Flag(), pluginManager);
         registerListener(new PlayerLoad(), pluginManager);
         Bukkit.getServer().getPluginManager().registerEvents(new Essentials(playerFakeTags), this);
-        registerListener(new PlayerJoinListener2(), pluginManager);
+        registerListener(new PlayerJoinListener(), pluginManager);
         registerListener(new PlayerDeathListener(), pluginManager);
         registerListener(new PlayerRespawnListener(), pluginManager);
         registerListener(new AdminCMD(), pluginManager);
@@ -326,13 +326,8 @@ public class BukkitMain extends JavaPlugin {
     private void broadcast() {
         try {
             String prefix = " \n §4§lAVISO";
-            final String[] messages = {
-                    String.valueOf(prefix) + " §8» §fSiga-nos no Twitter: §e@KomboPvP77 \n ",
-                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
-                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
-                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
-                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
-                    String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
+            final String[] messages = {//https://discord.gg/6WKMUSyuph
+                    String.valueOf(prefix) + " §8» §fSiga-nos no Twitter: §e@KOMBOPVP77 \n ",
                     String.valueOf(prefix) + " §8» §fJunte-se ao nosso §3Discord Oficial§f agora! Acesse: §bhttps://discord.gg/6WKMUSyuph \n ",
                     String.valueOf(prefix) + " §8» §fAdquira seu §aVIP§f agora! Visite: §dhttps://discord.gg/6WKMUSyuph \n ",
                     String.valueOf(prefix) + " §8» §fQuer fazer parte da nossa equipe? Envie sua inscrição em: §9https://discord.gg/6WKMUSyuph \n ",

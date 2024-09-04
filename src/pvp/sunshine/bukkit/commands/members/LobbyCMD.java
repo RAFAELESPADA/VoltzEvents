@@ -13,7 +13,7 @@ public class LobbyCMD implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             sender.sendMessage("§a§lCONNECT §fConectando ao Lobby...");
-            BukkitMain.sendServer(player, "Lobby");
+           
         } else {
             sender.sendMessage("Este comando só pode ser executado por jogadores.");
         }

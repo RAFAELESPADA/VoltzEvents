@@ -18,14 +18,14 @@ import pvp.sunshine.bukkit.utils.PvPUtil;
 import pvp.sunshine.bukkit.utils.TagUtil;
 import pvp.sunshine.bukkit.utils.TitleUtil;
 
-public class PlayerJoinListener2 implements Listener {
+public class PlayerJoinListener implements Listener {
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		event.setJoinMessage(null);
 		PvPUtil.setTab(event.getPlayer(), "\n §b§lKOMBOPVP \n",
-				"\n §eTwitter §f@KomboPvP \n §eDiscord: §fhttps://discord.gg/6WKMUSyuph\n \n §a       Obtenha seus planos §d§lVIPS§a acessando: §fhttps://discord.gg/6WKMUSyuph \n ");
+				"\n §eTwitter §f@KOMBOPVP \n §eDiscord: §fhttps://discord.gg/6WKMUSyuph\n \n §a       Obtenha seus planos §d§lVIPS§a acessando: §fhttps://discord.gg/6WKMUSyuph \n ");
 		Bukkit.getScheduler().scheduleSyncDelayedTask(BukkitMain.getInstance(), new Runnable() {
 			@Override
 			public void run() {

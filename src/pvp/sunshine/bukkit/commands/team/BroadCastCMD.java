@@ -30,6 +30,6 @@ public class BroadCastCMD implements CommandExecutor {
 
     private void broadcastMessage(String[] args) {
         String message = ChatColor.translateAlternateColorCodes('&', String.join(" ", args));
-        Bukkit.broadcastMessage(" \n §6§lKOMBO §7» " + ChatColor.RESET + message + " \n ");
+        Bukkit.broadcastMessage(" \n §6§lKOMBOPVP §7» " + ChatColor.RESET + message + " \n ");
     }
 }

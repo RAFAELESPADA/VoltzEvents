@@ -70,6 +70,7 @@ public class PlayerLoad implements Listener {
                     SQL1v1.updateData(player);
                     SQLShop.updateShop(player);
                 } catch (Exception ex) {
+                	ex.printStackTrace();
                     BukkitMain.getInstance().getLogger()
                             .severe("Erro ao atualizar dados do jogador " + player.getName() + ": " + ex.getMessage());
                 }
