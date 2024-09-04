@@ -65,7 +65,7 @@ public class PvP {
 		addLine(board, "§f  Coins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)), 4);
 		addLine(board, "§f  Ranking: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)), 3);
 		addLine(board, "§1", 2);
-		addLine(board, "   §7kombopvp.com", 1);
+		addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
 
 		p.setScoreboard(board);
 	}

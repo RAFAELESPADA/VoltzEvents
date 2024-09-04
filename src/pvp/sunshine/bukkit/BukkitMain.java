@@ -329,10 +329,10 @@ public class BukkitMain extends JavaPlugin {
         try {
             String prefix = " \n §4§lAVISO";
             final String[] messages = {//https://discord.gg/6WKMUSyuph
-                    String.valueOf(prefix) + " §8» §fSiga-nos no Twitter: §e@KOMBOPVP77 \n ",
-                    String.valueOf(prefix) + " §8» §fJunte-se ao nosso §3Discord Oficial§f agora! Acesse: §bhttps://discord.gg/6WKMUSyuph \n ",
-                    String.valueOf(prefix) + " §8» §fAdquira seu §aVIP§f agora! Visite: §dhttps://discord.gg/6WKMUSyuph \n ",
-                    String.valueOf(prefix) + " §8» §fQuer fazer parte da nossa equipe? Envie sua inscrição em: §9https://discord.gg/6WKMUSyuph \n ",
+                    String.valueOf(prefix) + " §8» §fSiga-nos no Twitter: §e" +  BukkitMain.getInstance().getConfig().getString("Twitter") + " \n ",
+                    String.valueOf(prefix) + " §8» §fJunte-se ao nosso §3Discord Oficial§f agora! Acesse: §b" + BukkitMain.getInstance().getConfig().getString("Discord") + " \n ",
+                    String.valueOf(prefix) + " §8» §fAdquira seu §aVIP§f agora! Visite: §b" + BukkitMain.getInstance().getConfig().getString("Discord") + " \n ",
+                    String.valueOf(prefix) + " §8» §fQuer fazer parte da nossa equipe? Envie sua inscrição em: §b" + BukkitMain.getInstance().getConfig().getString("Discord") + " \n ",
                     String.valueOf(prefix) + " §8» §fEstamos aceitando §6Mercado Pago, Pix e PayPal§f como formas de pagamento! \n ",
                     String.valueOf(prefix) + " §8» §fDesconfiado de algum jogador? Utilize §c/report (jogador) (motivo)§f e colabore com nossa moderação! \n ",
                     String.valueOf(prefix) + " §8» §fConfira todos os Rankings com §a/ranks§f! \n ",
@@ -340,7 +340,7 @@ public class BukkitMain extends JavaPlugin {
                     String.valueOf(prefix) + " §8» §fCrie seu próprio §eClan§f! Use §e/clan§f e participe do Top Clans! \n ",
                     String.valueOf(prefix) + " §8» §fNovas §dPartículas Personalizadas§f disponíveis nos cosméticos! \n ",
                     String.valueOf(prefix) + " §8» §fExplore §aTag's Especiais§f nos cosméticos! \n ",
-                    String.valueOf(prefix) + " §8» §fProblemas com a senha? Redefina com §e/trocarsenha§f! Sua privacidade é nossa prioridade. \n ",
+                    String.valueOf(prefix) + " §8» §fProblemas com a senha? Redefina com §e/changepass§f! Sua privacidade é nossa prioridade. \n ",
                     String.valueOf(prefix) + " §8» §fUse §b/account (jogador)§f para ver informações de outras contas! \n ",
                     String.valueOf(prefix) + " §8» §fO §dTop Ranking's§f é baseado no XP total! \n ",
                     String.valueOf(prefix) + " §8» §fO modo §eSumô§f é §eRanqueado§f - Ganhe XP e destaque-se! \n ",

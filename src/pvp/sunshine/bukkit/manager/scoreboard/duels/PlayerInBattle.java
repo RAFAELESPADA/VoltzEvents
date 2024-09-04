@@ -67,7 +67,7 @@ public class PlayerInBattle {
                 addLine(board, "§f Você está duelando contra:", 4);
                 addLine(board, "§b  " + p2.getName(), 3);
                 addLine(board, "§1", 2);
-                addLine(board, "   §7kombopvp.com", 1);
+                addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
 
                 p.setScoreboard(board);
             }

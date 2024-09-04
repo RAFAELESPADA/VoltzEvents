@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import pvp.sunshine.bukkit.BukkitMain;
+
 public class BroadCastCMD implements CommandExecutor {
 
     @Override
@@ -30,6 +32,6 @@ public class BroadCastCMD implements CommandExecutor {
 
     private void broadcastMessage(String[] args) {
         String message = ChatColor.translateAlternateColorCodes('&', String.join(" ", args));
-        Bukkit.broadcastMessage(" \n §6§lREDE KOMBOPVPPVP §7» " + ChatColor.RESET + message + " \n ");
+        Bukkit.broadcastMessage(" \n §6§l" + BukkitMain.getInstance().getConfig().getString("NomeServer") +  " §7» " + ChatColor.RESET + message + " \n ");
     }
 }

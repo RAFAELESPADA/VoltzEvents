@@ -23,8 +23,9 @@ public class FlyCMD implements CommandExecutor, Listener {
         }
     }
 
-    private static final int MAX_DISTANCE = 80;
-    private static final Location SPAWN_LOCATION = new Location(Bukkit.getWorld("KitPvP"), 5177.504, 54.00000, 2387.602, 89.6F, -1.2F);
+    private static final int MAX_DISTANCE = 110;
+    private static final Location SPAWN_LOCATION = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);
+    
 
     public boolean onCommand(final CommandSender sender, final Command arg1, final String arg2, final String[] arg3) {
         if (!sender.hasPermission("pvp.fly")) {
