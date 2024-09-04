@@ -122,7 +122,15 @@ public class SQLPvP extends Storage {
     }
 
     public static void updateData(final Player p) {
+<<<<<<< HEAD
         int kills = getKills(p);
+=======
+        
+        if (getKills(p) == null || getDeaths(p) == null || getCoins(p) == null) {
+        	p.kickPlayer(ChatColor.RED + "ENCONTRAMOS UM ERRO COM SUA CONTA! RELOGUE PARA ARRUMAR");
+        }
+int kills = getKills(p);
+>>>>>>> f65c02b0773b216fca67abc74eb277b62ffcf3d1
         int coins = getCoins(p);
         int deaths = getDeaths(p);
         try {
