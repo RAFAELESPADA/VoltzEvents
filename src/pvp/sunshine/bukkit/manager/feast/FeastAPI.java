@@ -189,7 +189,7 @@ public class FeastAPI {
     private static Hologram hologram;
 
     private static void spawnHologram(String message) {
-        World world = Bukkit.getWorld("KitPvP");
+        World world = Bukkit.getWorld("world");
         double x = 64414.329;
         double y = 68.86823;
         double z = 64447.834;
@@ -226,12 +226,11 @@ public class FeastAPI {
             @Override
             public void run() {
                 for (Player player : Bukkit.getOnlinePlayers()) {
-                    if (player.getWorld().getName().equals("KitPvP")) {
-                        if (!ConfigType.MessageAutomatic.contains(player.getName())) {
+                    if (player.getWorld().getName().equals("world")) {
                             player.sendMessage(message);
                             spawnHologram(message);
                         }
-                    }
+                    
                 }
                 if (message.equals("§a§lFEAST §fO feast spawnou!")) {
                     miniFeast();
@@ -245,7 +244,7 @@ public class FeastAPI {
 
 
     private static void spawnLightningStrikes() {
-        World world = Bukkit.getWorlds().get(0);
+        World world = Bukkit.getWorld("world");
         Location location1 = new Location(world, 64414.600, 65.00000000, 64448.353);
         Location location2 = new Location(world, getRandomCoordinate(), 100, getRandomCoordinate());
         Location location3 = new Location(world, getRandomCoordinate(), 100, getRandomCoordinate());

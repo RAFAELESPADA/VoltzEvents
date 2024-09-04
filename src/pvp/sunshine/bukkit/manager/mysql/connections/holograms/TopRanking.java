@@ -125,9 +125,9 @@ public class TopRanking extends Storage {
 
         World world = Bukkit.getWorld("lobbypvp2");
 
-        double x = 498.317;
-        double y = 17.84010;
-        double z =  620.868;
+        double x = 510.478;
+        double y = 18.1;
+        double z =  608.422;
         Location hologramLocation = new Location(world, x, y, z);
 
         Bukkit.getScheduler().runTask(BukkitMain.getInstance(), () -> {

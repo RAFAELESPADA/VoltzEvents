@@ -148,7 +148,13 @@ public class PlayerDeathListener implements Listener {
 		killer.playSound(killer.getLocation(), Sound.ANVIL_LAND, 5.0F, 1.0F);
 		victim.playSound(victim.getLocation(), Sound.CREEPER_DEATH, 10.0F, 10.0F);
 
-		respawnPlayer(victim);
+	    Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);
+        (new BukkitRunnable() {
+			public void run() {
+				 victim.teleport(spawnLocation);
+			}
+		}).runTaskLater((Plugin) BukkitMain.getInstance(), 5l);
+	
 	}
 
 	private void handleNonPlayerKill(Player victim) {
@@ -175,11 +181,7 @@ public class PlayerDeathListener implements Listener {
 
 	
 
-	private void respawnPlayer(Player player) {
 
-
-        Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);player.teleport(spawnLocation);
-	}
 
 	@EventHandler
 	public void respawn(PlayerDeathEvent event) {

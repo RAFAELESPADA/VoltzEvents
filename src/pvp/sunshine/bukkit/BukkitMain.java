@@ -334,7 +334,7 @@ public class BukkitMain extends JavaPlugin {
                     String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
                     String.valueOf(prefix) + " §8» §fAssista ao canal oficial do servidor: §ehttps://www.youtube.com/@Auleriano \n ",
                     String.valueOf(prefix) + " §8» §fJunte-se ao nosso §3Discord Oficial§f agora! Acesse: §bhttps://discord.gg/6WKMUSyuph \n ",
-                    String.valueOf(prefix) + " §8» §fAdquira seu §aGalatic§f agora! Visite: §dhttps://discord.gg/6WKMUSyuph \n ",
+                    String.valueOf(prefix) + " §8» §fAdquira seu §aVIP§f agora! Visite: §dhttps://discord.gg/6WKMUSyuph \n ",
                     String.valueOf(prefix) + " §8» §fQuer fazer parte da nossa equipe? Envie sua inscrição em: §9https://discord.gg/6WKMUSyuph \n ",
                     String.valueOf(prefix) + " §8» §fEstamos aceitando §6Mercado Pago, Pix e PayPal§f como formas de pagamento! \n ",
                     String.valueOf(prefix) + " §8» §fDesconfiado de algum jogador? Utilize §c/report (jogador) (motivo)§f e colabore com nossa moderação! \n ",
@@ -358,7 +358,7 @@ public class BukkitMain extends JavaPlugin {
                         }
                     }
                 }
-            }.runTaskTimerAsynchronously(this, 0L, 20L * 120L);
+            }.runTaskTimerAsynchronously(this, 0L, 20L * 600L);
         } catch (Exception ex) {
             getLogger().log(Level.SEVERE, "Erro ao enviar mensagens de broadcast.", ex);
         }

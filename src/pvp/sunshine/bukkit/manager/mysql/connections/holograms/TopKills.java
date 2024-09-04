@@ -133,9 +133,9 @@ public class TopKills extends Storage {
         List<String> hologramTopKills = getTopKills();
 
         World world = Bukkit.getWorld("lobbypvp2");
-        double x = 503.422;
-        double y =  17.84010;
-        double z =  631.986;
+        double x = 520.352;
+        double y =  18.0000000;
+        double z =   614.724;
         Location hologramLocation = new Location(world, x, y, z);
         Bukkit.getScheduler().runTask(BukkitMain.getInstance(), () -> {
             if (topKillsHologram == null) {

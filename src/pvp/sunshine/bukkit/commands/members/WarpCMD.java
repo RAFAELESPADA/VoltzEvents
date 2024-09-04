@@ -171,7 +171,7 @@ public class WarpCMD implements CommandExecutor, Listener {
                     iniciarContagemRegressiva(p);
                     p.playSound(p.getLocation(), Sound.ENDERMAN_TELEPORT, 3.0f, 3.0f);
                     TitleUtil.sendTitle(p, 20, 20, 20, "", "§b§lKNOCKBACK");
-                    PvPUtil.getItemChant(p, Material.STICK, 1, "§a( ͡° ͜ʖ ͡°)", 0, Enchantment.KNOCKBACK, 2, true);
+                    PvPUtil.getItemChant(p, Material.STICK, 1, "§a( ͡° ͜ʖ ͡°)", 0, Enchantment.KNOCKBACK, 3, true);
                     Cooldown.remove(p);
                     PvP.update(p);
                     FlyCMD.removeFly(p);
