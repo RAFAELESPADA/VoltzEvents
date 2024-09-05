@@ -171,11 +171,9 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
         player.setPlayerListName(formattedName);
         changeName(fakeName, player);
         FakeNameManager.setFakeName(player.getUniqueId(), fakeName);
-<<<<<<< HEAD
-        
-=======
+
         changeName(fakeName, player);
->>>>>>> 1ae38253c635ba67450c239ac4d8e48b5b950026
+
         PvP.update(player);
         playerFakeTags.put(player, availableTags.get(tag));
         playerOriginalDisplayNames.put(player, originalDisplayName);
@@ -207,17 +205,12 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
         FakeNameManager.removeFakeName(player.getUniqueId());
         playerFakeTags.remove(player);
         player.setPlayerListName(player.getName());
-<<<<<<< HEAD
         player.setDisplayName("§7");
         changeName(player.getName(), player);
         TagAPI.setNameTag(player.getName(), "u", "§7", " " + SQLClan.getTagPlayer(player));
         PvP.update(player);
         player.kickPlayer("§a§lFAKE §fSeu nick falso foi removido.");
-=======
-        player.setDisplayName(originalDisplayName);
-        changeName(player.getName(), player);
-        player.sendMessage("§a§lFAKE §fSeu nick falso foi removido.");
->>>>>>> 1ae38253c635ba67450c239ac4d8e48b5b950026
+       
     }
 
     private void setRandomFake(Player player) {
