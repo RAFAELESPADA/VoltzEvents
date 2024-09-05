@@ -21,9 +21,10 @@ public class ChatClanCMD implements CommandExecutor {
             for (String msg2 : args) {
                 msg = ((msg)) + msg2 + " ";
             }
-            if (!SQLClan.clan.get(sender.getName()).equalsIgnoreCase("Nenhum")) {
+            Player p1 = Bukkit.getPlayer(sender.getName());
+            if (!SQLClan.clan.get(p1.getUniqueId()).equalsIgnoreCase("Nenhum")) {
                 for (Player jogadores : Bukkit.getOnlinePlayers()) {
-                    if (SQLClan.clan.get(jogadores.getName()).equalsIgnoreCase(SQLClan.clan.get(sender.getName()))) {
+                    if (SQLClan.clan.get(jogadores.getUniqueId()).equalsIgnoreCase(SQLClan.clan.get(p1.getUniqueId()))) {
                         jogadores.sendMessage("§7§l[§e§lCLAN§7§l] §7" + sender.getName() + " §7» §f" + msg);
                     }
                 }
