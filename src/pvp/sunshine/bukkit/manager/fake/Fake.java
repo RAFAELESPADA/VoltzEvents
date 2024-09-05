@@ -173,9 +173,11 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
                return true;
            
         }
-        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM PvP WHERE UUID=" + UUID.fromString(Bukkit.getOfflinePlayer(fakeName).getUniqueId().toString()));
-                ResultSet rs = ps.executeQuery()) {
-               int index = 1;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM PvP WHERE UUID= ?")) {
+        		ps.setString(1, UUID.fromString(Bukkit.getOfflinePlayer(fakeName).getUniqueId().toString()).toString());
+                       ResultSet rs = ps.executeQuery(); 
+
+   		     
                while (rs.next()) {
                    String playerName = rs.getString("UUID");
 
@@ -183,9 +185,9 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
                if (Name != null) {
             	   player.sendMessage("§c§lERRO §fEsse nick está cadastrado no banco de dados como um jogador");
                    return true;
+               
                }
                }
-
         String formattedName = availableTags.get(tag) + fakeName;
         String originalDisplayName = player.getDisplayName();
         player.setDisplayName(formattedName);
