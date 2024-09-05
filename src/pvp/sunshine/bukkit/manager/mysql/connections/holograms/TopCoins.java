@@ -79,6 +79,10 @@ public class TopCoins extends Storage {
             while (rs.next()) {
                 String playerName = rs.getString("NICK");
                 String tagColor = getTagColor(playerName);
+                if (playerName == null) {
+                   tagColor = "§7" 
+                }
+                
                 topCoins.add("§e" + index + "º §7- " + tagColor + playerName + " §f- Coins: §6" + SunshineFormat.format(rs.getInt("Coins")));
                 index++;
             }
