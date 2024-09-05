@@ -37,7 +37,7 @@ public class AccountCMD implements CommandExecutor {
             sender.sendMessage("");
             sender.sendMessage("  §fXP: §a" + SQLRank.getXp(t));
             sender.sendMessage("  §fRanking: " + SQLRank.getRank(t) + " " + SQLRank.getRankComplete(SQLRank.getXp(t)));
-          //  sender.sendMessage("  §fClan: " + ProfileType.getClan(t.getUniqueId())));
+          sender.sendMessage("  §fClan: " + ProfileType.getClan(t.getUniqueId()));
             sender.sendMessage("");
             return true;
 
