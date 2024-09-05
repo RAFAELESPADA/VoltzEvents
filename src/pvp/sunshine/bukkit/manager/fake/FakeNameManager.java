@@ -12,7 +12,7 @@ public class FakeNameManager {
         fakeNames.put(playerUUID, fakeName);
     }
     public static void setRealName(UUID playerUUID, String RealName) {
-        fakeNames.put(playerUUID, RealName);
+       realNames.put(playerUUID, RealName);
     }
 
     public static String getFakeName(UUID playerUUID) {
