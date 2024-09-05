@@ -25,8 +25,8 @@ public class ProfileType implements Listener {
 
     public static String getClan(Player player) {
         String clan = "";
-        if (!SQLClan.clan.get(player.getName()).equalsIgnoreCase("Nenhum")) {
-            clan = "§b" + SQLClan.clan.get(player.getName());
+        if (!SQLClan.clan.get(player.getUniqueId()).equalsIgnoreCase("Nenhum")) {
+            clan = "§b" + SQLClan.clan.get(player.getUniqueId());
         }
         else {
             clan = "§cNenhum";
