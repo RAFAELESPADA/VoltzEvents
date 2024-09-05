@@ -171,9 +171,9 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
         player.setPlayerListName(formattedName);
         changeName(fakeName, player);
         FakeNameManager.setFakeName(player.getUniqueId(), fakeName);
-
+        FakeNameManager.setRealName(player.getUniqueId(), player.getName());
         changeName(fakeName, player);
-
+        
         PvP.update(player);
         playerFakeTags.put(player, availableTags.get(tag));
         playerOriginalDisplayNames.put(player, originalDisplayName);
@@ -186,10 +186,10 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
         StringBuilder fakeList = new StringBuilder("§a§lFAKE §fLista de jogadores com nomes falsos:\n");
 
         boolean hasFake = false;
-        for (UUID uuid : FakeNameManager.getFakeNames().keySet()) {
+        for (UUID uuid : FakeNameManager.getRealNames().keySet()) {
             Player fakePlayer = Bukkit.getPlayer(uuid);
             if (fakePlayer != null && fakePlayer.isOnline()) {
-                fakeList.append(" §7* §e").append(fakePlayer.getName()).append(" §f- §7Fake: §e").append(FakeNameManager.getFakeName(uuid)).append("\n");
+                fakeList.append(" §7* §e").append("§bFake: " + fakePlayer.getName()).append(" §f- §7Nick Real: §e").append(FakeNameManager.getRealName(uuid)).append("\n");
                 hasFake = true;
             }
         }
@@ -203,6 +203,7 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
 
     private void resetFakeName(Player player) {
         FakeNameManager.removeFakeName(player.getUniqueId());
+        FakeNameManager.removeRealNameCache(player.getUniqueId());
         playerFakeTags.remove(player);
         player.setPlayerListName(player.getName());
         player.setDisplayName("§7");
