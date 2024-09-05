@@ -95,7 +95,7 @@ public class KitType implements Listener {
         inv.setItem(52, fence);
         inv.setItem(53, vidroz);
 
-        if (p.hasPermission("kit.pvp") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("pvp")) {
+        if (p.hasPermission("kit.pvp") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("pvp")) {
             ItemStack pyro = new ItemStack(Material.STONE_SWORD);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dPvP");
@@ -111,7 +111,7 @@ public class KitType implements Listener {
             inv.addItem(new ItemStack[]{pyro});
         }
 
-        if (p.hasPermission("kit.kangaroo") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("kangaroo")) {
+        if (p.hasPermission("kit.kangaroo") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("kangaroo")) {
             ItemStack pyro = new ItemStack(Material.FIREWORK);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dKangaroo");
@@ -127,7 +127,7 @@ public class KitType implements Listener {
             inv.addItem(new ItemStack[]{pyro});
         }
 
-        if (p.hasPermission("kit.ninja") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("ninja")) {
+        if (p.hasPermission("kit.ninja") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("ninja")) {
             ItemStack pyro = new ItemStack(Material.COMPASS);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dNinja");
@@ -143,7 +143,7 @@ public class KitType implements Listener {
             inv.addItem(new ItemStack[]{pyro});
         }
 
-        if (p.hasPermission("kit.urgal") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("urgal")) {
+        if (p.hasPermission("kit.urgal") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("urgal")) {
             ItemStack pyro = new ItemStack(Material.REDSTONE);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dUrgal");
@@ -157,7 +157,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.hotpotato") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("hotpotato")) {
+        if (p.hasPermission("kit.hotpotato") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("hotpotato")) {
             ItemStack pyro = new ItemStack(Material.BAKED_POTATO);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dHotPotato");
@@ -171,7 +171,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.magma") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("magma")) {
+        if (p.hasPermission("kit.magma") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("magma")) {
             ItemStack pyro = new ItemStack(Material.MAGMA_CREAM);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dMagma");
@@ -185,7 +185,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.anchor") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("anchor")) {
+        if (p.hasPermission("kit.anchor") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("anchor")) {
             ItemStack pyro = new ItemStack(Material.ANVIL);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dAnchor");
@@ -200,7 +200,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.antistomper") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("antistomper")) {
+        if (p.hasPermission("kit.antistomper") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("antistomper")) {
             ItemStack pyro = new ItemStack(Material.GOLD_BOOTS);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dAntiStomper");
@@ -215,7 +215,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.fisherman") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("fisherman")) {
+        if (p.hasPermission("kit.fisherman") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("fisherman")) {
             ItemStack pyro = new ItemStack(Material.FISHING_ROD);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dFisherman");
@@ -230,7 +230,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.boxer") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("boxer")) {
+        if (p.hasPermission("kit.boxer") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("boxer")) {
             ItemStack pyro = new ItemStack(Material.QUARTZ);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dBoxer");
@@ -245,7 +245,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.confuser") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("confuser")) {
+        if (p.hasPermission("kit.confuser") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("confuser")) {
             ItemStack pyro = new ItemStack(Material.APPLE);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dConfuser");
@@ -259,7 +259,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.gladiator") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("gladiator")) {
+        if (p.hasPermission("kit.gladiator") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("gladiator")) {
             ItemStack pyro = new ItemStack(Material.IRON_FENCE);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dGladiator");
@@ -274,7 +274,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.monk") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("monk")) {
+        if (p.hasPermission("kit.monk") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("monk")) {
             ItemStack pyro = new ItemStack(Material.BLAZE_ROD);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dMonk");
@@ -288,7 +288,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.phantom") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("phantom")) {
+        if (p.hasPermission("kit.phantom") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("phantom")) {
             ItemStack pyro = new ItemStack(Material.FEATHER);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dPhantom");
@@ -302,7 +302,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.snail") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("snail")) {
+        if (p.hasPermission("kit.snail") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("snail")) {
             ItemStack pyro = new ItemStack(Material.SOUL_SAND);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dSnail");
@@ -316,7 +316,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.stomper") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("stomper")) {
+        if (p.hasPermission("kit.stomper") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("stomper")) {
             ItemStack pyro = new ItemStack(Material.IRON_BOOTS);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dStomper");
@@ -331,7 +331,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.switcher") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("switcher")) {
+        if (p.hasPermission("kit.switcher") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("switcher")) {
             ItemStack pyro = new ItemStack(Material.SNOW_BALL);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dSwitcher");
@@ -346,7 +346,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.thor") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("thor")) {
+        if (p.hasPermission("kit.thor") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("thor")) {
             ItemStack pyro = new ItemStack(Material.GOLD_AXE);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dThor");
@@ -361,7 +361,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.timelord") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("timelord")) {
+        if (p.hasPermission("kit.timelord") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("timelord")) {
             ItemStack pyro = new ItemStack(Material.WATCH);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dTimeLord");
@@ -375,7 +375,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.viking") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("viking")) {
+        if (p.hasPermission("kit.viking") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("viking")) {
             ItemStack pyro = new ItemStack(Material.WOOD_AXE);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dViking");
@@ -389,7 +389,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.viper") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("viper")) {
+        if (p.hasPermission("kit.viper") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("viper")) {
             ItemStack pyro = new ItemStack(Material.SPIDER_EYE);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dViper");
@@ -403,7 +403,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.grandpa") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("grandpa")) {
+        if (p.hasPermission("kit.grandpa") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("grandpa")) {
             ItemStack pyro = new ItemStack(Material.STICK);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dGrandpa");
@@ -417,7 +417,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.barbarian") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("barbarian")) {
+        if (p.hasPermission("kit.barbarian") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("barbarian")) {
             ItemStack pyro = new ItemStack(Material.WOOD_SWORD);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dBarbarian");
@@ -432,7 +432,7 @@ public class KitType implements Listener {
             pyro.setItemMeta(metapyro);
             inv.addItem(new ItemStack[]{pyro});
         }
-        if (p.hasPermission("kit.fireman") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getName()).toLowerCase().contains("fireman")) {
+        if (p.hasPermission("kit.fireman") || p.hasPermission("kit.*") || SQLShop.cacheshop.get(p.getUniqueId()).toLowerCase().contains("fireman")) {
             ItemStack pyro = new ItemStack(Material.WATER_BUCKET);
             ItemMeta metapyro = pyro.getItemMeta();
             metapyro.setDisplayName("§dFireman");
