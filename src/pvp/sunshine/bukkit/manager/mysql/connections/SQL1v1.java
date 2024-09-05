@@ -101,7 +101,7 @@ public class SQL1v1 extends Storage {
             PreparedStatement ps = Storage.getConnection().prepareStatement(
                     "UPDATE `1v1` SET `Wins`=?, `NICK`=?, `Loses`=? WHERE `UUID`=?;");
             ps.setInt(1, wins);
-            ps.setString(2, p.getName());
+            ps.setString(2, p.getUniqueId().toString());
             ps.setInt(3, loses);
             ps.setString(4, p.getUniqueId().toString());
             ps.executeUpdate();
