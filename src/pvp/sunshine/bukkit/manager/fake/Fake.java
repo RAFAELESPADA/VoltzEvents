@@ -222,6 +222,7 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
 
         String fakeName = FakeNameGenerator.generateFakeName();
         String tag = getRandomTag();
+        FakeNameManager.setRealName(player.getUniqueId(), player.getName());
         changeName(fakeName, player);
         TagAPI.setNameTag(player.getName(), "team", availableTags.get(tag), " " + SQLClan.getTagPlayer(player));
         
