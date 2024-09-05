@@ -7,8 +7,6 @@
   <property name="build" location="build"/>
   <property name="dist" location="dist"/>
   <javac destdir="out" includeantruntime="true">
-  <src path="pvp.sunshine.bukkit" />
-  <src path="pvp.sunshine.bukkit" />
 </javac>
   <target name="init">
     <!-- Create the time stamp -->
