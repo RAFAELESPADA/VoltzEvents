@@ -45,10 +45,9 @@ public class StaffListCMD implements CommandExecutor {
 	}
 
 	private boolean hasStaffPermission(Player player) {
-		return !(!player.getName().equals("r1verthebest") && !player.hasPermission("tag.subdono")
-				&& !player.hasPermission("tag.diretor") && !player.hasPermission("tag.admin")
-				&& !player.hasPermission("tag.mod+") && !player.hasPermission("tag.mod")
-				&& !player.hasPermission("tag.trial") && !player.hasPermission("tag.helper")
-				&& !player.hasPermission("tag.builder"));
+		return !(!player.getName().equals("Rafael_Auler") && !player.hasPermission("tag.chefia")
+				&& !player.hasPermission("tag.admin") && !player.hasPermission("tag.gerente")
+				&& !player.hasPermission("tag.ajudante") && !player.hasPermission("tag.mod")
+				&& !player.hasPermission("tag.construtor"));
 	}
 }

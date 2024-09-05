@@ -19,7 +19,7 @@ public class BroadCastCMD implements CommandExecutor {
             } else {
                 broadcastMessage(args);
             }
-        } else if (!sender.hasPermission("pvp.bc")) {
+        } else if (!sender.hasPermission("tag.gerente") || !sender.hasPermission("tag.admin")) {
             sender.sendMessage("§c§lERRO§f Você não possui permissão para executar esse comando.");
         } else if (args.length == 0) {
             sender.sendMessage("§c§lERRO§f Comando inválido, utilize /bc (mensagem)");

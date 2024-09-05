@@ -102,7 +102,12 @@ public class TopWins extends Storage {
             int index = 1;
             while (rs.next()) {
                 String playerName = rs.getString("NICK");
-                String tagColor = getTagColor(playerName);
+                 String tagColor = "";
+                if (playerName == null) {
+                   tagColor = "§7"; 
+                } else {
+                    tagColor = getTagColor(playerName);
+                    }
                 topWins.add("§6" + index + "º §7- " + tagColor + playerName + " §f- Vitórias: §e" + SunshineFormat.format(rs.getInt("Wins")));
                 index++;
             }

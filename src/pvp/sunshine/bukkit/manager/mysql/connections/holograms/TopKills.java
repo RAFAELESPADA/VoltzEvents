@@ -103,7 +103,12 @@ public class TopKills extends Storage {
             int index = 1;
             while (rs.next()) {
                 String playerName = rs.getString("NICK");
-                String tagColor = getTagColor(playerName);
+                 String tagColor = "";
+                if (playerName == null) {
+                   tagColor = "§7"; 
+                } else {
+                    tagColor = getTagColor(playerName);
+                    }
                 topKills.add("§a" + index + "º §7- " + tagColor + playerName + " §f- Kills: §e" + SunshineFormat.format(rs.getInt("Kills")));
                 index++;
             }

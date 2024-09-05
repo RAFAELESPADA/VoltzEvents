@@ -115,6 +115,14 @@ public class SQLPvP extends Storage {
         Kills.compute(p.getName(),
                 (name, current) -> ((current == null) ? 0 : current.intValue()) + 1);
     }
+    public static void zerarKills(Player p) {
+        Kills.put(p.getName(), 0);
+        Deaths.put(p.getName(), 0);
+        Coins.put(p.getName(), 0);
+        updateData(p);
+    	p.kickPlayer(ChatColor.RED + "SEUS STATUS FOI RESETADO!");
+    
+    }
 
     public static void addDeaths(Player p) {
         Deaths.compute(p.getName(),

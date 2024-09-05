@@ -28,6 +28,8 @@ public class TagCMD implements CommandExecutor {
         tagPermissions.put("vip+", "tag.vip+");
         tagPermissions.put("vip", "tag.vip");
         tagPermissions.put("bughunter", "tag.bughunter");
+
+        tagPermissions.put("nitro", "tag.nitro");
         tagPermissions.put("apoiador", "tag.apoiador");
     }
 
@@ -78,6 +80,8 @@ public class TagCMD implements CommandExecutor {
             tagMap.put("vip", new String[]{"j", "§9§lVIP §9"});
             tagMap.put("bughunter", new String[]{"k", "§8§lBUGHUNTER §8"});
             tagMap.put("apoiador", new String[]{"l", "§5§lAPOIADOR §5"});
+
+            tagMap.put("nitro", new String[]{"m", "§d§lNITRO §d"});
             if (!tagMap.containsKey(tagName)) {
                 sender.sendMessage("§c§lERRO §fTag não encontrada.");
                 return true;
@@ -110,6 +114,7 @@ public class TagCMD implements CommandExecutor {
         permissionToTags.put("tag.vip", new String[]{"§9§lVIP", "/tag vip"});
         permissionToTags.put("tag.bughunter", new String[]{"§8§lBUGHUNTER", "/tag bughunter"});
         permissionToTags.put("tag.apoiador", new String[]{"§5§lAPOIADOR", "/tag apoiador"});
+        permissionToTags.put("tag.nitro", new String[]{"§d§lNITRO", "/tag nitro"});
         
     }
 

@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
-
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 import org.bukkit.Bukkit;
@@ -299,10 +298,11 @@ public class BukkitMain extends JavaPlugin {
         registerCommand("fly", new FlyCMD());
         registerCommand("lobby", new LobbyCMD());
         registerCommand("stop", new ReloadCMD());
+        registerCommand("report", new Report());
         registerCommand("stats", new StatsCMD());
         registerCommand("caixas", new CaixasCMD());
         registerCommand("sc", new StaffChat(this));
-
+        registerCommand("resetkdr", new ResetKDRCMD());
         registerCommand("staffchat", new StaffChat(this));
         registerCommand("donate", new DonateCMD());
         registerCommand("addperm", new AddPermCMD());
@@ -339,6 +339,8 @@ public class BukkitMain extends JavaPlugin {
                     String.valueOf(prefix) + " §8» §fQuer ser um §bYouTuber§f do servidor? Veja os requisitos em §7/midia§f! \n ",
                     String.valueOf(prefix) + " §8» §fCrie seu próprio §eClan§f! Use §e/clan§f e participe do Top Clans! \n ",
                     String.valueOf(prefix) + " §8» §fNovas §dPartículas Personalizadas§f disponíveis nos cosméticos! \n ",
+                    String.valueOf(prefix) + " §8» §fJogadores §bVips tem acesso ao comando §a/cvip §fPara conversar com outros vips!\n ",
+                    
                     String.valueOf(prefix) + " §8» §fExplore §aTag's Especiais§f nos cosméticos! \n ",
                     String.valueOf(prefix) + " §8» §fProblemas com a senha? Redefina com §e/changepass§f! Sua privacidade é nossa prioridade. \n ",
                     String.valueOf(prefix) + " §8» §fUse §b/account (jogador)§f para ver informações de outras contas! \n ",

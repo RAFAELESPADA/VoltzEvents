@@ -16,7 +16,7 @@ public class ChatVipCMD implements CommandExecutor {
             return true;
         }
 
-        if (!sender.hasPermission("pvp.chatvip")) {
+        if (!sender.hasPermission("pvp.chatcolor")) {
             sender.sendMessage("§c§lERRO §fVocê não tem permissão para executar este comando.");
             return true;
         }
@@ -39,17 +39,12 @@ public class ChatVipCMD implements CommandExecutor {
 
 
     private String getVipTag(CommandSender sender) {
-        if (sender.hasPermission("tag.galatic")) {
-            return "§a§lGALATIC §a";
-        } else if (sender.hasPermission("tag.aurora")) {
-            return "§d§lAURORA §d";
-        } else if (sender.hasPermission("tag.celeste")) {
-            return "§b§lCELESTE §b";
-        } else if (sender.hasPermission("tag.astrion")) {
-            return "§e§lASTRION §e";
-        } else if (sender.hasPermission("tag.seraph")) {
-            return "§3§lSERAPH §3";
+        if (sender.hasPermission("tag.vip")) {
+            return "§9§lVIP §9";
+        } else if (sender.hasPermission("tag.vip+")) {
+            return "§b§lVIP+ §b";
         }
+         
         return ChatColor.GRAY + "";
     }
 }

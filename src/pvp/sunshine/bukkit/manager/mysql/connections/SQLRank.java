@@ -12,6 +12,8 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import net.md_5.bungee.api.ChatColor;
 import pvp.sunshine.bukkit.BukkitMain;
 import pvp.sunshine.bukkit.api.TagAPI;
 import pvp.sunshine.bukkit.commands.team.DonateCMD;
@@ -168,6 +170,12 @@ public class SQLRank extends Storage {
             int newValue = currentValue - value;
             return (newValue < 0) ? 0 : newValue;
         });
+    }
+    public static void zerarXP(Player p) {
+        Experience.put(p.getName(), 0);
+       
+        updateData(p);
+    
     }
 
     public static int getXp(Player p) {

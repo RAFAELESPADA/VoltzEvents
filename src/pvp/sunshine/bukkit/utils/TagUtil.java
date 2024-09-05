@@ -44,6 +44,10 @@ public class TagUtil {
         } else if (player.hasPermission("tag.bughunter")) {
             TagAPI.setNameTag(player.getName(), "l", "§8§lBUGHUNTER §8", " " + SQLClan.getTagPlayer(player));
             player.setDisplayName("§8§lBUGHUNTER §8" + player.getName());
+        } else if (player.hasPermission("tag.nitro")) {
+                TagAPI.setNameTag(player.getName(), "n", "§d§lNITRO §d", " " + SQLClan.getTagPlayer(player));
+                player.setDisplayName("§d§lNITRO §d" + player.getName());
+            
         } else if (player.hasPermission("tag.apoiador")) {
             TagAPI.setNameTag(player.getName(), "m", "§5§lAPOIADOR §5", " " + SQLClan.getTagPlayer(player));
             player.setDisplayName("§5§lAPOIADOR §5" + player.getName());

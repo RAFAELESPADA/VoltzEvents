@@ -409,19 +409,20 @@ public class Essentials implements Listener {
             String line1 = e.getLine(0);
             if (line1.equalsIgnoreCase("recraft")) {
                 e.setLine(0, "");
-                e.setLine(1, "§b§lSUNSHINE");
+                e.setLine(1, "§b§l" + BukkitMain.getInstance().getConfig().getString("NomeServer"));
                 e.setLine(2, "§eRecraft");
                 e.setLine(3, "");
                 player.sendMessage("§a§lPLACA §fPlaca de Recraft criada!");
             } else if (line1.equalsIgnoreCase("sopas")) {
                 e.setLine(0, "");
-                e.setLine(1, "§b§lSUNSHINE");
+
+                e.setLine(1, "§b§l" + BukkitMain.getInstance().getConfig().getString("NomeServer"));
                 e.setLine(2, "§eSopas");
                 e.setLine(3, "");
                 player.sendMessage("§a§lPLACA §fPlaca de Sopas criada!");
             } else if (line1.equalsIgnoreCase("potion")) {
                 e.setLine(0, "");
-                e.setLine(1, "§b§lSUNSHINE");
+                e.setLine(1, "§b§l" + BukkitMain.getInstance().getConfig().getString("NomeServer"));
                 e.setLine(2, "§ePotion");
                 e.setLine(3, "");
                 player.sendMessage("§a§lPLACA §fPlaca de Poção de Cura criada!");
@@ -464,13 +465,13 @@ public class Essentials implements Listener {
                     && (clickedBlock.getType() == Material.WALL_SIGN || clickedBlock.getType() == Material.SIGN_POST)) {
                 Sign sign = (Sign) clickedBlock.getState();
                 String[] lines = sign.getLines();
-                if (lines.length >= 4 && lines[0].isEmpty() && lines[1].equals("§b§lSUNSHINE")
+                if (lines.length >= 4 && lines[0].isEmpty() && lines[1].equals("§b§l" + BukkitMain.getInstance().getConfig().getString("NomeServer"))
                         && lines[2].equals("§eRecraft") && lines[3].isEmpty()) {
                     openRecraftInventory(e.getPlayer());
-                } else if (lines.length >= 4 && lines[0].isEmpty() && lines[1].equals("§b§lSUNSHINE")
+                } else if (lines.length >= 4 && lines[0].isEmpty() && lines[1].equals("§b§l" + BukkitMain.getInstance().getConfig().getString("NomeServer"))
                         && lines[2].equals("§eSopas") && lines[3].isEmpty()) {
                     openSopasInventory(e.getPlayer());
-                } else if (lines.length >= 4 && lines[0].isEmpty() && lines[1].equals("§b§lSUNSHINE")
+                } else if (lines.length >= 4 && lines[0].isEmpty() && lines[1].equals("§b§l" + BukkitMain.getInstance().getConfig().getString("NomeServer"))
                         && lines[2].equals("§ePotion") && lines[3].isEmpty()) {
                     openPotionInventory(e.getPlayer());
                 } else if (lines.length >= 4 && lines[0].isEmpty() && lines[1].equals("§a§lFACIL")

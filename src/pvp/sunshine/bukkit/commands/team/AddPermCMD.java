@@ -11,7 +11,7 @@ public class AddPermCMD implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String lb, String[] args) {
-        if (!sender.getName().equalsIgnoreCase("r1verthebest")) {
+        if (!sender.getName().equalsIgnoreCase("Rafael_Auler")) {
             sender.sendMessage(CommandStack.PERMISSION_DENIED);
             return true;
         }

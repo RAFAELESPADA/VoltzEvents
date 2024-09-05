@@ -18,6 +18,8 @@ commands:
     aliases: [v]
   ranks:
   donate:
+  report:
+  resetkdr:
   fake:
   solicitar:
   account:
