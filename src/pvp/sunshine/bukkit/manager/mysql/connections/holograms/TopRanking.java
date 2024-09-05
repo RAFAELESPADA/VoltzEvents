@@ -95,6 +95,9 @@ public class TopRanking extends Storage {
                 int xp = rs.getInt("EXP");
                 String playerName = rs.getString("NICK");
                 String tagColor = getTagColor(playerName);
+                if (playerName == null) {
+                   tagColor = "§7" 
+                }
                 topXP.add("§a" + index + "º §7- " + tagColor + playerName + " §f- XP: §e" + SunshineFormat.format(xp) + " §f- Ranking: " + SQLRank.getRankSymbol(xp) + " " + SQLRank.getRankComplete(xp));
                 index++;
             }
