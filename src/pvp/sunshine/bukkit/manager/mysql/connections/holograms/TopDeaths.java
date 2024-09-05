@@ -105,8 +105,13 @@ public class TopDeaths extends Storage {
                 String playerName = rs.getString("NICK");
                  String tagColor = "";
                 if (playerName == null) {
+<<<<<<< HEAD
                    tagColor = "§7"; 
                 } else {
+=======
+                   tagColor = "§7" 
+                } else 
+>>>>>>> e31c642ef6b25cb9864f189e090453d3f52b1ba9
                     tagColor = getTagColor(playerName);
             }
                 topDeaths.add("§c" + index + "º §7- " + tagColor + playerName + " §f- Deaths: §e" + SunshineFormat.format(rs.getInt("Deaths")));
