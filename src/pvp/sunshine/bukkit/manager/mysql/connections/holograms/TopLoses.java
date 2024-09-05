@@ -104,6 +104,9 @@ public class TopLoses extends Storage {
             while (rs.next()) {
                 String playerName = rs.getString("NICK");
                 String tagColor = getTagColor(playerName);
+                if (playerName == null) {
+                   tagColor = "§7" 
+                }
                 topLoses.add("§6" + index + "º §7- " + tagColor + playerName + " §f- Derrotas: §e" + SunshineFormat.format(rs.getInt("Loses")));
                 index++;
             }
