@@ -1,5 +1,6 @@
 package pvp.sunshine.bukkit.manager.mysql;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -39,20 +40,20 @@ public class PlayerLoad implements Listener {
     @EventHandler
     public void onPlayerCache(AsyncPlayerPreLoginEvent e) {
         try {
-            if (!SQLRank.Experience.containsKey(e.getName())) {
-                SQLRank.Experience.put(e.getName(), SQLRank.getXpConnection(e.getName()));
+            if (!SQLRank.Experience.containsKey(e.getUniqueId())) {
+                SQLRank.Experience.put(e.getUniqueId(), SQLRank.getXpConnection(e.getName()));
             }
             SQLPvP.registerPvP(e.getUniqueId(), e.getName());
-            SQLRank.registerXP(e.getName());
+            SQLRank.registerXP(e.getUniqueId());
 
             SQL1v1.register1v1(e.getUniqueId(), e.getName());
-            SQLShop.registerShop(e.getName());
-            SQLClan.registerClan(e.getName());
+            SQLShop.registerShop(e.getUniqueId());
+            SQLClan.registerClan(e.getUniqueId());
             SQLClan.registerClan("Nenhum", "Nenhuma", 0);
-            SQLPvP.loadCache(e.getName());
-            SQL1v1.loadCache(e.getName());
-            SQLShop.cacheLoad(e.getName());
-            SQLClan.loadCache(e.getName());
+            SQLPvP.loadCache(e.getUniqueId());
+            SQL1v1.loadCache(e.getUniqueId());
+            SQLShop.cacheLoad(e.getUniqueId());
+            SQLClan.loadCache(e.getUniqueId());
         } catch (Exception ex) {
             BukkitMain.getInstance().getLogger()
                     .severe("Erro ao carregar dados do jogador " + e.getName() + ": " + ex.getMessage());

@@ -31,7 +31,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-public class TopWins extends Storage {
+public class TopWins2 extends Storage {
 
     private static Hologram topWinsHologram;
     public static User giveMeADamnUser(UUID uniqueId) {
@@ -48,7 +48,7 @@ public class TopWins extends Storage {
             return "§7";
         }
 
-        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(UUID.fromString(playerName));
 
         if (offlinePlayer != null) {
             String groupName = TopDeaths.giveMeADamnUser(offlinePlayer.getUniqueId()).getPrimaryGroup(); // Obtém o grupo do jogador do banco de dados
@@ -87,7 +87,7 @@ public class TopWins extends Storage {
     }
 
     public static void incrementWins(Player player) {
-        try (PreparedStatement ps = connection.prepareStatement("UPDATE 1v1 SET Wins = Wins + 1 WHERE NICK = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement("UPDATE 1v1 SET Wins = Wins + 1 WHERE UUID = ?")) {
             ps.setString(1, player.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -101,16 +101,18 @@ public class TopWins extends Storage {
              ResultSet rs = ps.executeQuery()) {
             int index = 1;
             while (rs.next()) {
-                String playerName = rs.getString("NICK");
+                String playerName = rs.getString("UUID");
+
+                String Name = Bukkit.getOfflinePlayer(UUID.fromString(playerName)).getName();
                 String tagColor = "";
-                if (playerName == null) {
+                if (Name == null) {
                    tagColor = "§7" ;
                 } else {
                    
                 
                     tagColor = getTagColor(playerName);
                     }
-                topWins.add("§6" + index + "º §7- " + tagColor + playerName + " §f- Vitórias: §e" + SunshineFormat.format(rs.getInt("Wins")));
+                topWins.add("§6" + index + "º §7- " + tagColor + Name + " §f- Vitórias: §e" + SunshineFormat.format(rs.getInt("Wins")));
                 index++;
             }
             if (topWins.isEmpty()) {

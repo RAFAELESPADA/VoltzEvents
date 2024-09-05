@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
@@ -16,8 +17,8 @@ import pvp.sunshine.bukkit.manager.mysql.Storage;
 public class SQLClan extends Storage {
 
     public static String getTagPlayer(Player p) {
-        if(!clan.get(p.getName()).equalsIgnoreCase("Nenhum")) {
-            return " " + SQLRank.getRank(p) + "§e " + tag.get(p.getName());
+        if(!clan.get(p.getUniqueId()).equalsIgnoreCase("Nenhum")) {
+            return " " + SQLRank.getRank(p) + "§e " + tag.get(p.getUniqueId());
         } else {
             return " " + SQLRank.getRank(p);
         }
@@ -55,7 +56,7 @@ public class SQLClan extends Storage {
 
     public static String getClanConnection(String name) {
         try {
-            PreparedStatement ps = getStatement("SELECT * FROM Clan WHERE NICK= ?");
+            PreparedStatement ps = getStatement("SELECT * FROM Clan WHERE UUID= ?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
             rs.next();
@@ -95,10 +96,10 @@ public class SQLClan extends Storage {
         }
     }
 
-    public static String getCargoConnection(String name) {
+    public static String getCargoConnection(UUID uuid) {
         try {
-            PreparedStatement ps = getStatement("SELECT * FROM Clan WHERE NICK= ?");
-            ps.setString(1, name);
+            PreparedStatement ps = getStatement("SELECT * FROM Clan WHERE UUID= ?");
+            ps.setString(1, uuid.toString());
             ResultSet rs = ps.executeQuery();
             rs.next();
             String Cargo = rs.getString("CargoName");
@@ -171,19 +172,19 @@ public class SQLClan extends Storage {
     }
 
     public static void updateData(Player p) {
-        if (clan.containsKey(p.getName()) && tag.containsKey(p.getName())) {
-            String tagc = tag.get(p.getName());
+        if (clan.containsKey(p.getUniqueId()) && tag.containsKey(p.getUniqueId())) {
+            String tagc = tag.get(p.getUniqueId());
             int totalx = 0;
             try {
-                connection.createStatement().executeUpdate("UPDATE `Clan` SET `NICK`='" + p.getName() + "',`ClanName`='"
-                        + getClan(p) + "',`CargoName`='" + getTag(p) + "' WHERE `NICK`='" + p.getName() + "';");
+                connection.createStatement().executeUpdate("UPDATE `Clan` SET `UUID`='" + p.getUniqueId() + "',`ClanName`='"
+                        + getClan(p) + "',`CargoName`='" + getTag(p) + "' WHERE `UUID`='" + p.getUniqueId() + "';");
 
                 PreparedStatement ps = SQLClan.connection
-                        .prepareStatement("SELECT `NICK`, `ClanName` FROM `Clan` WHERE `ClanName`='"
-                                + SQLClan.clan.get(p.getName()) + "'");
+                        .prepareStatement("SELECT `UUID`, `ClanName` FROM `Clan` WHERE `ClanName`='"
+                                + SQLClan.clan.get(p.getUniqueId()) + "'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    String tempcachename = rs.getString("NICK");
+                    String tempcachename = rs.getString("UUID");
                     int xp = Integer.valueOf(SQLRank.getXpConnection(tempcachename));
                     totalx = totalx + xp;
                 }
@@ -193,15 +194,15 @@ public class SQLClan extends Storage {
             }
             try {
                 connection.createStatement()
-                        .executeUpdate("UPDATE `ClanRegistry` SET `Nome`='" + clan.get(p.getName()) + "',`Tag`='"
-                                + tagc + "',`Xp`='" + totalx + "' WHERE `Nome`='" + clan.get(p.getName()) + "';");
+                        .executeUpdate("UPDATE `ClanRegistry` SET `Nome`='" + clan.get(p.getUniqueId()) + "',`Tag`='"
+                                + tagc + "',`Xp`='" + totalx + "' WHERE `Nome`='" + clan.get(p.getUniqueId()) + "';");
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
-                cargo.remove(p.getName());
-                clan.remove(p.getName());
-                if (tag.containsKey(p.getName())) {
-                    tag.remove(p.getName());
+                cargo.remove(p.getUniqueId());
+                clan.remove(p.getUniqueId());
+                if (tag.containsKey(p.getUniqueId())) {
+                    tag.remove(p.getUniqueId());
                 }
             }
         }
@@ -219,18 +220,18 @@ public class SQLClan extends Storage {
     }
 
     public static void updatePlayer(Player p) {
-        if (clan.containsKey(p.getName()) && tag.containsKey(p.getName())) {
-            String tagc = tag.get(p.getName());
+        if (clan.containsKey(p.getUniqueId()) && tag.containsKey(p.getUniqueId())) {
+            String tagc = tag.get(p.getUniqueId());
             int totalx = 0;
             try {
-                connection.createStatement().executeUpdate("UPDATE `Clan` SET `NICK`='" + p.getName() + "',`ClanName`='"
-                        + getClan(p) + "',`CargoName`='" + getTag(p) + "' WHERE `NICK`='" + p.getName() + "';");
+                connection.createStatement().executeUpdate("UPDATE `Clan` SET `UUID`='" + p.getUniqueId() + "',`ClanName`='"
+                        + getClan(p) + "',`CargoName`='" + getTag(p) + "' WHERE `UUID`='" + p.getUniqueId() + "';");
                 PreparedStatement ps = SQLClan.connection
-                        .prepareStatement("SELECT `NICK`, `ClanName`, `CargoName` FROM `Clan` WHERE `ClanName`='"
-                                + SQLClan.clan.get(p.getName()) + "'");
+                        .prepareStatement("SELECT `UUID`, `ClanName`, `CargoName` FROM `Clan` WHERE `ClanName`='"
+                                + SQLClan.clan.get(p.getUniqueId()) + "'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    String tempcachename = rs.getString("NICK");
+                    String tempcachename = rs.getString("UUID");
                     int xp = Integer.valueOf(SQLRank.getXpConnection(tempcachename));
                     totalx = totalx + xp;
                 }
@@ -240,35 +241,35 @@ public class SQLClan extends Storage {
             }
             try {
                 connection.createStatement()
-                        .executeUpdate("UPDATE `ClanRegistry` SET `Nome`='" + clan.get(p.getName()) + "',`Tag`='"
-                                + tagc + "',`Xp`='" + totalx + "' WHERE `Nome`='" + clan.get(p.getName()) + "';");
+                        .executeUpdate("UPDATE `ClanRegistry` SET `Nome`='" + clan.get(p.getUniqueId()) + "',`Tag`='"
+                                + tagc + "',`Xp`='" + totalx + "' WHERE `Nome`='" + clan.get(p.getUniqueId()) + "';");
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
-                cargo.remove(p.getName());
-                clan.remove(p.getName());
-                if (tag.containsKey(p.getName())) {
-                    tag.remove(p.getName());
+                cargo.remove(p.getUniqueId());
+                clan.remove(p.getUniqueId());
+                if (tag.containsKey(p.getUniqueId())) {
+                    tag.remove(p.getUniqueId());
                 }
-                loadCache(p.getName());
+                loadCache(p.getUniqueId());
             }
         }
 
     }
 
     public static void updateConvite(Player p) {
-        if (clan.containsKey(p.getName()) && tag.containsKey(p.getName())) {
-            String tagc = tag.get(p.getName());
+        if (clan.containsKey(p.getUniqueId()) && tag.containsKey(p.getUniqueId())) {
+            String tagc = tag.get(p.getUniqueId());
             int totalx = 0;
             try {
-                connection.createStatement().executeUpdate("UPDATE `Clan` SET `NICK`='" + p.getName() + "',`ClanName`='"
-                        + getClan(p) + "',`CargoName`='" + getTag(p) + "' WHERE `NICK`='" + p.getName() + "';");
+                connection.createStatement().executeUpdate("UPDATE `Clan` SET `UUID`='" + p.getUniqueId() + "',`ClanName`='"
+                        + getClan(p) + "',`CargoName`='" + getTag(p) + "' WHERE `UUID`='" + p.getUniqueId() + "';");
                 PreparedStatement ps = SQLClan.connection
-                        .prepareStatement("SELECT `NICK`, `ClanName`, `CargoName` FROM `Clan` WHERE `ClanName`='"
-                                + SQLClan.clan.get(p.getName()) + "'");
+                        .prepareStatement("SELECT `UUID`, `ClanName`, `CargoName` FROM `Clan` WHERE `ClanName`='"
+                                + SQLClan.clan.get(p.getUniqueId()) + "'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    String tempcachename = rs.getString("NICK");
+                    String tempcachename = rs.getString("UUID");
                     int xp = Integer.valueOf(SQLRank.getXpConnection(tempcachename));
                     totalx = totalx + xp;
                 }
@@ -279,9 +280,9 @@ public class SQLClan extends Storage {
             try {
 
                 connection.createStatement()
-                        .executeUpdate("UPDATE `ClanRegistry` SET `Nome`='" + clan.get(p.getName()) + "',`Tag`='"
+                        .executeUpdate("UPDATE `ClanRegistry` SET `Nome`='" + clan.get(p.getUniqueId()) + "',`Tag`='"
                                 + tagc + "',`Xp`='" + totalx + "' WHERE `Nome`='"
-                                + clan.get(p.getName()) + "';");
+                                + clan.get(p.getUniqueId()) + "';");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -291,19 +292,19 @@ public class SQLClan extends Storage {
 
     public static void removeAllClans(String name) {
         try {
-            connection.createStatement().executeUpdate("UPDATE `Clan` SET `NICK`='" + name
-                    + "',`ClanName`='Nenhum',`CargoName`='Membro' WHERE `NICK`='" + name + "'");
+            connection.createStatement().executeUpdate("UPDATE `Clan` SET `UUID`='" + name
+                    + "',`ClanName`='Nenhum',`CargoName`='Membro' WHERE `UUID`='" + name + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static Map<String, String> clan = new HashMap<String, String>();
-    public static Map<String, String> cargo = new HashMap<String, String>();
-    public static Map<String, String> tag = new HashMap<String, String>();
+    public static Map<UUID, String> clan = new HashMap<UUID, String>();
+    public static Map<UUID, String> cargo = new HashMap<UUID, String>();
+    public static Map<UUID, String> tag = new HashMap<UUID, String>();
 
-    public static void loadCache(String p) {
-        String sql = SQLClan.getClanConnection(p);
+    public static void loadCache(UUID p) {
+        String sql = SQLClan.getClanConnection(p.toString());
         if (!sql.equalsIgnoreCase("null")) {
             cargo.put(p, SQLClan.getCargoConnection(p));
             clan.put(p, sql);
@@ -318,11 +319,11 @@ public class SQLClan extends Storage {
     }
 
     public static String getTag(Player p) {
-        return cargo.get(p.getName());
+        return cargo.get(p.getUniqueId());
     }
 
     public static String getClan(Player p) {
-        return clan.get(p.getName());
+        return clan.get(p.getUniqueId());
     }
 
     public static boolean checkName(String name) {
@@ -331,7 +332,7 @@ public class SQLClan extends Storage {
 
     public static boolean checkClanPlayer(String name) {
         try {
-            PreparedStatement ps = getStatement("SELECT * FROM Clan WHERE NICK= ?");
+            PreparedStatement ps = getStatement("SELECT * FROM Clan WHERE UUID= ?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
             boolean user = rs.next();
@@ -344,14 +345,14 @@ public class SQLClan extends Storage {
         return false;
     }
 
-    public static void registerClan(String nick) {
+    public static void registerClan(UUID nick) {
         try {
-            String query = "INSERT INTO `Clan`(`NICK`, `ClanName`, `CargoName`) VALUES (?, 'Nenhum', 'Membro')";
+            String query = "INSERT INTO `Clan`(`UUID`, `ClanName`, `CargoName`) VALUES (?, 'Nenhum', 'Membro')";
             
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery("select * from Clan where NICK = '" + nick + "'");
+            ResultSet resultSet = statement.executeQuery("select * from Clan where UUID = '" + nick + "'");
             if (!resultSet.next()) {
-            statement.setString(1, nick);
+            statement.setString(1, nick.toString());
             statement.executeUpdate();
             statement.close();
             }} catch (SQLException e) {

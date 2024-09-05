@@ -27,7 +27,7 @@ import pvp.sunshine.bukkit.manager.mysql.connections.SQLRank;
 import pvp.sunshine.bukkit.manager.mysql.connections.holograms.TopDeaths;
 import pvp.sunshine.bukkit.manager.mysql.connections.holograms.TopKills;
 import pvp.sunshine.bukkit.manager.mysql.connections.holograms.TopLoses;
-import pvp.sunshine.bukkit.manager.mysql.connections.holograms.TopWins;
+import pvp.sunshine.bukkit.manager.mysql.connections.holograms.TopWins2;
 import pvp.sunshine.bukkit.manager.scoreboard.duels.PlayerNotBattle;
 import pvp.sunshine.bukkit.manager.scoreboard.PvP;
 import pvp.sunshine.bukkit.utils.PvPUtil;
@@ -99,8 +99,8 @@ public class PlayerDeathListener implements Listener {
 				WinStreakAPI.removeStreak(event.getEntity());
 				PlayerNotBattle.update(event.getEntity());
 				PlayerNotBattle.update(event.getEntity().getKiller());
-				TopWins.incrementWins(event.getEntity().getKiller());
-				TopWins.updateHologram();
+				TopWins2.incrementWins(event.getEntity().getKiller());
+				TopWins2.updateHologram();
 				TopLoses.incrementLoses(event.getEntity());
 				TopLoses.updateHologram();
 			}

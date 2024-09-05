@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class TopCoins extends Storage {
     public static Hologram topKillsHologram;
@@ -32,7 +33,7 @@ public class TopCoins extends Storage {
             return "§7";
         }
 
-        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(UUID.fromString(playerName));
 
         if (offlinePlayer != null) {
             String groupName = TopDeaths.giveMeADamnUser(offlinePlayer.getUniqueId()).getPrimaryGroup(); // Obtém o grupo do jogador do banco de dados
@@ -77,7 +78,9 @@ public class TopCoins extends Storage {
              ResultSet rs = ps.executeQuery()) {
             int index = 1;
             while (rs.next()) {
-                String playerName = rs.getString("NICK");
+                String playerName = rs.getString("UUID");
+
+                String Name = Bukkit.getOfflinePlayer(UUID.fromString(playerName)).getName();
                 String tagColor = "";
                 if (playerName == null) {
                    tagColor = "§7" ;
@@ -87,7 +90,7 @@ public class TopCoins extends Storage {
                     tagColor = getTagColor(playerName);
                     }
                 
-                topCoins.add("§e" + index + "º §7- " + tagColor + playerName + " §f- Coins: §6" + SunshineFormat.format(rs.getInt("Coins")));
+                topCoins.add("§e" + index + "º §7- " + tagColor + Name + " §f- Coins: §6" + SunshineFormat.format(rs.getInt("Coins")));
                 index++;
             }
             if (topCoins.isEmpty()) {

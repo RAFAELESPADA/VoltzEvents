@@ -48,8 +48,8 @@ public class TopLoses extends Storage {
         if (playerName == null) {
             return "§7";
         }
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(UUID.fromString(playerName));
 
-        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
 
         if (offlinePlayer != null) {
             String groupName = TopDeaths.giveMeADamnUser(offlinePlayer.getUniqueId()).getPrimaryGroup(); // Obtém o grupo do jogador do banco de dados
@@ -88,7 +88,7 @@ public class TopLoses extends Storage {
     }
 
     public static void incrementLoses(Player player) {
-        try (PreparedStatement ps = connection.prepareStatement("UPDATE 1v1 SET Loses = Loses + 1 WHERE NICK = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement("UPDATE 1v1 SET Loses = Loses + 1 WHERE UUID = ?")) {
             ps.setString(1, player.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -102,8 +102,10 @@ public class TopLoses extends Storage {
              ResultSet rs = ps.executeQuery()) {
             int index = 1;
             while (rs.next()) {
-                String playerName = rs.getString("NICK");
+                String playerName = rs.getString("UUID");
                 String tagColor = "";
+
+                String Name = Bukkit.getOfflinePlayer(UUID.fromString(playerName)).getName();
                 if (playerName == null) {
                    tagColor = "§7" ;
                 } else {
@@ -111,7 +113,7 @@ public class TopLoses extends Storage {
                 
                     tagColor = getTagColor(playerName);
                     }
-                topLoses.add("§6" + index + "º §7- " + tagColor + playerName + " §f- Derrotas: §e" + SunshineFormat.format(rs.getInt("Loses")));
+                topLoses.add("§6" + index + "º §7- " + tagColor + Name + " §f- Derrotas: §e" + SunshineFormat.format(rs.getInt("Loses")));
                 index++;
             }
             if (topLoses.isEmpty()) {

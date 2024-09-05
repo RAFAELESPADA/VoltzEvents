@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.Bukkit;
@@ -22,7 +23,7 @@ import pvp.sunshine.bukkit.manager.mysql.Storage;
 import pvp.sunshine.bukkit.utils.TagUtil;
 
 public class SQLRank extends Storage {
-    public static final Map<String, Integer> Experience = new HashMap<>();
+    public static final Map<UUID, Integer> Experience = new HashMap<>();
 
     public static String getRankComplete(int rank) {
         if (rank >= 50000) {
@@ -52,8 +53,8 @@ public class SQLRank extends Storage {
     }
 
     public static String getRank(Player p) {
-        if (Experience.containsKey(p.getName())) {
-            int rank = Experience.get(p.getName());
+        if (Experience.containsKey(p.getUniqueId())) {
+            int rank = Experience.get(p.getUniqueId());
             if (rank >= 50000) {
                 return "§5✺";
             } else if (rank >= 20000) {
@@ -127,7 +128,7 @@ public class SQLRank extends Storage {
 
     public static boolean checkXP(String name) {
         try {
-            PreparedStatement ps = getStatement("SELECT * FROM Xp WHERE NICK= ?");
+            PreparedStatement ps = getStatement("SELECT * FROM Xp WHERE UUID= ?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
             boolean user = rs.next();
@@ -140,15 +141,15 @@ public class SQLRank extends Storage {
         }
     }
 
-    public static void registerXP(final String Nome) {
+    public static void registerXP(final UUID Nome) {
         (new BukkitRunnable() {
             public void run() {
                 try {
                 	
-                    PreparedStatement ps = SQLRank.getStatement("INSERT INTO Xp (NICK, EXP) VALUES (?, ?)");
-                    ResultSet resultSet = ps.executeQuery("select * from Xp where NICK = '" + Nome + "'");
+                    PreparedStatement ps = SQLRank.getStatement("INSERT INTO Xp (UUID, EXP) VALUES (?, ?)");
+                    ResultSet resultSet = ps.executeQuery("select * from Xp where UUID = '" + Nome + "'");
                     if (!resultSet.next()) {
-                    ps.setString(1, Nome);
+                    ps.setString(1, Nome.toString());
                     ps.setInt(2, 0);
                     ps.executeUpdate();
                     ps.close();
@@ -160,31 +161,31 @@ public class SQLRank extends Storage {
     }
 
     public static void addXp(Player p, int value) {
-        Experience.compute(p.getName(),
+        Experience.compute(p.getUniqueId(),
                 (name, current) -> Integer.valueOf(((current == null) ? 0 : current.intValue()) + value));
     }
 
     public static void removeXP(Player p, int value) {
-        Experience.compute(p.getName(), (name, current) -> {
+        Experience.compute(p.getUniqueId(), (name, current) -> {
             int currentValue = (current == null) ? 0 : current.intValue();
             int newValue = currentValue - value;
             return (newValue < 0) ? 0 : newValue;
         });
     }
     public static void zerarXP(Player p) {
-        Experience.put(p.getName(), 0);
+        Experience.put(p.getUniqueId(), 0);
        
         updateData(p);
     
     }
 
     public static int getXp(Player p) {
-        return Experience.get(p.getName());
+        return Experience.get(p.getUniqueId());
     }
 
     public static int getXpConnection(String name) {
         try {
-            PreparedStatement ps = getStatement("SELECT * FROM Xp WHERE NICK= ?");
+            PreparedStatement ps = getStatement("SELECT * FROM Xp WHERE UUID= ?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
             rs.next();
@@ -201,16 +202,16 @@ public class SQLRank extends Storage {
         int xp = getXp(p);
         try {
             PreparedStatement ps = Storage.getConnection()
-                    .prepareStatement("UPDATE `Xp` SET `NICK`=?,`EXP`=? WHERE `NICK`=?");
-            ps.setString(1, p.getName());
+                    .prepareStatement("UPDATE `Xp` SET `UUID`=?,`EXP`=? WHERE `UUID`=?");
+            ps.setString(1, p.getUniqueId().toString());
             ps.setInt(2, xp);
-            ps.setString(3, p.getName());
+            ps.setString(3, p.getUniqueId().toString());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            SQLRank.Experience.remove(p.getName());
+            SQLRank.Experience.remove(p.getUniqueId());
         }
     }
 }

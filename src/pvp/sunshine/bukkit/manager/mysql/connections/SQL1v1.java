@@ -16,8 +16,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SQL1v1 extends Storage {
 
-    private static final Map<String, Integer> Wins = new HashMap<>();
-    private static final Map<String, Integer> Loses = new HashMap<>();
+    private static final Map<UUID, Integer> Wins = new HashMap<>();
+    private static final Map<UUID, Integer> Loses = new HashMap<>();
 
     public static boolean check1v1(UUID uuid) {
         try {
@@ -54,10 +54,10 @@ public class SQL1v1 extends Storage {
         }).runTaskAsynchronously((Plugin) BukkitMain.getInstance());
     }
 
-    public static int getIntConnection(String name, String column) {
+    public static int getIntConnection(UUID name, String column) {
         try {
-            PreparedStatement ps = getStatement("SELECT * FROM 1v1 WHERE NICK= ?");
-            ps.setString(1, name);
+            PreparedStatement ps = getStatement("SELECT * FROM 1v1 WHERE UUID= ?");
+            ps.setString(1, name.toString());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 int value = rs.getInt(column);
@@ -71,26 +71,26 @@ public class SQL1v1 extends Storage {
         return 0;
     }
 
-    public static void loadCache(String name) {
+    public static void loadCache(UUID name) {
         Wins.put(name, getIntConnection(name, "Wins"));
         Loses.put(name, getIntConnection(name, "Loses"));
     }
 
     public static Integer getWins(Player p) {
-        return Wins.get(p.getName());
+        return Wins.get(p.getUniqueId());
     }
 
     public static Integer getLoses(Player p) {
-        return Loses.get(p.getName());
+        return Loses.get(p.getUniqueId());
     }
 
     public static void addWins(Player p) {
-        Wins.compute(p.getName(),
+        Wins.compute(p.getUniqueId(),
                 (name, current) -> Integer.valueOf(((current == null) ? 0 : current.intValue()) + 1));
     }
 
     public static void addLoses(Player p) {
-        Loses.compute(p.getName(),
+        Loses.compute(p.getUniqueId(),
                 (name, current) -> Integer.valueOf(((current == null) ? 0 : current.intValue()) + 1));
     }
 
@@ -109,8 +109,8 @@ public class SQL1v1 extends Storage {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            SQL1v1.Wins.remove(p.getName());
-            SQL1v1.Loses.remove(p.getName());
+            SQL1v1.Wins.remove(p.getUniqueId());
+            SQL1v1.Loses.remove(p.getUniqueId());
         }
     }
 }

@@ -36,7 +36,7 @@ public class TopKills extends Storage {
     public static Hologram topKillsHologram;
 
     public static void incrementKills(Player player) {
-        try (PreparedStatement ps = connection.prepareStatement("UPDATE PvP SET Kills = Kills + 1 WHERE NICK = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement("UPDATE PvP SET Kills = Kills + 1 WHERE UUID = ?")) {
             ps.setString(1, player.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -57,7 +57,7 @@ public class TopKills extends Storage {
             return "§7";
         }
 
-        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(UUID.fromString(playerName));
 
         if (offlinePlayer != null) {
             String groupName = TopDeaths.giveMeADamnUser(offlinePlayer.getUniqueId()).getPrimaryGroup(); // Obtém o grupo do jogador do banco de dados
@@ -102,8 +102,10 @@ public class TopKills extends Storage {
              ResultSet rs = ps.executeQuery()) {
             int index = 1;
             while (rs.next()) {
-                String playerName = rs.getString("NICK");
+                String playerName = rs.getString("UUID");
                 String tagColor = "";
+
+                String Name = Bukkit.getOfflinePlayer(UUID.fromString(playerName)).getName();
                 if (playerName == null) {
                    tagColor = "§7" ;
                 } else {
@@ -111,7 +113,7 @@ public class TopKills extends Storage {
                 
                     tagColor = getTagColor(playerName);
                     }
-                topKills.add("§a" + index + "º §7- " + tagColor + playerName + " §f- Kills: §e" + SunshineFormat.format(rs.getInt("Kills")));
+                topKills.add("§a" + index + "º §7- " + tagColor + Name + " §f- Kills: §e" + SunshineFormat.format(rs.getInt("Kills")));
                 index++;
             }
             if (topKills.isEmpty()) {

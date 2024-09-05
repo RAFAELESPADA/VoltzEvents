@@ -114,7 +114,7 @@ public class BukkitMain extends JavaPlugin {
                 public void run() {
                     TopKills.updateHologram();
                     TopDeaths.updateHologram();
-                    TopWins.updateHologram();
+                    TopWins2.updateHologram();
                     TopLoses.updateHologram();
                     TopCoins.updateHologram();
                     TopRanking.updateHologram();

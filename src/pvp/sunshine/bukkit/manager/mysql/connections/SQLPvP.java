@@ -43,7 +43,7 @@ public class SQLPvP extends Storage {
         (new BukkitRunnable() {
             public void run() {
                 try {
-                	loadCache(nick);
+                	loadCache(uuid);
                 	 Bukkit.getConsoleSender().sendMessage("SETANDO CACHE DE KILLS PARA: " + nick + "( " + uuid + " )");
                      
                     PreparedStatement ps = SQLPvP.getStatement(
@@ -63,10 +63,10 @@ public class SQLPvP extends Storage {
         }).runTaskAsynchronously((Plugin) BukkitMain.getInstance());
     }
 
-    public static int getIntConnection(String name, String column) {
+    public static int getIntConnection(UUID name, String column) {
         try {
-            PreparedStatement ps = getStatement("SELECT * FROM PvP WHERE NICK= ?");
-            ps.setString(1, name);
+            PreparedStatement ps = getStatement("SELECT * FROM PvP WHERE UUID= ?");
+            ps.setString(1, name.toString());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 int value = rs.getInt(column);
@@ -80,31 +80,31 @@ public class SQLPvP extends Storage {
         return 0;
     }
 
-    public static void loadCache(String name) {
-        Kills.put(name, getIntConnection(name, "Kills"));
-        Deaths.put(name, getIntConnection(name, "Deaths"));
-        Coins.put(name, getIntConnection(name, "Coins"));
+    public static void loadCache(UUID name) {
+        Kills.put(name.toString(), getIntConnection(name, "Kills"));
+        Deaths.put(name.toString(), getIntConnection(name, "Deaths"));
+        Coins.put(name.toString(), getIntConnection(name, "Coins"));
     }
 
     public static Integer getCoins(Player p) {
-        return Coins.get(p.getName());
+        return Coins.get(p.getUniqueId().toString());
     }
 
     public static Integer getDeaths(Player p) {
-        return Deaths.get(p.getName());
+        return Deaths.get(p.getUniqueId().toString());
     }
 
     public static Integer getKills(Player p) {
-        return Kills.get(p.getName());
+        return Kills.get(p.getUniqueId().toString());
     }
 
     public static void addCoins(Player p, int value) {
-        Coins.compute(p.getName(),
+        Coins.compute(p.getUniqueId().toString(),
                 (name, current) -> Integer.valueOf(((current == null) ? 0 : current) + value));
     }
 
     public static void removeCoins(Player p, int value) {
-        Coins.compute(p.getName(), (name, current) -> {
+        Coins.compute(p.getUniqueId().toString(), (name, current) -> {
             int currentValue = (current == null) ? 0 : current;
             int newValue = currentValue - value;
             return (newValue < 0) ? 0 : newValue;
@@ -112,20 +112,19 @@ public class SQLPvP extends Storage {
     }
 
     public static void addKills(Player p) {
-        Kills.compute(p.getName(),
+        Kills.compute(p.getUniqueId().toString(),
                 (name, current) -> ((current == null) ? 0 : current.intValue()) + 1);
     }
     public static void zerarKills(Player p) {
-        Kills.put(p.getName(), 0);
-        Deaths.put(p.getName(), 0);
-        Coins.put(p.getName(), 0);
+        Kills.put(p.getUniqueId().toString(), 0);
+        Deaths.put(p.getUniqueId().toString(), 0);
+        Coins.put(p.getUniqueId().toString(), 0);
         updateData(p);
-    	p.kickPlayer(ChatColor.RED + "SEUS STATUS FOI RESETADO!");
     
     }
 
     public static void addDeaths(Player p) {
-        Deaths.compute(p.getName(),
+        Deaths.compute(p.getUniqueId().toString(),
                 (name, current) -> ((current == null) ? 0 : current.intValue()) + 1);
     }
 
@@ -151,9 +150,9 @@ public class SQLPvP extends Storage {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            SQLPvP.Coins.remove(p.getName());
-            SQLPvP.Deaths.remove(p.getName());
-            SQLPvP.Kills.remove(p.getName());
+            SQLPvP.Coins.remove(p.getUniqueId().toString());
+            SQLPvP.Deaths.remove(p.getUniqueId().toString());
+            SQLPvP.Kills.remove(p.getUniqueId().toString());
         }
     }
 }

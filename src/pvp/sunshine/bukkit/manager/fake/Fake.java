@@ -12,7 +12,12 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pvp.sunshine.bukkit.api.TagAPI;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQLClan;
+import pvp.sunshine.bukkit.manager.scoreboard.PvP;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -33,7 +38,71 @@ public class Fake implements CommandExecutor, Listener {
         availableTags.put("Membro", "§7");
         availableTags.put("Apoiador", "§5§lAPOIADOR §5");
     }
+    @SuppressWarnings("unchecked")
+    public void changeName(String name, Player player) {
+        try {
+            Method getHandle = player.getClass().getMethod("getHandle");
+            Object entityPlayer = getHandle.invoke(player);
+            /*
+             * These methods are no longer needed, as we can just access the
+             * profile using handle.getProfile. Also, because we can just use
+             * the method, which will not change, we don't have to do any
+             * field-name look-ups.
+             */
+            boolean gameProfileExists = false;
+            // Some 1.7 versions had the GameProfile class in a different package
+            try {
+                Class.forName("net.minecraft.util.com.mojang.authlib.GameProfile");
+                gameProfileExists = true;
+            } catch (ClassNotFoundException ignored) {
 
+            }
+            try {
+                Class.forName("com.mojang.authlib.GameProfile");
+                gameProfileExists = true;
+            } catch (ClassNotFoundException ignored) {
+
+            }
+            if (!gameProfileExists) {
+                /*
+                 * Only 1.6 and lower servers will run this code.
+                 *
+                 * In these versions, the name wasn't stored in a GameProfile object,
+                 * but as a String in the (final) name field of the EntityHuman class.
+                 * Final (non-static) fields can actually be modified by using
+                 * {@link java.lang.reflect.Field#setAccessible(boolean)}
+                 */
+                Field nameField = entityPlayer.getClass().getSuperclass().getDeclaredField("name");
+                nameField.setAccessible(true);
+                nameField.set(entityPlayer, name);
+            } else {
+                // Only 1.7+ servers will run this code
+                Object profile = entityPlayer.getClass().getMethod("getProfile").invoke(entityPlayer);
+                Field ff = profile.getClass().getDeclaredField("name");
+                ff.setAccessible(true);
+                ff.set(profile, name);
+            }
+            // In older versions, Bukkit.getOnlinePlayers() returned an Array instead of a Collection.
+            if (Bukkit.class.getMethod("getOnlinePlayers", new Class<?>[0]).getReturnType() == Collection.class) {
+                Collection<? extends Player> players = (Collection<? extends Player>) Bukkit.class.getMethod("getOnlinePlayers").invoke(null);
+                for (Player p : players) {
+                    p.hidePlayer(player);
+                    p.showPlayer(player);
+                }
+            } else {
+                Player[] players = ((Player[]) Bukkit.class.getMethod("getOnlinePlayers").invoke(null));
+                for (Player p : players) {
+                    p.hidePlayer(player);
+                    p.showPlayer(player);
+                }
+            }
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchFieldException e) {
+            /*
+             * Merged all the exceptions. Less lines
+             */
+            e.printStackTrace();
+        }
+    }
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
@@ -100,7 +169,10 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
         String originalDisplayName = player.getDisplayName();
         player.setDisplayName(formattedName);
         player.setPlayerListName(formattedName);
+        changeName(fakeName, player);
         FakeNameManager.setFakeName(player.getUniqueId(), fakeName);
+        
+        PvP.update(player);
         playerFakeTags.put(player, availableTags.get(tag));
         playerOriginalDisplayNames.put(player, originalDisplayName);
         TagAPI.setNameTag(player.getName(), "team", availableTags.get(tag), " " + SQLClan.getTagPlayer(player));
@@ -130,10 +202,12 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
     private void resetFakeName(Player player) {
         FakeNameManager.removeFakeName(player.getUniqueId());
         playerFakeTags.remove(player);
-        String originalDisplayName = playerOriginalDisplayNames.remove(player);
         player.setPlayerListName(player.getName());
-        player.setDisplayName(originalDisplayName);
-        player.sendMessage("§a§lFAKE §fSeu nick falso foi removido.");
+        player.setDisplayName("§7");
+        changeName(player.getName(), player);
+        TagAPI.setNameTag(player.getName(), "u", "§7", " " + SQLClan.getTagPlayer(player));
+        PvP.update(player);
+        player.kickPlayer("§a§lFAKE §fSeu nick falso foi removido.");
     }
 
     private void setRandomFake(Player player) {
@@ -144,7 +218,9 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
 
         String fakeName = FakeNameGenerator.generateFakeName();
         String tag = getRandomTag();
-
+        changeName(fakeName, player);
+        TagAPI.setNameTag(player.getName(), "team", availableTags.get(tag), " " + SQLClan.getTagPlayer(player));
+        
         String formattedName = availableTags.get(tag) + fakeName;
         String originalDisplayName = player.getDisplayName();
         player.setDisplayName(formattedName);
@@ -180,6 +256,7 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
             playerFakeTags.remove(player);
             String originalDisplayName = playerOriginalDisplayNames.remove(player);
             player.setPlayerListName(player.getName());
+            changeName(player.getName(), player);
             player.setDisplayName(originalDisplayName);
         }
     }

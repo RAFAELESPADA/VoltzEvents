@@ -48,7 +48,7 @@ public class TopRanking extends Storage {
             return "§7";
         }
 
-        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(UUID.fromString(playerName));
 
         if (offlinePlayer != null) {
             String groupName = giveMeADamnUser(offlinePlayer.getUniqueId()).getPrimaryGroup(); // Obtém o grupo do jogador do banco de dados
@@ -93,7 +93,9 @@ public class TopRanking extends Storage {
             int index = 1;
             while (rs.next()) {
                 int xp = rs.getInt("EXP");
-                String playerName = rs.getString("NICK");
+                String playerName = rs.getString("UUID");
+
+                String Name = Bukkit.getOfflinePlayer(UUID.fromString(playerName)).getName();
                 String tagColor = "";
                 if (playerName == null) {
                    tagColor = "§7" ;
@@ -102,7 +104,7 @@ public class TopRanking extends Storage {
                 
                     tagColor = getTagColor(playerName);
                     }
-                topXP.add("§a" + index + "º §7- " + tagColor + playerName + " §f- XP: §e" + SunshineFormat.format(xp) + " §f- Ranking: " + SQLRank.getRankSymbol(xp) + " " + SQLRank.getRankComplete(xp));
+                topXP.add("§a" + index + "º §7- " + tagColor + Name + " §f- XP: §e" + SunshineFormat.format(xp) + " §f- Ranking: " + SQLRank.getRankSymbol(xp) + " " + SQLRank.getRankComplete(xp));
                 index++;
             }
             if (topXP.isEmpty()) {

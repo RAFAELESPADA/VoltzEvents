@@ -77,10 +77,10 @@ public class ClanCMD implements CommandExecutor {
                         "§c§lCLAN §fA tag na qual você tentou utilizar em seu clan possui caracteres inválidas, tente outra.");
                 return true;
             }
-            SQLClan.clan.replace(p.getName(), args[1]);
-            SQLClan.cargo.replace(p.getName(), "Dono");
+            SQLClan.clan.replace(p.getUniqueId(), args[1]);
+            SQLClan.cargo.replace(p.getUniqueId(), "Dono");
             if (!SQLClan.tag.containsKey(p.getName())) {
-                SQLClan.tag.put(p.getName(), args[2]);
+                SQLClan.tag.put(p.getUniqueId(), args[2]);
             }
             new BukkitRunnable() {
                 public void run() {
@@ -114,8 +114,8 @@ public class ClanCMD implements CommandExecutor {
                     jogadores.sendMessage("§c§lCLAN §fO jogador §c" + sender.getName() + " §fsaiu do clan!");
                 }
             }
-            SQLClan.clan.put(p.getName(), "Nenhum");
-            SQLClan.cargo.put(p.getName(), "Nenhum");
+            SQLClan.clan.put(p.getUniqueId(), "Nenhum");
+            SQLClan.cargo.put(p.getUniqueId(), "Nenhum");
             TagUtil.tagUpdater((Player) sender);
             try {
                 SQLClan.removeXp(SQLRank.getXp((Player) sender), SQLClan.clan.get(p.getName()));
@@ -141,8 +141,8 @@ public class ClanCMD implements CommandExecutor {
             new BukkitRunnable() {
                 public void run() {
                     try {
-                        SQLClan.clan.replace(p.getName(), "Nenhum");
-                        SQLClan.cargo.replace(p.getName(), "Membro");
+                        SQLClan.clan.replace(p.getUniqueId(), "Nenhum");
+                        SQLClan.cargo.replace(p.getUniqueId(), "Membro");
                         if (SQLClan.tag.containsKey(p.getName())) {
                             SQLClan.tag.remove(p.getName());
                         }
@@ -163,8 +163,8 @@ public class ClanCMD implements CommandExecutor {
                             if (SQLClan.clan.get(todos.getName()).equalsIgnoreCase(clanname)) {
                                 todos.sendMessage("§c§lCLAN §fO dono §c" + p.getName() + " §fdeletou o clan!");
                                 TagUtil.tagUpdater(todos);
-                                SQLClan.clan.replace(todos.getName(), "Nenhum");
-                                SQLClan.cargo.replace(todos.getName(), "Membro");
+                                SQLClan.clan.replace(todos.getUniqueId(), "Nenhum");
+                                SQLClan.cargo.replace(todos.getUniqueId(), "Membro");
                                 if (SQLClan.tag.containsKey(todos.getName())) {
                                     SQLClan.tag.remove(todos.getName());
                                 }
@@ -247,10 +247,10 @@ public class ClanCMD implements CommandExecutor {
                 SQLClan.tag.remove(p.getName());
             }
             if (!SQLClan.tag.containsKey(p.getName())) {
-                SQLClan.tag.put(p.getName(), SQLClan.getTagConnection(convite.get(sender)));
+                SQLClan.tag.put(p.getUniqueId(), SQLClan.getTagConnection(convite.get(sender)));
             }
-            SQLClan.clan.replace(p.getName(), convite.get(sender));
-            SQLClan.cargo.replace(p.getName(), "Membro");
+            SQLClan.clan.replace(p.getUniqueId(), convite.get(sender));
+            SQLClan.cargo.replace(p.getUniqueId(), "Membro");
             for (Player jogadores : Bukkit.getOnlinePlayers()) {
                 if (SQLClan.clan.get(jogadores.getName()).equalsIgnoreCase(convite.get(sender))) {
                     jogadores.sendMessage("§a§lCLAN §fO jogador §a" + sender.getName() + " §fagora faz parte do clan!");
@@ -296,7 +296,7 @@ public class ClanCMD implements CommandExecutor {
             sender.sendMessage("§a§lCLAN §fVocê promoveu o membro §a" + target3.getName()
                     + " §fpara o cargo administrador em seu clan!");
             target3.sendMessage("§a§lCLAN §fVocê foi promovido para o cargo administrador no clan!\n");
-            SQLClan.cargo.replace(target3.getName(), "Admin");
+            SQLClan.cargo.replace(target3.getUniqueId(), "Admin");
             new BukkitRunnable() {
                 public void run() {
                     SQLClan.updatePlayer(target3);
@@ -337,7 +337,7 @@ public class ClanCMD implements CommandExecutor {
             sender.sendMessage("§a§lCLAN §fVocê rebaixou o administrador §a" + target3.getName()
                     + " §fpara o cargo administrador em seu clan!");
             target3.sendMessage("§c§lCLAN §fO dono do clan o rebaixou para o cargo membro!");
-            SQLClan.cargo.replace(target3.getName(), "Membro");
+            SQLClan.cargo.replace(target3.getUniqueId(), "Membro");
             SQLClan.updatePlayer(target3);
             return true;
         }
@@ -480,8 +480,8 @@ public class ClanCMD implements CommandExecutor {
             String clan = SQLClan.getClan(p);
             sender.sendMessage("§a§lCLAN §fVocê expulsou o jogador §a" + target3.getName() + " §f§f de seu clan.");
             target3.sendMessage("§c§lCLAN §fVocê foi expulso do clan.");
-            SQLClan.clan.put(target3.getName(), "Nenhum");
-            SQLClan.cargo.put(target3.getName(), "Nenhum");
+            SQLClan.clan.put(target3.getUniqueId(), "Nenhum");
+            SQLClan.cargo.put(target3.getUniqueId(), "Nenhum");
             TagUtil.tagUpdater(target3);
             for (Player jogadores : Bukkit.getOnlinePlayers()) {
                 if (SQLClan.clan.get(jogadores.getName()).equalsIgnoreCase(SQLClan.clan.get(sender.getName()))) {
