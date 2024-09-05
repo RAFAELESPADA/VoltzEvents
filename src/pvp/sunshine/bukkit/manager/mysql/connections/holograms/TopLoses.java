@@ -103,15 +103,12 @@ public class TopLoses extends Storage {
             int index = 1;
             while (rs.next()) {
                 String playerName = rs.getString("NICK");
-                 String tagColor = "";
+                String tagColor = "";
                 if (playerName == null) {
-<<<<<<< HEAD
-                   tagColor = "§7"; 
+                   tagColor = "§7" ;
                 } else {
-=======
-                   tagColor = "§7" 
-                } else 
->>>>>>> e31c642ef6b25cb9864f189e090453d3f52b1ba9
+                   
+                
                     tagColor = getTagColor(playerName);
                     }
                 topLoses.add("§6" + index + "º §7- " + tagColor + playerName + " §f- Derrotas: §e" + SunshineFormat.format(rs.getInt("Loses")));
