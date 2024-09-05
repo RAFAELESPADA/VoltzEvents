@@ -11,18 +11,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pvp.sunshine.bukkit.api.TagAPI;
+import pvp.sunshine.bukkit.manager.mysql.Storage;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQLClan;
 import pvp.sunshine.bukkit.manager.scoreboard.PvP;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class Fake implements CommandExecutor, Listener {
+public class Fake extends Storage implements CommandExecutor, Listener  {
 
     private static final Map<String, String> availableTags = new HashMap<>();
     private final Map<Player, String> playerFakeTags;
@@ -164,6 +168,23 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
             player.sendMessage("§c§lERRO §fTag inválida. Tags disponíveis: " + String.join(", ", availableTags.keySet()));
             return true;
         }
+        if (Bukkit.getPlayer(fakeName) != null) {
+        	   player.sendMessage("§c§lERRO §fEsse nick está online no servidor como jogador!");
+               return true;
+           
+        }
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM PvP WHERE UUID=" + UUID.fromString(Bukkit.getOfflinePlayer(fakeName).getUniqueId().toString()));
+                ResultSet rs = ps.executeQuery()) {
+               int index = 1;
+               while (rs.next()) {
+                   String playerName = rs.getString("UUID");
+
+                   String Name = Bukkit.getOfflinePlayer(UUID.fromString(playerName)).getName();
+               if (Name != null) {
+            	   player.sendMessage("§c§lERRO §fEsse nick está cadastrado no banco de dados como um jogador");
+                   return true;
+               }
+               }
 
         String formattedName = availableTags.get(tag) + fakeName;
         String originalDisplayName = player.getDisplayName();
@@ -180,6 +201,11 @@ if (args.length < 2 && !args[0].equals("reset") && !args[0].equals("random") && 
         TagAPI.setNameTag(player.getName(), "team", availableTags.get(tag), " " + SQLClan.getTagPlayer(player));
         player.sendMessage("§a§lFAKE §fSeu nick foi atualizado para §e" + formattedName);
         return true;
+    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return false;
     }
 
     private void showFakeList(Player player) {
