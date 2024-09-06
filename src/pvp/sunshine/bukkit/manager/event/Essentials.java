@@ -32,6 +32,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import net.md_5.bungee.api.ChatColor;
 import pvp.sunshine.bukkit.BukkitMain;
 import pvp.sunshine.bukkit.ability.RegisterAbility;
 import pvp.sunshine.bukkit.commands.team.BuildCMD;
@@ -338,7 +339,13 @@ public class Essentials implements Listener {
     public void burn(BlockBurnEvent e) {
         e.setCancelled(true);
     }
-
+@EventHandler
+public void kikaraobugar(PlayerMoveEvent e) {
+	Player p = e.getPlayer();
+	if (SQLPvP.getKills(p) == null || SQLPvP.getDeaths(p) == null || SQLPvP.getCoins(p) == null) {
+    	p.kickPlayer(ChatColor.RED + "ENCONTRAMOS UM ERRO COM SUA CONTA! RELOGUE PARA ARRUMAR");
+    }
+}
     @EventHandler
     public void onItemSpawn(final ItemSpawnEvent event) {
         BukkitRunnable removeItemTask = new BukkitRunnable() {
