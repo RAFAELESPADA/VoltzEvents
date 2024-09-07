@@ -88,6 +88,9 @@ public class PlayerDeathListener implements Listener {
 				event.getEntity().getKiller().sendMessage("§a§l1V1 §fParabéns! você venceu o duelo contra o jogador(a) §a" + event.getEntity().getName() + "§f que ficou com um total de §e" + soupCount + " §fsopa(s) em seu inventário.\n§6(+8 coins)\n§b(+" + killerXP + " xp)");
 				event.getEntity().sendMessage("§c§l1V1 §fVocê perdeu o duelo contra o jogador(a) §c" + event.getEntity().getKiller().getName() + "§f que ficou com um total de §e" + soupCountII + "§f sopa(s) em seu inventário.");
 				event.getEntity().getKiller().playSound(event.getEntity().getKiller().getLocation(),Sound.ANVIL_LAND, 5.0F, 1.0F);
+
+				PlayerNotBattle.update(event.getEntity());
+				PlayerNotBattle.update(event.getEntity().getKiller());
 				event.getEntity().playSound(event.getEntity().getLocation(), Sound.EXPLODE, 1.0F, 1.0F);
 new BukkitRunnable() {
 	@Override
@@ -101,8 +104,6 @@ new BukkitRunnable() {
 				SQLRank.removeXP(event.getEntity(), deathXP);
 				WinStreakAPI.addStreak(event.getEntity().getKiller());
 				WinStreakAPI.removeStreak(event.getEntity());
-				PlayerNotBattle.update(event.getEntity());
-				PlayerNotBattle.update(event.getEntity().getKiller());
 				TopWins2.incrementWins(event.getEntity().getKiller());
 				TopWins2.updateHologram();
 				TopLoses.incrementLoses(event.getEntity());
