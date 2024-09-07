@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/ProtocolLib (6).jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/HolographicDisplays.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/npclib-plugin-2.11.1-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBOPVP SW E SURVIVAL E PRISON E PVP E SKYBLOCK/NOVO PVP - 1.8/plugins/LuckPerms-Bukkit-5.4.134.jar"/>
+	<classpathentry kind="output" path="out/production/Sunshine - PvP"/>
+</classpath>
