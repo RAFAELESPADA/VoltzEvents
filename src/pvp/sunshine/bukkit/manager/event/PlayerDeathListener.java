@@ -89,6 +89,10 @@ public class PlayerDeathListener implements Listener {
 				event.getEntity().sendMessage("§c§l1V1 §fVocê perdeu o duelo contra o jogador(a) §c" + event.getEntity().getKiller().getName() + "§f que ficou com um total de §e" + soupCountII + "§f sopa(s) em seu inventário.");
 				event.getEntity().getKiller().playSound(event.getEntity().getKiller().getLocation(),Sound.ANVIL_LAND, 5.0F, 1.0F);
 				event.getEntity().playSound(event.getEntity().getLocation(), Sound.EXPLODE, 1.0F, 1.0F);
+new BukkitRunnable() {
+	@Override
+	public void run() {
+
 				SQLPvP.addCoins(event.getEntity().getKiller(), 8);
 				SQLPvP.removeCoins(event.getEntity(), 5);
 				SQL1v1.addWins(event.getEntity().getKiller());
@@ -104,17 +108,28 @@ public class PlayerDeathListener implements Listener {
 				TopLoses.incrementLoses(event.getEntity());
 				TopLoses.updateHologram();
 			}
+}.runTaskAsynchronously(BukkitMain.getInstance());
 			return;
 		}
+			}
 		event.setDeathMessage(null);
 		Player victim = event.getEntity();
 		victim.setAllowFlight(false);
 		victim.setFlying(false);
 
 		if (victim.getKiller() instanceof Player) {
+		new BukkitRunnable() {	
+		public void run() {	
+		
 			handlePlayerKill(victim, victim.getKiller());
+		}}.runTaskAsynchronously(BukkitMain.getInstance());
 		} else if (!RegisterAbility.getAbility(victim).equalsIgnoreCase("Lava") && !RegisterAbility.getAbility(victim).equalsIgnoreCase("Sumo")) {
+			new BukkitRunnable() {	
+				public void run() {	
+				
 			handleNonPlayerKill(victim);
+
+				}}.runTask(BukkitMain.getInstance());
 		}
 	}
 
