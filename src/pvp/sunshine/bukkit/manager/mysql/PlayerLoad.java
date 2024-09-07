@@ -41,7 +41,7 @@ public class PlayerLoad implements Listener {
     public void onPlayerCache(AsyncPlayerPreLoginEvent e) {
         try {
             if (!SQLRank.Experience.containsKey(e.getUniqueId())) {
-                SQLRank.Experience.put(e.getUniqueId(), SQLRank.getXpConnection(e.getName()));
+                SQLRank.Experience.put(e.getUniqueId(), SQLRank.getXpConnection(e.getUniqueId().toString()));
             }
             SQLPvP.registerPvP(e.getUniqueId(), e.getName());
             SQLRank.registerXP(e.getUniqueId());
