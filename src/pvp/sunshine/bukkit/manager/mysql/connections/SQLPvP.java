@@ -135,7 +135,11 @@ public class SQLPvP extends Storage {
         int kills = getKills(p);
         int coins = getCoins(p);
         int deaths = getDeaths(p);
-        try {
+        
+        new BukkitRunnable() {
+            public void run() {
+                try {
+        	
             PreparedStatement ps = Storage.getConnection().prepareStatement(
                     "UPDATE `PvP` SET `Kills`=?, `Coins`=?, `NICK`=?, `Deaths`=? WHERE `UUID`=?;");
             ps.setInt(1, kills);
@@ -151,6 +155,8 @@ public class SQLPvP extends Storage {
             SQLPvP.Coins.remove(p.getUniqueId().toString());
             SQLPvP.Deaths.remove(p.getUniqueId().toString());
             SQLPvP.Kills.remove(p.getUniqueId().toString());
-        }
-    }
-}
+        }}}.runTaskAsynchronously((Plugin) BukkitMain.getInstance());
+    }}
+   
+   
+
