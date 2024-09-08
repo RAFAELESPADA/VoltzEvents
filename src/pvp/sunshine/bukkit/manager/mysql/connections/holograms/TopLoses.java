@@ -89,7 +89,7 @@ public class TopLoses extends Storage {
 
     public static void incrementLoses(Player player) {
         try (PreparedStatement ps = connection.prepareStatement("UPDATE 1v1 SET Loses = Loses + 1 WHERE UUID = ?")) {
-            ps.setString(1, player.getName());
+            ps.setString(1, player.getUniqueId().toString());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
