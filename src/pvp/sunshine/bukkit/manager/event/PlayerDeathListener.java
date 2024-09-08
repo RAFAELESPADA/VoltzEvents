@@ -55,8 +55,7 @@ public class PlayerDeathListener implements Listener {
 			}.runTaskLater(BukkitMain.getInstance(), 3);
 			event.getEntity().sendMessage("§c§lDEATH §fVocê morreu no evento, seus status não foram alterados!");
 			if (k instanceof Player) {
-				k
-						.sendMessage("§c§lKILL §fVocê matou um jogador no evento, os status de ambos não foram alterados.");
+				k.sendMessage("§c§lKILL §fVocê matou um jogador no evento, os status de ambos não foram alterados.");
 			}
 			return;
 		}
@@ -65,62 +64,37 @@ public class PlayerDeathListener implements Listener {
 		int killerXP = randomXP();
 		int deathXP = randomXPNegative();
 		if (Battle.partida.containsKey(p.getUniqueId())) {
-			
-			
-			if (k == null) {
-
-						
-							
-								SQL1v1.addLoses(event.getEntity());
-								SQLRank.removeXP(event.getEntity(), deathXP);
-								WinStreakAPI.removeStreak(event.getEntity());
-								TopLoses.incrementLoses(event.getEntity());
-								event.getEntity().sendMessage("§c§lDEATH §fVocê morreu sozinho no 1V1!");
-								
-							}
-						
-				return;
-			}
-			if (k instanceof Player) {
+			Bukkit.getConsoleSender().sendMessage(p.getName() + " MORREU PARA " + k.getName() + " NA 1V1!");
+			if (k instanceof Player && k != null) {
 				//DEATH
-				Inventory defeatedInventory = event.getEntity().getInventory();
-				ItemStack soupItem = new ItemStack(Material.MUSHROOM_SOUP);
-				int soupCount = 0;
-				for (ItemStack item : defeatedInventory.getContents()) {
-					if (item != null && item.getType() == soupItem.getType()) {
-						soupCount += item.getAmount();
-					}
-				}
-				Inventory killerInventory = k.getInventory();
-				ItemStack soupItemII = new ItemStack(Material.MUSHROOM_SOUP);
-				int soupCountII = 0;
-				for (ItemStack itemII : defeatedInventory.getContents()) {
-					if (itemII != null && itemII.getType() == soupItem.getType()) {
-						soupCountII += itemII.getAmount();
-					}
-				}
+
+				
 				//KILLER
-				k.sendMessage("§a§l1V1 §fParabéns! você venceu o duelo contra o jogador(a) §a" + event.getEntity().getName() + "§f que ficou com um total de §e" + soupCount + " §fsopa(s) em seu inventário.\n§6(+8 coins)\n§b(+" + killerXP + " xp)");
-				event.getEntity().sendMessage("§c§l1V1 §fVocê perdeu o duelo contra o jogador(a) §c" + k.getName() + "§f que ficou com um total de §e" + soupCountII + "§f sopa(s) em seu inventário.");
+				k.sendMessage("§a§l1V1 §fParabéns! você venceu o duelo contra o jogador(a) §a" + p.getName() + "\n§6(+8 coins)\n§b(+" + killerXP + " xp)");
+				event.getEntity().sendMessage("§c§l1V1 §fVocê perdeu o duelo contra o jogador(a) §c" + k.getName());
 				k.playSound(k.getLocation(),Sound.ANVIL_LAND, 5.0F, 1.0F);
-				PlayerNotBattle.update(event.getEntity());
+				PlayerNotBattle.update(p);
 				PlayerNotBattle.update(k);
-				event.getEntity().playSound(event.getEntity().getLocation(), Sound.EXPLODE, 1.0F, 1.0F);
+				event.getEntity().playSound(p.getLocation(), Sound.EXPLODE, 1.0F, 1.0F);
+				new BukkitRunnable() {	
+				public void run() {	
+					
 				SQLPvP.addCoins(k, 8);
-				SQLPvP.removeCoins(event.getEntity(), 5);
+				SQLPvP.removeCoins(p, 5);
 				SQL1v1.addWins(k);
-				SQL1v1.addLoses(event.getEntity());
+				SQL1v1.addLoses(p);
 				SQLRank.addXp(k, killerXP);
-				SQLRank.removeXP(event.getEntity(), deathXP);
+				SQLRank.removeXP(p, deathXP);
 				WinStreakAPI.addStreak(k);
-				WinStreakAPI.removeStreak(event.getEntity());
+				WinStreakAPI.removeStreak(p);
 				TopWins2.incrementWins(k);			
-				TopLoses.incrementLoses(event.getEntity());
+				TopLoses.incrementLoses(p);
+				}}.runTaskAsynchronously(BukkitMain.getInstance());
 TopLoses.updateHologram();
 TopWins2.updateHologram();
 			return;
 		}
-			
+		}		
 		event.setDeathMessage(null);
 		Player victim = event.getEntity();
 		victim.setAllowFlight(false);
@@ -140,15 +114,16 @@ TopWins2.updateHologram();
 			}
 		}).runTaskLater((Plugin) BukkitMain.getInstance(), 3l);
 		if (victim.getKiller() instanceof Player) {
-		new BukkitRunnable() {	
-		public void run() {	
-		
-			handlePlayerKill(victim, victim.getKiller());
 			PvP.update(killer);
 			killer.sendMessage("§a§lKILL §fVocê matou §a" + victim.getName() + "\n§6(+8 coins)");
 			BossBarAPI.removeBar(killer);
 			victim.sendMessage("§c§lDEATH §fVocê morreu para §c" + killer.getName());
 			killer.playSound(killer.getLocation(), Sound.ANVIL_LAND, 5.0F, 1.0F);
+	
+		new BukkitRunnable() {	
+		public void run() {	
+		
+			handlePlayerKill(victim, victim.getKiller());
 		}}.runTaskAsynchronously(BukkitMain.getInstance());
 		} else if (!RegisterAbility.getAbility(victim).equalsIgnoreCase("Lava") && !RegisterAbility.getAbility(victim).equalsIgnoreCase("Sumo")) {
 			
