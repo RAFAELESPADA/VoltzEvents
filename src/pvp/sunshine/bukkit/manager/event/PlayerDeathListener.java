@@ -62,11 +62,29 @@ public class PlayerDeathListener implements Listener {
 		event.setDeathMessage(null);
 		Player p = event.getEntity();
 		if (Battle.partida.containsKey(p.getUniqueId())) {
-			Battle.partida.containsKey(p.getUniqueId());
+			
 			int killerXP = randomXP();
 			int deathXP = randomXPNegative();
-			if (event.getEntity().getKiller() instanceof Player) {
+			if (event.getEntity().getKiller() == null) {
+				new BukkitRunnable() {
+					@Override
+					public void run() {
 
+						
+							
+								SQL1v1.addLoses(event.getEntity());
+								SQLRank.removeXP(event.getEntity(), deathXP);
+								WinStreakAPI.removeStreak(event.getEntity());
+								TopLoses.incrementLoses(event.getEntity());
+								event.getEntity().sendMessage("§c§lDEATH §fVocê morreu sozinho no 1V1!");
+								
+							}
+				}.runTaskLaterAsynchronously(BukkitMain.getInstance(), 2l);
+						
+				return;
+			}
+			if (event.getEntity().getKiller() instanceof Player) {
+Player k = event.getEntity().getKiller();
 				//DEATH
 				Inventory defeatedInventory = event.getEntity().getInventory();
 				ItemStack soupItem = new ItemStack(Material.MUSHROOM_SOUP);
@@ -97,20 +115,20 @@ new BukkitRunnable() {
 	@Override
 	public void run() {
 
-				SQLPvP.addCoins(event.getEntity().getKiller(), 8);
+				SQLPvP.addCoins(k, 8);
 				SQLPvP.removeCoins(event.getEntity(), 5);
-				SQL1v1.addWins(event.getEntity().getKiller());
+				SQL1v1.addWins(k);
 				SQL1v1.addLoses(event.getEntity());
-				SQLRank.addXp(event.getEntity().getKiller(), killerXP);
+				SQLRank.addXp(k, killerXP);
 				SQLRank.removeXP(event.getEntity(), deathXP);
 				WinStreakAPI.addStreak(event.getEntity().getKiller());
 				WinStreakAPI.removeStreak(event.getEntity());
-				TopWins2.incrementWins(event.getEntity().getKiller());
+				TopWins2.incrementWins(k);
 				
 				TopLoses.incrementLoses(event.getEntity());
 				
 			}
-}.runTaskAsynchronously(BukkitMain.getInstance());
+}.runTaskLaterAsynchronously(BukkitMain.getInstance(), 2l);
 			return;
 		}
 			}
