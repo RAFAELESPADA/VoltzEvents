@@ -1,7 +1,6 @@
 package pvp.sunshine.bukkit.manager.scoreboard.duels;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -13,14 +12,11 @@ import org.bukkit.scoreboard.Team;
 import pvp.sunshine.bukkit.BukkitMain;
 import pvp.sunshine.bukkit.SunshineFormat;
 import pvp.sunshine.bukkit.api.WinStreakAPI;
-import pvp.sunshine.bukkit.manager.duels.Battle;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQL1v1;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQLRank;
 import pvp.sunshine.bukkit.manager.scoreboard.SunshineAnimation;
 
-import java.util.UUID;
-
-public class PlayerInBattle {
+public class PlayerNotBattle {
 
     private static SunshineAnimation waveAnimation;
     private static String text = "";
@@ -44,7 +40,7 @@ public class PlayerInBattle {
                         if (objective == null) {
                             return;
                         }
-                        if (onlines.getPlayer().getScoreboard().getObjective("PlayerInBattle") != null) {
+                        if (onlines.getPlayer().getScoreboard().getObjective("1v1") != null) {
                             objective.setDisplayName(text);
                         }
                     });
@@ -52,26 +48,22 @@ public class PlayerInBattle {
     }
 
     public static void create(Player p) {
-        UUID playerId = p.getUniqueId();
-        if (Battle.partida.containsKey(playerId)) {
-            Player p2 = Bukkit.getPlayer(Battle.partida.get(playerId));
-            if (p2 != null && Battle.partida.containsKey(p2.getUniqueId())) {
-                int Ping = ((CraftPlayer) p.getPlayer()).getHandle().ping;
-                int Ping2 = ((CraftPlayer) p2.getPlayer()).getHandle().ping;
-                ScoreboardManager manager = Bukkit.getScoreboardManager();
-                Scoreboard board = manager.getNewScoreboard();
-                Objective obj = board.registerNewObjective("PlayerInBattle", "dummy");
-                obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard board = manager.getNewScoreboard();
+        Objective obj = board.registerNewObjective("1v1", "dummy");
+        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-                addLine(board, "§0", 5);
-                addLine(board, "§f Você está duelando contra:", 4);
-                addLine(board, "§b  " + p2.getName(), 3);
-                addLine(board, "§1", 2);
-                addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
+        addLine(board, "§b", 9);
+        addLine(board, "§f  Vitórias: §7" + SunshineFormat.format(SQL1v1.getWins(p)), 8);
+        addLine(board, "§f  Derrotas: §7" + SunshineFormat.format(SQL1v1.getLoses(p)), 7);
+        addLine(board, "§f  Winstreak: §7" + SunshineFormat.format(WinStreakAPI.getStreak(p)), 6);
+        addLine(board, "§3", 5);
+        addLine(board, "§f  Modo: §e1v1",4);
+        addLine(board, "§f  Ranking: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)), 3);
+        addLine(board, "§1", 2);
+        addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
 
-                p.setScoreboard(board);
-            }
-        }
+        p.setScoreboard(board);
     }
 
     public static void update(Player p) {
@@ -91,20 +83,21 @@ public class PlayerInBattle {
         if (scoreboard.getObjective("1v1") != null) {
             scoreboard.clearSlot(DisplaySlot.SIDEBAR);
             scoreboard.getObjective("1v1").unregister();
+            create(p);
         }
         if (scoreboard.getObjective("PlayerInBattle") != null) {
-            scoreboard.clearSlot(DisplaySlot.SIDEBAR);
-            scoreboard.getObjective("PlayerInBattle").unregister();
-            create(p);
-        } else {
+                scoreboard.clearSlot(DisplaySlot.SIDEBAR);
+                scoreboard.getObjective("PlayerInBattle").unregister();       
+            }
+         else {
             create(p);
 
         }
-    }
+}
 
     private static void addLine(Scoreboard scoreboard, String text, int score) {
         Team team = scoreboard.registerNewTeam("line" + score);
         team.addEntry(text);
-        scoreboard.getObjective("PlayerInBattle").getScore(text).setScore(score);
+        scoreboard.getObjective("1v1").getScore(text).setScore(score);
     }
 }
