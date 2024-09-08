@@ -374,9 +374,9 @@ public class Battle implements Listener {
 
 	public void iniciarPartida(Player p, Player p2) {
 		p.teleport(
-				new Location(Bukkit.getWorld("1v1"), 6442.14456399575266, 65.00000, 66482.183, (float) 87.5, (float) 3.4));
+				new Location(Bukkit.getWorld("1v1"), 66538.515, 71.000000, 66759.435, 1.1F, -1.6F));
 		p2.teleport(
-				new Location(Bukkit.getWorld("1v1"), 6368.14456399575266, 65.00000, 66482.183, (float) -91.2, (float) 4.2));
+				new Location(Bukkit.getWorld("1v1"), 66538.515, 71.000000, 66809.664, 1.79F, -0.9F));
 		
 		partida.put(p.getUniqueId(), p2.getUniqueId());
 		partida.put(p2.getUniqueId(), p.getUniqueId());
