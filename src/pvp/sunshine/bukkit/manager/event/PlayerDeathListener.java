@@ -90,8 +90,6 @@ public class PlayerDeathListener implements Listener {
 				TopWins2.incrementWins(k);			
 				TopLoses.incrementLoses(p);
 				}}.runTaskAsynchronously(BukkitMain.getInstance());
-TopLoses.updateHologram();
-TopWins2.updateHologram();
 			return;
 		}
 		}		
