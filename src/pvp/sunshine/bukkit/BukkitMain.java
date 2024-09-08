@@ -74,7 +74,7 @@ public class BukkitMain extends JavaPlugin {
     }
 
     private static NPCRegister npcManager;
-
+    private PvP scoreboardBuilder;
     public static BukkitMain getInstance() {
         return getPlugin(BukkitMain.class);
     }
@@ -101,12 +101,13 @@ public class BukkitMain extends JavaPlugin {
             particle = new ParticleType();
             loadChunks();
             FeastAPI.start();
-            PvP.init();
-            Sumo.init();
-            Lava.init();
-            Evento.init();
-            PlayerNotBattle.init();
-            PlayerInBattle.init();
+          //  PvP.init();
+           // Sumo.init();
+           // Lava.init();
+           // Evento.init();
+            this.scoreboardBuilder = new PvP(this);
+           // PlayerNotBattle.init();
+           // PlayerInBattle.init();
             LagAPI.IntelicLag();
             Bukkit.getServer().getPluginManager().registerEvents(new Fake(playerFakeTags), this);
             getCommand("fake").setExecutor(new Fake(playerFakeTags));
@@ -348,7 +349,6 @@ public class BukkitMain extends JavaPlugin {
                     String.valueOf(prefix) + " §8» §fO modo §eSumô§f é §eRanqueado§f - Ganhe XP e destaque-se! \n ",
                     String.valueOf(prefix) + " §8» §fOs §bTop Clans§f são classificados pelo XP total! \n "
             };
-
             new BukkitRunnable() {
                 public void run() {
                     for (Player p : Bukkit.getOnlinePlayers()) {
