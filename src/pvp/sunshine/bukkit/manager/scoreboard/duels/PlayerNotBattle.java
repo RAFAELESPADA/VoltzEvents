@@ -84,11 +84,16 @@ public class PlayerNotBattle {
             scoreboard.clearSlot(DisplaySlot.SIDEBAR);
             scoreboard.getObjective("1v1").unregister();
             create(p);
-        } else {
+        }
+        if (scoreboard.getObjective("PlayerInBattle") != null) {
+                scoreboard.clearSlot(DisplaySlot.SIDEBAR);
+                scoreboard.getObjective("PlayerInBattle").unregister();       
+            }
+         else {
             create(p);
 
         }
-    }
+}
 
     private static void addLine(Scoreboard scoreboard, String text, int score) {
         Team team = scoreboard.registerNewTeam("line" + score);
