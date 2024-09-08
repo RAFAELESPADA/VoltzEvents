@@ -89,7 +89,7 @@ public class TopDeaths extends Storage {
 
     public static void incrementDeaths(Player player) {
         try (PreparedStatement ps = connection.prepareStatement("UPDATE PvP SET Deaths = Deaths + 1 WHERE UUID = ?")) {
-            ps.setString(1, player.getName());
+            ps.setString(1, player.getUniqueId().toString());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
