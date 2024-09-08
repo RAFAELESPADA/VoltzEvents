@@ -144,13 +144,11 @@ new BukkitRunnable() {
 			killer.playSound(killer.getLocation(), Sound.ANVIL_LAND, 5.0F, 1.0F);
 		}}.runTaskAsynchronously(BukkitMain.getInstance());
 		} else if (!RegisterAbility.getAbility(victim).equalsIgnoreCase("Lava") && !RegisterAbility.getAbility(victim).equalsIgnoreCase("Sumo")) {
-			new BukkitRunnable() {	
-				public void run() {	
-				
+			
 			handleNonPlayerKill(victim);
 
-				}}.runTask(BukkitMain.getInstance());
-		}
+				}
+		
 	}
 
 	private void handlePlayerKill(Player victim, Player killer) {
