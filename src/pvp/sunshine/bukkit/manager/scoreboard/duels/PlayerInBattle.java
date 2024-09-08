@@ -62,7 +62,7 @@ public class PlayerInBattle {
                 Scoreboard board = manager.getNewScoreboard();
                 Objective obj = board.registerNewObjective("PlayerInBattle", "dummy");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-
+                obj.setDisplayName("§6§l1V1");
                 addLine(board, "§0", 5);
                 addLine(board, "§f Você está duelando contra:", 4);
                 addLine(board, "§b  " + p2.getName(), 3);
@@ -79,26 +79,25 @@ public class PlayerInBattle {
         if (scoreboard.getObjective("PvP") != null) {
             scoreboard.clearSlot(DisplaySlot.SIDEBAR);
             scoreboard.getObjective("PvP").unregister();
+            create(p);
         }
         if (scoreboard.getObjective("Lava") != null) {
             scoreboard.clearSlot(DisplaySlot.SIDEBAR);
             scoreboard.getObjective("Lava").unregister();
+            create(p);
         }
         if (scoreboard.getObjective("Evento") != null) {
             scoreboard.clearSlot(DisplaySlot.SIDEBAR);
             scoreboard.getObjective("Evento").unregister();
+            create(p);
         }
         if (scoreboard.getObjective("1v1") != null) {
             scoreboard.clearSlot(DisplaySlot.SIDEBAR);
             scoreboard.getObjective("1v1").unregister();
+            create(p);
         }
         if (scoreboard.getObjective("PlayerInBattle") != null) {
-            scoreboard.clearSlot(DisplaySlot.SIDEBAR);
-            scoreboard.getObjective("PlayerInBattle").unregister();
-            create(p);
-        } else {
-            create(p);
-
+           
         }
     }
 
