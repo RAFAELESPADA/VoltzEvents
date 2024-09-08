@@ -54,7 +54,7 @@ public class Evento {
         Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("Evento", "dummy");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-
+        obj.setDisplayName("§6§lEVENTO");
         addLine(board, "§3", 7);
         addLine(board, "§f  Evento: §bColiseu", 6);
         addLine(board, "§f  Participantes: §a" + SunshineFormat.format(EventoCMD.participantes.size()), 5);
