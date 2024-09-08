@@ -40,6 +40,7 @@ public class PlayerDeathListener implements Listener {
 		Player player = event.getEntity();
 		event.getEntity().setAllowFlight(false);
 		event.getEntity().setFlying(false);
+		Player k = event.getEntity().getKiller();
 		if (EventoCMD.participantes.contains(event.getEntity().getName())) {
 			event.getDrops().clear();
 			EventoCMD.participantes.remove(event.getEntity().getName());
@@ -53,8 +54,8 @@ public class PlayerDeathListener implements Listener {
 				}
 			}.runTaskLater(BukkitMain.getInstance(), 3);
 			event.getEntity().sendMessage("§c§lDEATH §fVocê morreu no evento, seus status não foram alterados!");
-			if (event.getEntity().getKiller() instanceof Player) {
-				event.getEntity().getKiller()
+			if (k instanceof Player) {
+				k
 						.sendMessage("§c§lKILL §fVocê matou um jogador no evento, os status de ambos não foram alterados.");
 			}
 			return;
@@ -66,7 +67,7 @@ public class PlayerDeathListener implements Listener {
 		if (Battle.partida.containsKey(p.getUniqueId())) {
 			
 			
-			if (event.getEntity().getKiller() == null) {
+			if (k == null) {
 
 						
 							
@@ -80,8 +81,7 @@ public class PlayerDeathListener implements Listener {
 						
 				return;
 			}
-			if (event.getEntity().getKiller() instanceof Player) {
-Player k = event.getEntity().getKiller();
+			if (k instanceof Player) {
 				//DEATH
 				Inventory defeatedInventory = event.getEntity().getInventory();
 				ItemStack soupItem = new ItemStack(Material.MUSHROOM_SOUP);
@@ -91,7 +91,7 @@ Player k = event.getEntity().getKiller();
 						soupCount += item.getAmount();
 					}
 				}
-				Inventory killerInventory = event.getEntity().getKiller().getInventory();
+				Inventory killerInventory = k.getInventory();
 				ItemStack soupItemII = new ItemStack(Material.MUSHROOM_SOUP);
 				int soupCountII = 0;
 				for (ItemStack itemII : defeatedInventory.getContents()) {
@@ -100,11 +100,11 @@ Player k = event.getEntity().getKiller();
 					}
 				}
 				//KILLER
-				event.getEntity().getKiller().sendMessage("§a§l1V1 §fParabéns! você venceu o duelo contra o jogador(a) §a" + event.getEntity().getName() + "§f que ficou com um total de §e" + soupCount + " §fsopa(s) em seu inventário.\n§6(+8 coins)\n§b(+" + killerXP + " xp)");
-				event.getEntity().sendMessage("§c§l1V1 §fVocê perdeu o duelo contra o jogador(a) §c" + event.getEntity().getKiller().getName() + "§f que ficou com um total de §e" + soupCountII + "§f sopa(s) em seu inventário.");
-				event.getEntity().getKiller().playSound(event.getEntity().getKiller().getLocation(),Sound.ANVIL_LAND, 5.0F, 1.0F);
+				k.sendMessage("§a§l1V1 §fParabéns! você venceu o duelo contra o jogador(a) §a" + event.getEntity().getName() + "§f que ficou com um total de §e" + soupCount + " §fsopa(s) em seu inventário.\n§6(+8 coins)\n§b(+" + killerXP + " xp)");
+				event.getEntity().sendMessage("§c§l1V1 §fVocê perdeu o duelo contra o jogador(a) §c" + k.getName() + "§f que ficou com um total de §e" + soupCountII + "§f sopa(s) em seu inventário.");
+				k.playSound(k.getLocation(),Sound.ANVIL_LAND, 5.0F, 1.0F);
 				PlayerNotBattle.update(event.getEntity());
-				PlayerNotBattle.update(event.getEntity().getKiller());
+				PlayerNotBattle.update(k);
 				event.getEntity().playSound(event.getEntity().getLocation(), Sound.EXPLODE, 1.0F, 1.0F);
 				SQLPvP.addCoins(k, 8);
 				SQLPvP.removeCoins(event.getEntity(), 5);
