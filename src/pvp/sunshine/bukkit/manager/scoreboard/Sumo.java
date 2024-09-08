@@ -57,7 +57,7 @@ public class Sumo {
         Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("Sumo", "dummy");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-
+        obj.setDisplayName("§6§lSUMO");
         addLine(board, "§3", 9);
         addLine(board, "§f  Kills: §7" + SunshineFormat.format(SQLPvP.getKills(p)), 8);
         addLine(board, "§f  Deaths: §7" + SunshineFormat.format(SQLPvP.getDeaths(p)), 7);
