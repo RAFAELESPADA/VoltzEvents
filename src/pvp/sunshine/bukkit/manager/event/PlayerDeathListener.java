@@ -124,7 +124,6 @@ new BukkitRunnable() {
 
 		victim.playSound(victim.getLocation(), Sound.CREEPER_DEATH, 10.0F, 10.0F);
 		RegisterAbility.powerMap.remove(victim.getName());
-		victim.sendMessage("§c§lDEATH §fVocê morreu para §c" + killer.getName());
 
 
 	    Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);
@@ -141,6 +140,7 @@ new BukkitRunnable() {
 			PvP.update(killer);
 			killer.sendMessage("§a§lKILL §fVocê matou §a" + victim.getName() + "\n§6(+8 coins)");
 			BossBarAPI.removeBar(killer);
+			victim.sendMessage("§c§lDEATH §fVocê morreu para §c" + killer.getName());
 			killer.playSound(killer.getLocation(), Sound.ANVIL_LAND, 5.0F, 1.0F);
 		}}.runTaskAsynchronously(BukkitMain.getInstance());
 		} else if (!RegisterAbility.getAbility(victim).equalsIgnoreCase("Lava") && !RegisterAbility.getAbility(victim).equalsIgnoreCase("Sumo")) {
