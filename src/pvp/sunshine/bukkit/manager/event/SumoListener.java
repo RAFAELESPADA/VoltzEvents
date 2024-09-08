@@ -109,9 +109,7 @@ Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12
             SQLRank.addXp(target, 5);
             SQLRank.removeXP(p, 3);
             TopKills.incrementKills(target);
-            TopKills.updateHologram();
             TopLoses.incrementLoses(p);
-            TopLoses.updateHologram();
             BLOCK_COMMAND.remove(p.getName());
             BLOCK_COMMAND.remove(target.getName());
             WarpType.Sumo.remove(target.getName());
