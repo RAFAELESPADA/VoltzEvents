@@ -106,8 +106,6 @@ Player k = event.getEntity().getKiller();
 				event.getEntity().getKiller().sendMessage("§a§l1V1 §fParabéns! você venceu o duelo contra o jogador(a) §a" + event.getEntity().getName() + "§f que ficou com um total de §e" + soupCount + " §fsopa(s) em seu inventário.\n§6(+8 coins)\n§b(+" + killerXP + " xp)");
 				event.getEntity().sendMessage("§c§l1V1 §fVocê perdeu o duelo contra o jogador(a) §c" + event.getEntity().getKiller().getName() + "§f que ficou com um total de §e" + soupCountII + "§f sopa(s) em seu inventário.");
 				event.getEntity().getKiller().playSound(event.getEntity().getKiller().getLocation(),Sound.ANVIL_LAND, 5.0F, 1.0F);
-				TopLoses.updateHologram();
-				TopWins2.updateHologram();
 				PlayerNotBattle.update(event.getEntity());
 				PlayerNotBattle.update(event.getEntity().getKiller());
 				event.getEntity().playSound(event.getEntity().getLocation(), Sound.EXPLODE, 1.0F, 1.0F);
@@ -121,14 +119,16 @@ new BukkitRunnable() {
 				SQL1v1.addLoses(event.getEntity());
 				SQLRank.addXp(k, killerXP);
 				SQLRank.removeXP(event.getEntity(), deathXP);
-				WinStreakAPI.addStreak(event.getEntity().getKiller());
+				WinStreakAPI.addStreak(k);
 				WinStreakAPI.removeStreak(event.getEntity());
 				TopWins2.incrementWins(k);
 				
 				TopLoses.incrementLoses(event.getEntity());
 				
 			}
-}.runTaskLaterAsynchronously(BukkitMain.getInstance(), 2l);
+}.runTaskAsynchronously(BukkitMain.getInstance());
+TopLoses.updateHologram();
+TopWins2.updateHologram();
 			return;
 		}
 			}
