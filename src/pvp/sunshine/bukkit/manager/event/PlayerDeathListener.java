@@ -120,7 +120,7 @@ new BukkitRunnable() {
 		victim.setFlying(false);
 		Player killer = event.getEntity().getKiller();
 		PvP.update(victim);
-		PvP.update(killer);
+		
 
 		killer.playSound(killer.getLocation(), Sound.ANVIL_LAND, 5.0F, 1.0F);
 		victim.playSound(victim.getLocation(), Sound.CREEPER_DEATH, 10.0F, 10.0F);
@@ -141,6 +141,7 @@ new BukkitRunnable() {
 		public void run() {	
 		
 			handlePlayerKill(victim, victim.getKiller());
+			PvP.update(killer);
 		}}.runTaskAsynchronously(BukkitMain.getInstance());
 		} else if (!RegisterAbility.getAbility(victim).equalsIgnoreCase("Lava") && !RegisterAbility.getAbility(victim).equalsIgnoreCase("Sumo")) {
 			new BukkitRunnable() {	
