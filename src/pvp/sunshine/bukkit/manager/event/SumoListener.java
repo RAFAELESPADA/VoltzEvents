@@ -155,9 +155,7 @@ Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12
             target.showPlayer(todos);
         }
         TopKills.incrementKills(target);
-        TopKills.updateHologram();
         TopLoses.incrementLoses(p);
-        TopLoses.updateHologram();
         p.showPlayer(target);
         BLOCK_COMMAND.remove(p.getName());
         BLOCK_COMMAND.remove(target.getName());
