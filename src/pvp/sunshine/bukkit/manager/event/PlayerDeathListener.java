@@ -61,14 +61,12 @@ public class PlayerDeathListener implements Listener {
 		}
 		event.setDeathMessage(null);
 		Player p = event.getEntity();
+		int killerXP = randomXP();
+		int deathXP = randomXPNegative();
 		if (Battle.partida.containsKey(p.getUniqueId())) {
 			
-			int killerXP = randomXP();
-			int deathXP = randomXPNegative();
+			
 			if (event.getEntity().getKiller() == null) {
-				new BukkitRunnable() {
-					@Override
-					public void run() {
 
 						
 							
@@ -79,7 +77,6 @@ public class PlayerDeathListener implements Listener {
 								event.getEntity().sendMessage("§c§lDEATH §fVocê morreu sozinho no 1V1!");
 								
 							}
-				}.runTaskLaterAsynchronously(BukkitMain.getInstance(), 2l);
 						
 				return;
 			}
@@ -109,10 +106,6 @@ Player k = event.getEntity().getKiller();
 				PlayerNotBattle.update(event.getEntity());
 				PlayerNotBattle.update(event.getEntity().getKiller());
 				event.getEntity().playSound(event.getEntity().getLocation(), Sound.EXPLODE, 1.0F, 1.0F);
-new BukkitRunnable() {
-	@Override
-	public void run() {
-
 				SQLPvP.addCoins(k, 8);
 				SQLPvP.removeCoins(event.getEntity(), 5);
 				SQL1v1.addWins(k);
@@ -121,17 +114,13 @@ new BukkitRunnable() {
 				SQLRank.removeXP(event.getEntity(), deathXP);
 				WinStreakAPI.addStreak(k);
 				WinStreakAPI.removeStreak(event.getEntity());
-				TopWins2.incrementWins(k);
-				
+				TopWins2.incrementWins(k);			
 				TopLoses.incrementLoses(event.getEntity());
-				
-			}
-}.runTaskAsynchronously(BukkitMain.getInstance());
 TopLoses.updateHologram();
 TopWins2.updateHologram();
 			return;
 		}
-			}
+			
 		event.setDeathMessage(null);
 		Player victim = event.getEntity();
 		victim.setAllowFlight(false);
