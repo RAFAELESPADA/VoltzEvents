@@ -82,15 +82,15 @@ public class PvP {
 		}
 		if (scoreboard.getObjective("PvP") != null) {
 			Team team = scoreboard.getTeam("line8");
-			team.setSuffix("§f  Kills: §7" + SunshineFormat.format(SQLPvP.getKills(p)));
+			team.setSuffix("§fKills: §7" + SunshineFormat.format(SQLPvP.getKills(p)));
 			Team team2 = scoreboard.getTeam("line7");
-			team2.setSuffix("§f  Deaths: §7" + SunshineFormat.format(SQLPvP.getDeaths(p)));
+			team2.setSuffix("§fDeaths: §7" + SunshineFormat.format(SQLPvP.getDeaths(p)));
 			Team team3 = scoreboard.getTeam("line6");
-			team3.setSuffix("§f  Killstreak: §7" + SunshineFormat.format(KillStreakAPI.getStreak(p)));
+			team3.setSuffix("§fKillstreak: §7" + SunshineFormat.format(KillStreakAPI.getStreak(p)));
 			Team team4 = scoreboard.getTeam("line4");
-			team4.setSuffix("§f  Coins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)));
+			team4.setSuffix("§fCoins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)));
 			Team team5 = scoreboard.getTeam("line3");
-			team5.setSuffix("§f  Ranking: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
+			team5.setSuffix("§fLiga: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
 		} else {
 				create(p);
 			p.playEffect(p.getLocation(), Effect.INSTANT_SPELL, 10);
