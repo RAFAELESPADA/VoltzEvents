@@ -91,13 +91,13 @@ public class PlayerNotBattle {
         }
         if (scoreboard.getObjective("1v1") != null) {
             Team team = scoreboard.getTeam("line8");
-			team.setPrefix("§f  Vitórias: §7" + SunshineFormat.format(SQL1v1.getWins(p)));
+			team.setPrefix("§fVitórias: §7" + SunshineFormat.format(SQL1v1.getWins(p)));
 			Team team2 = scoreboard.getTeam("line7");
-			team2.setPrefix("§f  Derrotas: §7" + SunshineFormat.format(SQL1v1.getLoses(p)));
+			team2.setPrefix("§fDerrotas: §7" + SunshineFormat.format(SQL1v1.getLoses(p)));
 			Team team3 = scoreboard.getTeam("line6");
-			team3.setPrefix( "§f  Winstreak: §7" + SunshineFormat.format(WinStreakAPI.getStreak(p)));
+			team3.setPrefix("§fWinstreak: §7" + SunshineFormat.format(WinStreakAPI.getStreak(p)));
 			Team team4 = scoreboard.getTeam("line3");
-			team4.setPrefix("§f  Ranking: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
+			team4.setPrefix("§fLiga: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
 			
             
         }
