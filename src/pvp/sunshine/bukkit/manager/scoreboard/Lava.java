@@ -72,9 +72,9 @@ public class Lava {
         }
         if (scoreboard.getObjective("Lava") != null) {
             Team team = scoreboard.getTeam("line4");
-			team.setPrefix("§f  Coins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)));
+			team.setPrefix("§fCoins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)));
 			Team team2 = scoreboard.getTeam("line3");
-			team2.setPrefix("§f  Ranking: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
+			team2.setPrefix("§fLiga: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
 			
         }
         if (scoreboard.getObjective("PlayerInBattle") != null) {
