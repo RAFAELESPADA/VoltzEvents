@@ -90,7 +90,7 @@ public class PvP {
 			Team team4 = scoreboard.getTeam("line4");
 			team4.setSuffix("§fCoins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)));
 			Team team5 = scoreboard.getTeam("line3");
-			team5.setSuffix("§fLiga: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
+			team5.setSuffix("§fLiga: " + SQLRank.getRank(p));
 		} else {
 				create(p);
 			p.playEffect(p.getLocation(), Effect.INSTANT_SPELL, 10);
