@@ -97,7 +97,7 @@ public class PlayerNotBattle {
 			Team team3 = scoreboard.getTeam("line6");
 			team3.setPrefix("§fWinstreak: §7" + SunshineFormat.format(WinStreakAPI.getStreak(p)));
 			Team team4 = scoreboard.getTeam("line3");
-			team4.setPrefix("§fLiga: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)));
+			team4.setPrefix("§fLiga: " + SQLRank.getRank(p));
 			
             
         }
