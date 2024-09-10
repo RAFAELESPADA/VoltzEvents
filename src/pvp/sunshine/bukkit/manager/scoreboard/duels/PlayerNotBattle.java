@@ -59,7 +59,7 @@ public class PlayerNotBattle {
         addLine(board, "§9", 7);
         addLine(board, "§7", 6);
         addLine(board, "§3", 5);
-        addLine(board, "§f  Modo: §e1v1",4);
+        addLine(board, "§fModo: §e1v1",4);
         addLine(board, "§4", 3);
         addLine(board, "§1", 2);
         addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
