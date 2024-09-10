@@ -62,12 +62,12 @@ public class PvP {
         	p.kickPlayer(ChatColor.RED + "ENCONTRAMOS UM ERRO COM SUA CONTA! RELOGUE PARA ARRUMAR");
         }
 		addLine(board, "§3", 9);
-		addLine(board, "§4", 8);
-		addLine(board, "§a", 7);
-		addLine(board, "§2", 6);
+		addLine(board, "§fKills: §7", 8);
+		addLine(board, "§fDeaths: §7", 7);
+		addLine(board, "§fKillstreak: §7", 6);
 		addLine(board, "§0", 5);
-		addLine(board, "§7", 4);
-		addLine(board, "§9", 3);
+		addLine(board, "§fCoins: §e", 4);
+		addLine(board, "§fLiga: ", 3);
 		addLine(board, "§1", 2);
 		addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
 
@@ -82,15 +82,15 @@ public class PvP {
 		}
 		if (scoreboard.getObjective("PvP") != null) {
 			Team team = scoreboard.getTeam("line8");
-			team.setSuffix("§fKills: §7" + SunshineFormat.format(SQLPvP.getKills(p)));
+			team.setSuffix(SunshineFormat.format(SQLPvP.getKills(p)));
 			Team team2 = scoreboard.getTeam("line7");
-			team2.setSuffix("§fDeaths: §7" + SunshineFormat.format(SQLPvP.getDeaths(p)));
+			team2.setSuffix(SunshineFormat.format(SQLPvP.getDeaths(p)));
 			Team team3 = scoreboard.getTeam("line6");
-			team3.setSuffix("§fKillstreak: §7" + SunshineFormat.format(KillStreakAPI.getStreak(p)));
+			team3.setSuffix(SunshineFormat.format(KillStreakAPI.getStreak(p)));
 			Team team4 = scoreboard.getTeam("line4");
-			team4.setSuffix("§fCoins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)));
+			team4.setSuffix(SunshineFormat.format(SQLPvP.getCoins(p)));
 			Team team5 = scoreboard.getTeam("line3");
-			team5.setSuffix("§fLiga: " + SQLRank.getRank(p));
+			team5.setSuffix(SQLRank.getRank(p));
 		} else {
 				create(p);
 			p.playEffect(p.getLocation(), Effect.INSTANT_SPELL, 10);
