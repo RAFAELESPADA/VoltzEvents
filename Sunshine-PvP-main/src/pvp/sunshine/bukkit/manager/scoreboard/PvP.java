@@ -1,6 +1,7 @@
 package pvp.sunshine.bukkit.manager.scoreboard;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -22,7 +23,9 @@ public class PvP {
 
 	private static SunshineAnimation waveAnimation;
 	private static String text = "";
-
+	public PvP(BukkitMain plugin) {
+		new ScoreBoardTask().runTaskTimer(plugin, 0, 2L);
+	}
 	public static void init() {
 		waveAnimation = new SunshineAnimation(" KITPVP ", "§f§l", "§e§l", "§6§l", 3);
 		text = waveAnimation.next();
@@ -54,16 +57,17 @@ public class PvP {
 		Scoreboard board = manager.getNewScoreboard();
 		Objective obj = board.registerNewObjective("PvP", "dummy");
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+		obj.setDisplayName("§6§lKITPVP");
 		if (SQLPvP.getKills(p) == null || SQLPvP.getDeaths(p) == null || SQLPvP.getCoins(p) == null) {
         	p.kickPlayer(ChatColor.RED + "ENCONTRAMOS UM ERRO COM SUA CONTA! RELOGUE PARA ARRUMAR");
         }
 		addLine(board, "§3", 9);
-		addLine(board, "§f  Kills: §7" + SunshineFormat.format(SQLPvP.getKills(p)), 8);
-		addLine(board, "§f  Deaths: §7" + SunshineFormat.format(SQLPvP.getDeaths(p)), 7);
-		addLine(board, "§f  Killstreak: §7" + SunshineFormat.format(KillStreakAPI.getStreak(p)), 6);
+		addLine(board, "§fKills: §7", 8);
+		addLine(board, "§fDeaths: §7", 7);
+		addLine(board, "§fKillstreak: §7", 6);
 		addLine(board, "§0", 5);
-		addLine(board, "§f  Coins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)), 4);
-		addLine(board, "§f  Ranking: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)), 3);
+		addLine(board, "§fCoins: §e", 4);
+		addLine(board, "§fLiga: ", 3);
 		addLine(board, "§1", 2);
 		addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
 
@@ -72,9 +76,24 @@ public class PvP {
 
 	public static void update(Player p) {
 		Scoreboard scoreboard = p.getScoreboard();
+		if (scoreboard.getObjective("PvP") == null && scoreboard.getObjective("Lava") == null & scoreboard.getObjective("Evento") == null && scoreboard.getObjective("1v1") == null) {
+			create(p);
+			return;
+		}
 		if (scoreboard.getObjective("PvP") != null) {
-			scoreboard.clearSlot(DisplaySlot.SIDEBAR);
-			scoreboard.getObjective("PvP").unregister();
+			Team team = scoreboard.getTeam("line8");
+			team.setSuffix(SunshineFormat.format(SQLPvP.getKills(p)));
+			Team team2 = scoreboard.getTeam("line7");
+			team2.setSuffix(SunshineFormat.format(SQLPvP.getDeaths(p)));
+			Team team3 = scoreboard.getTeam("line6");
+			team3.setSuffix(SunshineFormat.format(KillStreakAPI.getStreak(p)));
+			Team team4 = scoreboard.getTeam("line4");
+			team4.setSuffix(SunshineFormat.format(SQLPvP.getCoins(p)));
+			Team team5 = scoreboard.getTeam("line3");
+			team5.setSuffix(SQLRank.getRank(p));
+		} else {
+				create(p);
+			p.playEffect(p.getLocation(), Effect.INSTANT_SPELL, 10);
 		}
 		if (scoreboard.getObjective("Lava") != null) {
 			scoreboard.clearSlot(DisplaySlot.SIDEBAR);
@@ -91,10 +110,6 @@ public class PvP {
 		if (scoreboard.getObjective("1v1") != null) {
 			scoreboard.clearSlot(DisplaySlot.SIDEBAR);
 			scoreboard.getObjective("1v1").unregister();
-			create(p);
-		} else {
-			create(p);
-
 		}
 	}
 

@@ -119,6 +119,10 @@ public class Fake extends Storage implements CommandExecutor, Listener  {
             player.sendMessage("§c§lERRO §fVocê não tem permissão para executar este comando.");
             return true;
         }
+        else if (player.hasPermission("pvp.fake")) {
+            player.sendMessage("§cEsse comando está em manutenção por tempo inderterminado.");
+            return true;
+        }
 
         if (args.length == 0 || args.length > 2) {
             player.sendMessage("§c§lERRO §fUso correto: /fake <nome> <tag>, /fake list, /fake reset ou /fake random");

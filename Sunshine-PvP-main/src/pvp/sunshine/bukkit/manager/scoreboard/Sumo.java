@@ -57,14 +57,14 @@ public class Sumo {
         Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("Sumo", "dummy");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-
+        obj.setDisplayName("§6§lSUMO");
         addLine(board, "§3", 9);
         addLine(board, "§f  Kills: §7" + SunshineFormat.format(SQLPvP.getKills(p)), 8);
         addLine(board, "§f  Deaths: §7" + SunshineFormat.format(SQLPvP.getDeaths(p)), 7);
         addLine(board, "§f  Killstreak: §7" + SunshineFormat.format(KillStreakAPI.getStreak(p)), 6);
         addLine(board, "§d", 5);
         addLine(board, "§f  Coins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)), 4);
-        addLine(board, "§f  Ranking: " + SQLRank.getRank(p) + " " + SQLRank.getRankComplete(SQLRank.getXp(p)), 3);
+        addLine(board, "§f  Liga: " + SQLRank.getRank(p), 3);
         addLine(board, "§1", 2);
         addLine(board, "§7" + BukkitMain.getInstance().getConfig().getString("IP"), 1);
 

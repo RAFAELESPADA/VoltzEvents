@@ -13,6 +13,9 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import pvp.sunshine.bukkit.BukkitMain;
 import pvp.sunshine.bukkit.api.KillStreakAPI;
 import pvp.sunshine.bukkit.commands.members.ClanCMD;
 import pvp.sunshine.bukkit.commands.team.FlyCMD;
@@ -102,6 +105,9 @@ Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12
             target.sendMessage("§a§lSUMO §fVocê venceu a batalha contra §a" + p.getName());
             target.sendMessage("§6(+5 XP)");
             target.playSound(target.getLocation(), Sound.ANVIL_LAND, 5.0f, 1.0f);
+            new BukkitRunnable() {	
+        		public void run() {	
+        		
             SQLPvP.addKills(target);
             SQLPvP.addDeaths(p);
             KillStreakAPI.addStreak(target);
@@ -109,9 +115,8 @@ Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12
             SQLRank.addXp(target, 5);
             SQLRank.removeXP(p, 3);
             TopKills.incrementKills(target);
-            TopKills.updateHologram();
             TopLoses.incrementLoses(p);
-            TopLoses.updateHologram();
+        		}}.runTaskAsynchronously(BukkitMain.getInstance());
             BLOCK_COMMAND.remove(p.getName());
             BLOCK_COMMAND.remove(target.getName());
             WarpType.Sumo.remove(target.getName());
@@ -150,9 +155,7 @@ Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12
             target.showPlayer(todos);
         }
         TopKills.incrementKills(target);
-        TopKills.updateHologram();
         TopLoses.incrementLoses(p);
-        TopLoses.updateHologram();
         p.showPlayer(target);
         BLOCK_COMMAND.remove(p.getName());
         BLOCK_COMMAND.remove(target.getName());

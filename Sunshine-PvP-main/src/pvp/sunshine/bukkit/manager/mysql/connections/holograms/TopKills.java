@@ -37,7 +37,7 @@ public class TopKills extends Storage {
 
     public static void incrementKills(Player player) {
         try (PreparedStatement ps = connection.prepareStatement("UPDATE PvP SET Kills = Kills + 1 WHERE UUID = ?")) {
-            ps.setString(1, player.getName());
+            ps.setString(1, player.getUniqueId().toString());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,5 +1,6 @@
 package pvp.sunshine.bukkit.manager.feast;
 
+
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
@@ -264,3 +265,4 @@ public class FeastAPI {
 
 
 }
+

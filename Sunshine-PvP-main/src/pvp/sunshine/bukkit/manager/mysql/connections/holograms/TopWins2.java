@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import pvp.sunshine.bukkit.BukkitMain;
 import pvp.sunshine.bukkit.SunshineFormat;
@@ -87,15 +88,19 @@ public class TopWins2 extends Storage {
     }
 
     public static void incrementWins(Player player) {
+		new BukkitRunnable() {	
+			public void run() {	
+		
         try (PreparedStatement ps = connection.prepareStatement("UPDATE 1v1 SET Wins = Wins + 1 WHERE UUID = ?")) {
-            ps.setString(1, player.getName());
+            ps.setString(1, player.getUniqueId().toString());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }	}}.runTaskAsynchronously(BukkitMain.getInstance());
     }
 
     private static List<String> getTopWins() {
+    	
         List<String> topWins = new LinkedList<>();
         try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM 1v1 ORDER BY Wins DESC LIMIT 10");
              ResultSet rs = ps.executeQuery()) {
