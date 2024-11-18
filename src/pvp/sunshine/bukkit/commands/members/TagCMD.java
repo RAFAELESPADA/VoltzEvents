@@ -17,7 +17,9 @@ public class TagCMD implements CommandExecutor {
     private final Map<String, String> tagPermissions = new HashMap<>();
 
     public TagCMD() {
-        tagPermissions.put("chefia", "tag.chefia");
+        tagPermissions.put("dono", "tag.dono");
+
+        tagPermissions.put("diretor", "tag.diretor");
         tagPermissions.put("admin", "tag.admin");
         tagPermissions.put("gerente", "tag.gerente");
         tagPermissions.put("mod", "tag.mod");
@@ -68,20 +70,22 @@ public class TagCMD implements CommandExecutor {
                 }
                 return true;
             }
-            tagMap.put("chefia", new String[]{"a", "§6§lCHEFIA §6"});
-            tagMap.put("admin", new String[]{"b", "§b§lADMIN §b"});
-            tagMap.put("gerente", new String[]{"c", "§3§lGERENTE §3"});
-            tagMap.put("mod", new String[]{"d", "§2§lMOD §2"});
-            tagMap.put("ajudante", new String[]{"e", "§e§lAJUDANTE §e"});
-            tagMap.put("creator", new String[]{"g", "§c§lCREATOR §c"});
-            tagMap.put("construtor", new String[]{"f", "§e§lCONSTRUTOR §e"});
-            tagMap.put("invest", new String[]{"h", "§a§lINVEST §a"});
-            tagMap.put("vip+", new String[]{"i", "§b§lVIP+ §b"});
-            tagMap.put("vip", new String[]{"j", "§9§lVIP §9"});
-            tagMap.put("bughunter", new String[]{"k", "§8§lBUGHUNTER §8"});
-            tagMap.put("apoiador", new String[]{"l", "§5§lAPOIADOR §5"});
+            tagMap.put("chefia", new String[]{"a", "§4§lDONO §4"});
 
-            tagMap.put("nitro", new String[]{"m", "§d§lNITRO §d"});
+            tagMap.put("chefia", new String[]{"b", "§c§lDIRETOR §c"});
+            tagMap.put("admin", new String[]{"c", "§b§lADMIN §b"});
+            tagMap.put("gerente", new String[]{"d", "§3§lGERENTE §3"});
+            tagMap.put("mod", new String[]{"e", "§2§lMOD §2"});
+            tagMap.put("ajudante", new String[]{"f", "§e§lAJUDANTE §e"});
+            tagMap.put("creator", new String[]{"g", "§c§lCREATOR §c"});
+            tagMap.put("construtor", new String[]{"h", "§e§lCONSTRUTOR §e"});
+            tagMap.put("invest", new String[]{"i", "§a§lINVEST §a"});
+            tagMap.put("vip+", new String[]{"j", "§b§lVIP+ §b"});
+            tagMap.put("vip", new String[]{"k", "§9§lVIP §9"});
+            tagMap.put("bughunter", new String[]{"l", "§8§lBUGHUNTER §8"});
+            tagMap.put("apoiador", new String[]{"n", "§5§lAPOIADOR §5"});
+
+            tagMap.put("nitro", new String[]{"o", "§d§lNITRO §d"});
             if (!tagMap.containsKey(tagName)) {
                 sender.sendMessage("§c§lERRO §fTag não encontrada.");
                 return true;
@@ -102,7 +106,9 @@ public class TagCMD implements CommandExecutor {
     private static final Map<String, String[]> permissionToTags = new LinkedHashMap<>();
 
     static {
-        permissionToTags.put("tag.chefia", new String[]{"§6§lCHEFIA", "/tag chefia"});
+        permissionToTags.put("tag.dono", new String[]{"§4§lDONO", "/tag dono"});
+
+        permissionToTags.put("tag.diretor", new String[]{"§c§lDIRETOR", "/tag diretor"});
         permissionToTags.put("tag.admin", new String[]{"§b§lADMIN", "/tag admin"});
         permissionToTags.put("tag.gerente", new String[]{"§3§lGERENTE", "/tag gerente"});
         permissionToTags.put("tag.mod", new String[]{"§2§lMOD", "/tag mod"});
