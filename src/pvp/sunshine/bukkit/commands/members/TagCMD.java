@@ -72,7 +72,7 @@ public class TagCMD implements CommandExecutor {
             }
             tagMap.put("chefia", new String[]{"a", "§4§lDONO §4"});
 
-            tagMap.put("chefia", new String[]{"b", "§c§lDIRETOR §c"});
+            tagMap.put("diretor", new String[]{"b", "§c§lDIRETOR §c"});
             tagMap.put("admin", new String[]{"c", "§b§lADMIN §b"});
             tagMap.put("gerente", new String[]{"d", "§3§lGERENTE §3"});
             tagMap.put("mod", new String[]{"e", "§2§lMOD §2"});
