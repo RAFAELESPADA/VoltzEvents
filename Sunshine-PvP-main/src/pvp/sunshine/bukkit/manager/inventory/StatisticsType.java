@@ -16,6 +16,7 @@ import pvp.sunshine.bukkit.api.WinStreakAPI;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQL1v1;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQLPvP;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQLRank;
+import pvp.sunshine.bukkit.manager.mysql.connections.holograms.TopDeaths;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class StatisticsType implements Listener {
         ItemMeta pvpmeta = pvp.getItemMeta();
         pvpmeta.setDisplayName("§aPvP");
         ArrayList<String> pvpdesc = new ArrayList<>();
+        pvpdesc.add(" §7Seu grupo: §e" + TopDeaths.giveMeADamnUser(p.getUniqueId()).getPrimaryGroup().toUpperCase());
         pvpdesc.add(" §7Kills: §e" + SunshineFormat.format(SQLPvP.getKills(p)));
         pvpdesc.add(" §7Deaths: §e" + SunshineFormat.format(SQLPvP.getDeaths(p)));
         pvpdesc.add(" §7Killstreak atual: §e" + SunshineFormat.format(KillStreakAPI.getStreak(p)));
@@ -54,7 +56,7 @@ public class StatisticsType implements Listener {
 
         ItemStack cash = new ItemStack(Material.EXP_BOTTLE);
         ItemMeta cashmeta = cash.getItemMeta();
-        cashmeta.setDisplayName("§aCash");
+        cashmeta.setDisplayName("§aDinheiro");
         ArrayList<String> descash = new ArrayList<String>();
         descash.add("§7 Coins: §e" + SunshineFormat.format(SQLPvP.getCoins(p)));
         descash.add("§7 XP: §e" + SunshineFormat.format(SQLRank.getXp(p)));

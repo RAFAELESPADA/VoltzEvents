@@ -162,6 +162,8 @@ public class PvPUtil {
 		getItem(player, Material.CHEST, 1, "§aKit's", 3);
 		getItem(player, Material.COMPASS, 1, "§aWarp's", 5);
 		getItem(player, Material.DIAMOND, 1, "§aLoja de Kit's", 4);
+		getItem(player, Material.REDSTONE_COMPARATOR, 1, "§aStatus", 8);
+		getItem(player, Material.ANVIL, 1, "§aExtras", 1);
 		getItem(player, Material.STORAGE_MINECART, 1, "§aSuas Caixa's", 0);
 	}
 

@@ -46,6 +46,24 @@ public class OpenInventory implements Listener {
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
             }
         }
+        if (handItem != null && handItem.getType() == Material.ANVIL) {
+            ItemMeta itemMeta = handItem.getItemMeta();
+            if (itemMeta != null && itemMeta.hasDisplayName()
+                    && itemMeta.getDisplayName().equalsIgnoreCase("§aExtras")) {
+                ExtraType.getShops(event.getPlayer());
+                event.setCancelled(true);
+                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
+            }
+        }
+        if (handItem != null && handItem.getType() == Material.REDSTONE_COMPARATOR) {
+            ItemMeta itemMeta = handItem.getItemMeta();
+            if (itemMeta != null && itemMeta.hasDisplayName()
+                    && itemMeta.getDisplayName().equalsIgnoreCase("§aStatus")) {
+                StatisticsType.getStatistics(event.getPlayer());
+                event.setCancelled(true);
+                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
+            }
+        }
         if (handItem != null && handItem.getType() == Material.SKULL_ITEM) {
             ItemMeta itemMeta = handItem.getItemMeta();
             if (itemMeta != null && itemMeta.hasDisplayName()

@@ -19,7 +19,6 @@ import pvp.sunshine.bukkit.ability.RegisterAbility;
 import pvp.sunshine.bukkit.api.KillStreakAPI;
 import pvp.sunshine.bukkit.api.WinStreakAPI;
 import pvp.sunshine.bukkit.commands.team.EventoCMD;
-import pvp.sunshine.bukkit.manager.bossbar.BossBarAPI;
 import pvp.sunshine.bukkit.manager.duels.Battle;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQL1v1;
 import pvp.sunshine.bukkit.manager.mysql.connections.SQLPvP;
@@ -31,6 +30,8 @@ import pvp.sunshine.bukkit.manager.mysql.connections.holograms.TopWins2;
 import pvp.sunshine.bukkit.manager.scoreboard.duels.PlayerNotBattle;
 import pvp.sunshine.bukkit.manager.scoreboard.PvP;
 import pvp.sunshine.bukkit.utils.PvPUtil;
+
+import org.inventivetalent.bossbar.BossBarAPI;
 
 public class PlayerDeathListener implements Listener {
 	
@@ -148,7 +149,13 @@ public class PlayerDeathListener implements Listener {
 		SQLRank.removeXP(victim, deathXP);
 		TopDeaths.incrementDeaths(victim);
 		TopDeaths.updateHologram();
-
+		(new BukkitRunnable() {
+			public void run() {
+				Location spawnLocation = new Location(Bukkit.getWorld("lobbypvp2") , 510.137, 12.000000, 620.218 , (float)-89.811 , (float)3.0000000);
+				  PvPUtil.spawnItem(victim);
+				 victim.teleport(spawnLocation);
+			}
+		}).runTaskLater((Plugin) BukkitMain.getInstance(), 15l);
 	
 	}
 

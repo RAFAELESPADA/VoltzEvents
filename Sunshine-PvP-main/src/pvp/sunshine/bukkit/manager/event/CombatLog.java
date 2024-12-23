@@ -14,9 +14,10 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.inventivetalent.bossbar.BossBarAPI;
+
 import pvp.sunshine.bukkit.BukkitMain;
 import pvp.sunshine.bukkit.ability.RegisterAbility;
-import pvp.sunshine.bukkit.manager.bossbar.BossBarAPI;
 
 public class CombatLog implements Listener {
 	public static Map<Player, Player> emcombate = new HashMap<>();
@@ -58,36 +59,7 @@ public class CombatLog implements Listener {
 		}
 	}
 
-	@EventHandler
-	public void onEventCombatLog(EntityDamageByEntityEvent e) {
-		if (e.getDamager() instanceof Player && e.getEntity() instanceof Player) {
-			if (RegisterAbility.getAbility((Player) e.getEntity()) != "Nenhum"
-					&& RegisterAbility.getAbility((Player) e.getDamager()) != "Nenhum"
-					&& RegisterAbility.getAbility((Player) e.getEntity()) != "1v1"
-					&& RegisterAbility.getAbility((Player) e.getDamager()) != "1v1"
-					&& RegisterAbility.getAbility((Player) e.getEntity()) != "Lava"
-					&& RegisterAbility.getAbility((Player) e.getDamager()) != "Lava"
-					&& RegisterAbility.getAbility((Player) e.getEntity()) != "Sumo"
-					&& RegisterAbility.getAbility((Player) e.getDamager()) != "Sumo"
-					&& RegisterAbility.getAbility((Player) e.getEntity()) != "Evento"
-					&& RegisterAbility.getAbility((Player) e.getDamager()) != "Evento"
-					&& !CombatLog.emcombate.containsKey(e.getEntity())
-					&& !CombatLog.emcombate.containsKey(e.getDamager())) {
-				CombatLog.emcombate.put((Player) e.getEntity(), (Player) e.getDamager());
-				CombatLog.emcombate.put((Player) e.getDamager(), (Player) e.getEntity());
-				BossBarAPI.setMessage((Player)e.getEntity(), "§b" + e.getDamager().getName() + " - " + RegisterAbility.getAbility((Player)e.getDamager()));
-				BossBarAPI.setMessage((Player)e.getDamager(), "§b" + e.getEntity().getName() + " - " + RegisterAbility.getAbility((Player)e.getEntity()));
-				new BukkitRunnable() {
-					public void run() {
-						CombatLog.emcombate.remove(e.getEntity());
-						CombatLog.emcombate.remove(e.getDamager());
-						BossBarAPI.removeBar((Player)e.getEntity());
-						BossBarAPI.removeBar((Player)e.getDamager());
-					}
-				}.runTaskLater(BukkitMain.getInstance(), 20 * 10);
-			}
-		}
-	}
+
 
 
 }

@@ -28,7 +28,7 @@ public class MidiaType implements Listener {
         ytDesc.add("§8Requisitos:");
         ytDesc.add(" §7Gravar §e1§7 vídeo no servidor.");
         ytDesc.add(" §7Ter §e100 inscritos§7 em seu canal.");
-        ytDesc.add(" §7Possuir um feedback de §e120 a 80§7 views.");
+        ytDesc.add(" §7Possuir um feedback de §e60 a 120§7 views ou mais.");
         ytDesc.add("");
         ytmeta.setLore(ytDesc);
         youtuber.setItemMeta(ytmeta);

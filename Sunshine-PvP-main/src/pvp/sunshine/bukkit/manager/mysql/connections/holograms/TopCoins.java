@@ -38,8 +38,11 @@ public class TopCoins extends Storage {
         if (offlinePlayer != null) {
             String groupName = TopDeaths.giveMeADamnUser(offlinePlayer.getUniqueId()).getPrimaryGroup(); // Obtém o grupo do jogador do banco de dados
 
-            if ("chefia".equalsIgnoreCase(groupName)) {
+            if ("dono".equalsIgnoreCase(groupName)) {
                 return "§4";
+            } else if ("diretor".equalsIgnoreCase(groupName)) {
+                return "§c";
+            
             } else if ("admin".equalsIgnoreCase(groupName)) {
                 return "§b";
             } else if ("gerente".equalsIgnoreCase(groupName)) {
@@ -84,6 +87,7 @@ public class TopCoins extends Storage {
                 String tagColor = "";
                 if (playerName == null) {
                    tagColor = "§7" ;
+                   Name = "Ninguém";
                 } else {
                    
                 
