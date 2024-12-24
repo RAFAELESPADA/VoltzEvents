@@ -23,11 +23,13 @@ public enum WaveWarp {
 	SPAWN("Spawn", new Spawn(),new ItemStack( Material.AIR)),
 
 	ARENANINJA("ArenaNinja", new ArenaNinja(),new ItemStack( Material.AIR)),
+	MESTREMANDOU("MestreMandou", new MestreMandou(),new ItemStack( Material.AIR)),
+	CUSTOM("Custom", new Custom(),new ItemStack( Material.AIR)),
 	
 	ARENAPVP("ArenaPvP", new Arena(),new ItemStack( Material.AIR)),
-	Sumo("Sumo", new Sumo(),new  ItemStack( Material.AIR)),
+	SUMO("Sumo", new Sumo(),new  ItemStack( Material.AIR)),
     LAVACHALLENGE("LavaChallenge", new LavaChallenge(),  new ItemStack( Material.AIR)),
-	ONE_VS_ONE("1v1", new OnevsOne(), new ItemStack(Material.AIR));
+	ONEVSONE("OnevsOne", new OnevsOne(), new ItemStack(Material.AIR));
 	
 	static {
 		getWarps().forEach(warp -> 

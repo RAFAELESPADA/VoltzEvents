@@ -10,7 +10,7 @@ public class Arena extends WarpHandle {
 	public void execute(Player player) {
 		super.execute(player);
 		player.getInventory().clear();
-		EventoComando e =  new EventoComando();
+		EventoComando2 e =  new EventoComando2();
 		e.Gladiator(player);
 
         player.sendMessage("§aVocê agora está no evento ArenaPvP!");

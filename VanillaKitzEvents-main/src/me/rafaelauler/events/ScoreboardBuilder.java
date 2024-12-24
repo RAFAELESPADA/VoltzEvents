@@ -21,6 +21,7 @@ private static String text6 = "";
 private static String textlobby = "";
 private static String text7 = "";
 private static String text9 = "";
+private static String textC = "";
 
 private static WaveAnimation waveAnimation44;
 
@@ -35,6 +36,7 @@ private static WaveAnimation waveAnimation3;
 private static WaveAnimation waveAnimation4;
 private static WaveAnimation waveAnimation5;
 private static WaveAnimation waveAnimation6;
+private static WaveAnimation waveAnimationC;
 
 private static WaveAnimation waveAnimationx1;
 private static WaveAnimation waveAnimationlava;
@@ -46,6 +48,9 @@ public static void init() {
     waveAnimation2 = new WaveAnimation("ARENA NINJA" , "§b§l" , "§3§l" , "§f§l");
     waveAnimationx1 = new WaveAnimation("1V1" , "§b§l" , "§f§l" , "§e§l");
     waveAnimation4 = new WaveAnimation("ARENA DAMAGE" , "§b§l" , "§f§l" , "§e§l");
+    waveAnimation3 = new WaveAnimation("MESTRE MANDOU" , "§b§l" , "§f§l" , "§e§l");
+    waveAnimationC = new WaveAnimation("EVENTO CUSTOMIZADO" , "§b§l" , "§f§l" , "§e§l");
+    
     waveAnimation5 = new WaveAnimation("COPA" , "§b§l" , "§f§l" , "§e§l");
     waveAnimation6 = new WaveAnimation("ARENA ANCHOR" , "§b§l" , "§f§l" , "§e§l");
     waveAnimationlava = new WaveAnimation("LAVA" , "§b§l" , "§f§l" , "§e§l");
@@ -54,7 +59,8 @@ public static void init() {
     textL = "EVENTOS";
     text = "SUMO";
     textlobby = "ARENAPVP";
-    
+    text3 = "MESTRE MANDOU";
+    textC = "EVENTO CUSTOMIZADO";
     text4 = "ARENA DAMAGE";
     text2 = "ARENA NINJA";
     text6 = "ARENA ANCHOR";
@@ -63,6 +69,7 @@ public static void init() {
           public void run() {
             ScoreboardBuilder.textL = ScoreboardBuilder.waveAnimationL.next();
             ScoreboardBuilder.textlobby = ScoreboardBuilder.waveAnimation.next();
+            ScoreboardBuilder.textC = ScoreboardBuilder.waveAnimationC.next();
             
             ScoreboardBuilder.text2 = ScoreboardBuilder.waveAnimation2.next();
             ScoreboardBuilder.text3 = ScoreboardBuilder.waveAnimation3.next();
@@ -91,10 +98,19 @@ public static void init() {
               objective.setDisplayName(ScoreboardBuilder.textL);
               }
               else if (WaveWarp.ARENAPVP.hasPlayer(onlines.getName())) {
+                  objective.setDisplayName(ScoreboardBuilder.textlobby);
+                  }
+              else if (WaveWarp.CUSTOM.hasPlayer(onlines.getName())) {
+                  objective.setDisplayName(ScoreboardBuilder.textC);
+                  }
+              else if (WaveWarp.MESTREMANDOU.hasPlayer(onlines.getName())) {
+                  objective.setDisplayName(ScoreboardBuilder.text3);
+                  }
+              else if (WaveWarp.SUMO.hasPlayer(onlines.getName())) {
                   objective.setDisplayName(ScoreboardBuilder.text);
                   }
-              else if (WaveWarp.Sumo.hasPlayer(onlines.getName())) {
-                  objective.setDisplayName(ScoreboardBuilder.text4);
+              else if (WaveWarp.CUSTOM.hasPlayer(onlines.getName())) {
+                  objective.setDisplayName(ScoreboardBuilder.textC);
                   }
               else if (WaveWarp.ARENANINJA.hasPlayer(onlines.getName())) {
                   objective.setDisplayName(ScoreboardBuilder.text2);
@@ -174,9 +190,6 @@ public static void init() {
 					String l2 = "§0";
 					String l1 = "§ekombopvp.com";
 					
-					scoreboard.registerNewTeam("kills").addEntry(l11);
-					scoreboard.registerNewTeam("deaths").addEntry(l10);
-					scoreboard.registerNewTeam("killstreak").addEntry(l9);
 				//	if (KitManager.getPlayer(player.getName()).hasKit()) {
 		
 					objective.getScore(l12).setScore(6);
@@ -192,7 +205,73 @@ public static void init() {
 				
 					
 			 } 
-			 if (WaveWarp.Sumo.hasPlayer(player.getName())) {
+			 if (WaveWarp.CUSTOM.hasPlayer(player.getName())) {
+				 player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+					Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+					Objective objective = scoreboard.registerNewObjective("pvpba", "dummyba");
+					
+					objective.setDisplayName(text);
+					objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+					
+					String l12 = "§3Jogando Evento §b§lCustom";
+					String l11 = " §aNo §6§lKombo";
+					String l10 = " §aMate todos";
+					String l9 = " §aE seja o ultimo";
+					
+					
+					String l5 = "§aSobrevivente";
+					String l2 = "§0";
+					String l1 = "§ekombopvp.com";
+					
+				//	if (KitManager.getPlayer(player.getName()).hasKit()) {
+		
+					objective.getScore(l12).setScore(6);
+					objective.getScore(l11).setScore(5);
+					objective.getScore(l10).setScore(4);
+					objective.getScore(l9).setScore(3);
+					
+					objective.getScore(l5).setScore(2);
+					objective.getScore(l2).setScore(1);
+					objective.getScore(l1).setScore(0);
+					
+					player.setScoreboard(scoreboard);
+				
+					
+			 } 
+			 if (WaveWarp.MESTREMANDOU.hasPlayer(player.getName())) {
+				 player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+					Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+					Objective objective = scoreboard.registerNewObjective("pvpD", "dummyD");
+					
+					objective.setDisplayName(text3);
+					objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+					
+					String l12 = "§3Jogando §a§lMestreMandou";
+					String l11 = " §aNo §6§lKombo";
+					String l10 = " §aSiga todas as ordens";
+					String l9 = " §aDo promotor";
+					
+					
+					String l5 = "§aOu seja kikado do evento";
+					String l2 = "§0";
+					String l1 = "§ekombopvp.com";
+					
+				//	if (KitManager.getPlayer(player.getName()).hasKit()) {
+		
+					objective.getScore(l12).setScore(6);
+					objective.getScore(l11).setScore(5);
+					objective.getScore(l10).setScore(4);
+					objective.getScore(l9).setScore(3);
+					
+					objective.getScore(l5).setScore(2);
+					objective.getScore(l2).setScore(1);
+					objective.getScore(l1).setScore(0);
+					
+					player.setScoreboard(scoreboard);
+				
+					
+			 }
+			 if (WaveWarp.SUMO.hasPlayer(player.getName())) {
 				 player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 					Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 					Objective objective = scoreboard.registerNewObjective("pvpb", "dummyb");
@@ -285,7 +364,7 @@ public static void init() {
 				
 			 }
 
-			 else if (WaveWarp.ONE_VS_ONE.hasPlayer(player.getName())) {
+			 else if (WaveWarp.ONEVSONE.hasPlayer(player.getName())) {
 					player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 				 Scoreboard scoreboard2 = Bukkit.getScoreboardManager().getNewScoreboard();
 					Objective objective2 = scoreboard2.registerNewObjective("pvpg", "dummyg");

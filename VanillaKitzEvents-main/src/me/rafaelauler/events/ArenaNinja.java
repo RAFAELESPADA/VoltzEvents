@@ -4,13 +4,16 @@ import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import net.wavemc.core.bukkit.WaveBukkit;
 import net.wavemc.core.util.WaveCooldown;
 
 
@@ -26,7 +29,7 @@ public class ArenaNinja extends WarpHandle {
 	public void execute(Player player) {
 		super.execute(player);
 		player.getInventory().clear();
-		EventoComando e =  new EventoComando();
+		EventoComando2 e =  new EventoComando2();
 		e.Gladiator(player);
 
         player.sendMessage("§aVocê agora está no evento Arena Ninja!");
@@ -82,6 +85,15 @@ public void onSneaking(PlayerToggleSneakEvent event) {
 			}
 
 			WaveCooldown.create(player.getName(), "ninja", TimeUnit.SECONDS, 15);
+			WaveBukkit.getExecutorService().submit(() -> {
+				new BukkitRunnable() {
+					@Override
+					public void run() {
+					WaveCooldown.delete(player.getName(), "ninja");
+					player.sendMessage("§cO Cooldown do Ninja acabou.");
+					}}.runTaskLater(Main.instance, 15 * 20L);
+			
+			});
 			player.teleport(targetPlayer);
 			player.sendMessage("§aTeleportado para §f" + targetName);
 			player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 10, 10);

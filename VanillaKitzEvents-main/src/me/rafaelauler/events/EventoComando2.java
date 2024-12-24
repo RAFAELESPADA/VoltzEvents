@@ -5,15 +5,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,7 +31,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import net.wavemc.core.bukkit.item.ItemBuilder;
 
-public class EventoComando implements CommandExecutor {
+public class EventoComando2 implements CommandExecutor {
 
 	Path path1 = Paths.get(Bukkit.getServer().getWorldContainer().getAbsolutePath() + "/plugins/WaveCore/", "warps.yml");
 	File file = new File(path1.toAbsolutePath().toString());
@@ -56,7 +60,7 @@ public class EventoComando implements CommandExecutor {
 			private Integer[] cocoaSlots2 = { 23, 24, 25 };
 	public static HashMap<String, ItemStack[]> saveinv = new HashMap();
     private static void sendHelp(Player player) {
-        if (player.hasPermission("kombo.cmd.evento")) {
+        if (player.hasPermission("kombo.kombo.cmd.evento")) {
             player.sendMessage("§a§lKOMBO §7- §eEvents");
             player.sendMessage(" ");
             player.sendMessage("§e/event §7- §fDisplay this help page.");
@@ -65,6 +69,12 @@ public class EventoComando implements CommandExecutor {
             player.sendMessage("§e/event spec §7- §fSpectate the event.");
             player.sendMessage(" ");
             player.sendMessage("§e/event tpto §7- §fTeleport players to event.");
+            player.sendMessage("§e/event ativarall §7- §fEnable all event options.");
+            player.sendMessage("§e/event desativarall §7- §fDisable all event options.");
+            player.sendMessage("§e/event 1v1fight §7- §fCall two random players to fight in 1v1 event.");
+            player.sendMessage("§e/event sumofight §7- §fCall two random players to fight in sumo event.");
+            
+            player.sendMessage("§e/event setwinner §7- §fSet the event winner and end the event.");
             
             player.sendMessage("§e/event build §7- §fLet players build in the event.");
             player.sendMessage("§e/event cleararena §7- §fClear event arena.");
@@ -153,7 +163,28 @@ public class EventoComando implements CommandExecutor {
         item.setItemMeta(itemmeta);
         p.getInventory().setItem(lugar, item);
     }
+    public void removeFluid(Location source) {
+    	   Queue<Location> queue = new LinkedList<>();
+    	   queue.add(source);
 
+    	   while (!queue.isEmpty()) {
+    	       Location current = queue.poll();
+    	     
+    	      
+    	       if (current.getBlock().getType() == Material.WATER || current.getBlock().getType() == Material.LAVA) {
+    	           // Replace the current block with air
+    	           current.getBlock().setType(Material.AIR);
+
+    	         
+    	           for (BlockFace face : BlockFace.values()) {
+    	               Location adjacent = current.clone().add(face.getModX(), face.getModY(), face.getModZ());
+    	               if (!queue.contains(adjacent) && !adjacent.getBlock().isLiquid()) {
+    	                  queue.add(adjacent);
+    	               }
+    	           }
+    	       }
+    	   }
+    	}
 
     public void Gladiator(Player player) {
 		player.setGameMode(GameMode.SURVIVAL);
@@ -221,7 +252,7 @@ public class EventoComando implements CommandExecutor {
                         return true;
                     }
                     
-                    if (!player.hasPermission("cmd.event")) {
+                    if (!player.hasPermission("kombo.cmd.evento")) {
                     	player.sendMessage("NO ACESS");
                     	return true;
                     }
@@ -253,17 +284,25 @@ public class EventoComando implements CommandExecutor {
                         player.sendMessage("§cA sala de eventos está fechada.");
                         return true;
                     }
-                    if (!player.hasPermission("cmd.event")) {
+                    if (!player.hasPermission("kombo.cmd.evento")) {
                     	player.sendMessage("NO ACESS");
                     	return true;
                     }
+                   	for (Location l : EventoUtils.blocks) {
+                    	removeFluid(l);
+            }
                     EventoUtils.evento = false;
+                    EventoUtils.pvp = false;
+                    EventoUtils.build = false;
+                    EventoUtils.damage = false;
+            		EventoUtils.clearBlocks();	
                     player.sendMessage("§aVocê fechou a sala de eventos.");
                     EventoUtils.getEventoPlayers().forEach(p -> {
                         p.sendMessage("§cO evento foi finalizado.");
-                       
+
+                        EventoUtils.started = false;
                        WaveWarp.SPAWN.send(player);
-                       player.sendMessage("§aPlayers que sobraram do evento: §e" + EventoUtils.getEventoPlayers());
+                       player.sendMessage("§aPlayers que sobraram do evento: §e" + EventoUtils.getEventoPlayersNames());
                        WaveWarp.SPAWN.send(p);
                        p.getLocation().getWorld().strikeLightning(p.getLocation());
 
@@ -273,8 +312,7 @@ public class EventoComando implements CommandExecutor {
                        p.getLocation().getWorld().strikeLightning(p.getLocation());
                        p.getLocation().getWorld().strikeLightning(p.getLocation());
                        player.getInventory().clear();
-                       player.getInventory().setContents(saveinv.get(player.getName()));
-                       player.teleport(EventoUtils.quitLoc);
+                      
                        EventoUtils.setEvento(false, player);
                        player.sendMessage("§cO evento foi finalizado.");
                         p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
@@ -295,7 +333,7 @@ public class EventoComando implements CommandExecutor {
                             player.sendMessage("§aYou are now spectating the event.");
                             break;
                         case "build":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -308,12 +346,16 @@ public class EventoComando implements CommandExecutor {
                             }
                             break;
                         case "cleararena":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
+                        	for (Location l : EventoUtils.blocks) {
+                        	removeFluid(l);
+                }
                             EventoUtils.clearBlocks();
-                            player.sendMessage("§aYou cleared the arena");
+                            
+                            player.sendMessage("§aVocê limpou a arena");
                             break;
                         case "tpto":
                             if (args.length < 2) {
@@ -325,11 +367,44 @@ public class EventoComando implements CommandExecutor {
                                 player.sendMessage("§cOpção de evento inválida.");
                                 return true;
                             }
-                            EventoUtils.started = true;
-                            WaveWarp.valueOf(ev.getName()).send(player);
+                            WaveWarp.valueOf(ev.getName().toUpperCase()).send(player);
                             break;
+                        case "ativarall":
+                        	 player.sendMessage("§bFoi ativado a build o pvp e o dano no evento.");
+                        	 EventoUtils.build = true;
+                        	 EventoUtils.pvp = true;
+                        	 EventoUtils.damage = true;
+                            break;
+                        case "desativarall":
+                       	 player.sendMessage("§bFoi desativado a build o pvp e o dano no evento.");
+                       	 EventoUtils.build = false;
+                       	 EventoUtils.pvp = false;
+                       	 EventoUtils.damage = false;
+                           break;
+                        case "tptoall":
+                            if (args.length < 2) {
+                                player.sendMessage("§cEscolha algum evento para teleportar.");
+                                return true;
+                            }
+                            EventType ev2 = EventType.getEventoByName(args[1]);
+                            if (ev2 == null) {
+                                player.sendMessage("§cOpção de evento inválida.");
+                                return true;
+                            }
+                            EventoUtils.started = true;
+
+                            EventoUtils.evento = true;
+                            WaveWarp.valueOf(ev2.getName().toUpperCase()).send(player);
+
+                            EventoUtils.setEvento(true, player);
+                            for (Player pon: Bukkit.getOnlinePlayers()) {
+                            	WaveWarp.valueOf(ev2.getName().toUpperCase()).send(pon);            	
+
+                                EventoUtils.setEvento(true, pon);
+                            }
+                            break;    
                         case "damage":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -342,7 +417,7 @@ public class EventoComando implements CommandExecutor {
                             }
                             break;
                         case "effect":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -395,7 +470,7 @@ public class EventoComando implements CommandExecutor {
                             }
                             break;
                         case "kick":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -405,56 +480,56 @@ public class EventoComando implements CommandExecutor {
                             }
                             Player target = Bukkit.getPlayer(args[1]);
                             if (target == null) {
-                                player.sendMessage("§cCannot find the player §e" + args[1] + "§c.");
+                                player.sendMessage("§cNão pude encontrar o jogador §e" + args[1] + "§c.");
                                 return true;
                             }
                             if (target == player) {
-                                player.sendMessage("§cDont kick yourself.");
+                                player.sendMessage("§cNão expulse você mesmo.");
                                 return true;
                             }
-                            if (!EventoUtils.game.contains(target.getName())) {
-                                player.sendMessage("§cThis player is not on the event.");
+                            if (WaveWarp.SPAWN.hasPlayer(player.getName())) {
+                                player.sendMessage("§cEsse jogador não está no evento.");
                                 return true;
                             }
-                           EventoUtils.setEvento(false, player);
-                            target.sendMessage("§cYou get kicked out of the event.");
-                            player.sendMessage("§aYou kicked §e" + target.getName() + " §aof the event.");
+                           WaveWarp.SPAWN.send(target);
+                            target.sendMessage("§cVocê foi expulso do evento.");
+                            player.sendMessage("§aVocê expulsou §e" + target.getName() + " §ado evento.");
                             break;
                         case "players":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
                             int size = EventoUtils.getEventoPlayersNames().size();
-                            player.sendMessage("§aThe event has §e" + size + " players§a, they are: §7" + StringUtils.join(EventoUtils.getEventoPlayersNames(), "§a, §7"));
+                            player.sendMessage("§aO evento tem §e" + size + " players§a, sendo eles: §7" + StringUtils.join(EventoUtils.getEventoPlayersNames(), "§a, §7"));
                             break;
                         case "pvp":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
                             if (EventoUtils.pvp) {
-                                player.sendMessage("§cYou disabled the pvp. §7(Remember to disable the §4damage§7)");
+                                player.sendMessage("§cVocê desativou o pvp. §7(Lembre-se de desativar o §4dano§7 também)");
                                 EventoUtils.pvp = false;
                             } else {
-                                player.sendMessage("§aYou enabled the pvp. §7(Remember to enable the §4damage§7)");
+                                player.sendMessage("§aVocê ativou o pvp. §7(Lembre-se de ativar o §4dano§7 também)");
                                 EventoUtils.pvp = true;
                             }
                             break;
                         case "sumofight":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
                         	ArrayList<String> allPlayers = new ArrayList<String>();
                         	
                             for (Player p1 : Bukkit.getOnlinePlayers()) {
-                            	if (WaveWarp.Sumo.hasPlayer(p1.getName())) {
+                            	if (WaveWarp.SUMO.hasPlayer(p1.getName())) {
                             		allPlayers.add(p1.getName());
                             		int random = new Random().nextInt(allPlayers.size());
                             	    String picked = allPlayers.get(random);
                             	    String picked2 = allPlayers.get(random);
-                            		if (picked != picked2) {
+                            		if (picked != picked2 && picked != player.getName() && picked2 != player.getName()) {
 
                             			Location l = new Location(Bukkit.getWorld(yaml.getString("Mundo-sumoloc1")), yaml.getInt("X-sumoloc1") , yaml.getInt("Y-sumoloc1"), yaml.getInt("Z-sumoloc1"));
                             			l.setPitch(yaml.getInt("PITCH-sumoloc1"));
@@ -468,26 +543,26 @@ public class EventoComando implements CommandExecutor {
                             			Player objeto2 = Bukkit.getPlayerExact(picked2);
                             			objeto2.teleport(l2);
                             			objeto1.teleport(l);
-                            			player.sendMessage("PUXANDO DOIS PLAYERS PARA BATALHA SUMO!");
+                            			player.sendMessage(ChatColor.DARK_AQUA + "PUXANDO DOIS PLAYERS ALEATÓRIOS PARA BATALHA SUMO!");
                             		}
                             	}
                             }
                             
                             break;     
                         case "1v1fight":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
                         	ArrayList<String> allPlayers2 = new ArrayList<String>();
                         	
                             for (Player p1 : Bukkit.getOnlinePlayers()) {
-                            	if (WaveWarp.ONE_VS_ONE.hasPlayer(p1.getName())) {
+                            	if (WaveWarp.ONEVSONE.hasPlayer(p1.getName())) {
                             		allPlayers2.add(p1.getName());
                             		int random = new Random().nextInt(allPlayers2.size());
                             	    String picked = allPlayers2.get(random);
                             	    String picked2 = allPlayers2.get(random);
-                            		if (picked != picked2) {
+                            		if (picked != picked2 && picked != player.getName() && picked2 != player.getName()) {
 
                             			Location l = new Location(Bukkit.getWorld(yaml.getString("Mundo-1v1loc1")), yaml.getInt("X-1v1loc1") , yaml.getInt("Y-1v1loc1"), yaml.getInt("Z-1v1loc1"));
                             			l.setPitch(yaml.getInt("PITCH-1v1loc1"));
@@ -501,13 +576,13 @@ public class EventoComando implements CommandExecutor {
                             			Player objeto2 = Bukkit.getPlayerExact(picked2);
                             			objeto2.teleport(l2);
                             			objeto1.teleport(l);
-                            			player.sendMessage("PUXANDO DOIS PLAYERS PARA BATALHA 1v1!");
+                            			player.sendMessage(ChatColor.RED + "PUXANDO DOIS PLAYERS ALEATÓRIOS PARA BATALHA 1v1!");
                             		}
                             	}
                             }
                             break;
                         case "setspecloc":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -515,7 +590,7 @@ public class EventoComando implements CommandExecutor {
                             player.sendMessage("§aSpectator location set.");
                             break;
                         case "setspawn":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -523,7 +598,7 @@ public class EventoComando implements CommandExecutor {
                             player.sendMessage("§aSpawn location set.");
                             break;
                         case "setquit":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -531,7 +606,7 @@ public class EventoComando implements CommandExecutor {
                             player.sendMessage("§aQuit location set.");
                             break;
                         case "skit":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -562,7 +637,7 @@ public class EventoComando implements CommandExecutor {
                             player.sendMessage("§aThe player §e" + t.getName() + " §areceived the kit.");
                             break;
                         case "specs":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -579,7 +654,7 @@ public class EventoComando implements CommandExecutor {
                             }
                             break;
                         case "toggle":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -592,15 +667,61 @@ public class EventoComando implements CommandExecutor {
                             }
                             break;
                         case "tpall":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
                             EventoUtils.getEventoPlayers().forEach(p -> p.teleport(player.getLocation()));
                             player.sendMessage("§aYou teleported everyone to you.");
                             break;
+                
+                        case "setwinner":
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
+                            	player.sendMessage("NO ACESS");
+                            	return true;
+                            }
+                        	 if (args.length < 1) {
+                        		 player.sendMessage("Use /event setwinner <PLAYER>");
+                        		 return true;
+                        	 }
+                            Player tt = Bukkit.getPlayer(args[1]);
+                            if (tt == null) {
+                                player.sendMessage("§cWe cant find §e" + args[2] + "§c.");
+                                return true;
+                            }
+                            Bukkit.broadcastMessage("§a" + tt.getName() + " É O VENCEDOR DO EVENTO!!!");
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            EventoUtils.getEventoPlayers().forEach(p -> {
+                                WaveWarp.SPAWN.send(p);
+                            });
+                break;
                         case "whitelist":
-                        	if (!player.hasPermission("cmd.event")) {
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
@@ -612,26 +733,26 @@ public class EventoComando implements CommandExecutor {
                                 sendHelp(player);
                                 return true;
                             }
-                            Player tt = Bukkit.getPlayer(args[2]);
-                            if (tt == null) {
+                            Player tt1 = Bukkit.getPlayer(args[2]);
+                            if (tt1 == null) {
                                 player.sendMessage("§cWe cant find §e" + args[2] + "§c.");
                                 return true;
                             }
                             if (args[1].equalsIgnoreCase("add")) {
-                                if (EventoUtils.whitelist.contains(tt.getUniqueId())) {
-                                    player.sendMessage("§cPlayer §e" + tt.getName() + " §cis already on whitelist.");
+                                if (EventoUtils.whitelist.contains(tt1.getUniqueId())) {
+                                    player.sendMessage("§cPlayer §e" + tt1.getName() + " §cis already on whitelist.");
                                     return true;
                                 }
-                                EventoUtils.whitelist.add(tt.getUniqueId());
-                                player.sendMessage("§aPlayer §e" + tt.getName() + " §agets added on event whitelist.");
+                                EventoUtils.whitelist.add(tt1.getUniqueId());
+                                player.sendMessage("§aPlayer §e" + tt1.getName() + " §agets added on event whitelist.");
                                 return true;
                             } else if (args[1].equalsIgnoreCase("remove")) {
-                                if (!EventoUtils.whitelist.contains(tt.getUniqueId())) {
-                                    player.sendMessage("§cPlayer §e" + tt.getName() + " §cis not on whitelist.");
+                                if (!EventoUtils.whitelist.contains(tt1.getUniqueId())) {
+                                    player.sendMessage("§cPlayer §e" + tt1.getName() + " §cis not on whitelist.");
                                     return true;
                                 }
-                                EventoUtils.whitelist.remove(tt.getUniqueId());
-                                player.sendMessage("§aO player §e" + tt.getName() + " §afoi §cremovido §ada whitelist.");
+                                EventoUtils.whitelist.remove(tt1.getUniqueId());
+                                player.sendMessage("§aO player §e" + tt1.getName() + " §afoi §cremovido §ada whitelist.");
                                 return false;
                             } else {
                                 player.sendMessage("§cNão encontramos essa opção.");

@@ -18,8 +18,6 @@ public class Sumo extends WarpHandle {
 	public void execute(Player player) {
 		super.execute(player);
 		player.getInventory().clear();
-		EventoComando e =  new EventoComando();
-		e.Gladiator(player);
 
         player.sendMessage("§aVocê agora está no evento Sumo!");
         player.sendMessage("§aSiga as instruções que serão dadas no chat!");
@@ -36,7 +34,7 @@ public class Sumo extends WarpHandle {
         Player victim = (Player) event.getEntity();
 
 
-        if (WaveWarp.Sumo.hasPlayer(damager.getName()) && WaveWarp.Sumo.hasPlayer(victim.getName())) {
+        if (WaveWarp.SUMO.hasPlayer(damager.getName()) && WaveWarp.SUMO.hasPlayer(victim.getName())) {
             event.setDamage(0);
         }
     }
@@ -45,14 +43,16 @@ public class Sumo extends WarpHandle {
         Player player = event.getPlayer();
         Block block = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
 
-        if (!WaveWarp.Sumo.hasPlayer(player.getName())) {
+        if (!WaveWarp.SUMO.hasPlayer(player.getName())) {
             return;
         }
 
         if (!block.getType().toString().contains("WATER")) {
             return;
         }
+        if (event.getPlayer().getLastDamageCause().getDamageSource().getCausingEntity() != null) {
         player.damage(player.getHealth(), event.getPlayer().getLastDamageCause().getDamageSource().getCausingEntity());
+        }
 player.sendMessage(ChatColor.RED + "Você perdeu o evento sumo!");
 WaveWarp.SPAWN.send(player);
 player.spigot().respawn();

@@ -13,4 +13,6 @@ commands:
         description: Set Warp
    vanish:
    v:
+   gamemode:
+   gm:
         
