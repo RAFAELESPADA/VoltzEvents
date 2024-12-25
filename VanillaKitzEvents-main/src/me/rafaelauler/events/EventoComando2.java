@@ -31,6 +31,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import net.wavemc.core.bukkit.item.ItemBuilder;
 
+
 public class EventoComando2 implements CommandExecutor {
 
 	Path path1 = Paths.get(Bukkit.getServer().getWorldContainer().getAbsolutePath() + "/plugins/WaveCore/", "warps.yml");
@@ -257,7 +258,7 @@ public class EventoComando2 implements CommandExecutor {
                     	return true;
                     }
                     EventoUtils.evento = true;
-                    player.sendMessage("§aVocê abriu a sala de eventos.");
+                    player.sendMessage("§aVocÃª abriu a sala de eventos.");
                     EventoUtils.whitelist.add(player.getUniqueId());
                    
                     for (Player p : Bukkit.getOnlinePlayers()) {
@@ -273,20 +274,19 @@ public class EventoComando2 implements CommandExecutor {
         }
         EventType2 evento = EventType2.getEventoByName(args[1]);
         if (evento == null) {
-            player.sendMessage("§cOpção de evento inválida.");
+            player.sendMessage("§cOpÃ§Ã£o de evento invÃ¡lida.");
             return true;
         }
-<<<<<<< HEAD
-        player.sendMessage("�aIniciando explica��o do evento �e" + evento.getName().toUpperCase() + "�a...");
-        EventType2.explicarEvento(evento);
-=======
+
         player.sendMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
-        EventType.explicarEvento(evento);
->>>>>>> 8a420278f69d9ac4730cc2ad1c225bd4979fbbb0
+        EventType2.explicarEvento(evento);
+
+        player.sendMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
+        EventType2.explicarEvento(evento);
         break;
                 case "stop": 
                     if (!EventoUtils.evento) {
-                        player.sendMessage("§cA sala de eventos está fechada.");
+                        player.sendMessage("§cA sala de eventos estÃ¡ fechada.");
                         return true;
                     }
                     if (!player.hasPermission("kombo.cmd.evento")) {
@@ -301,7 +301,7 @@ public class EventoComando2 implements CommandExecutor {
                     EventoUtils.build = false;
                     EventoUtils.damage = false;
             		EventoUtils.clearBlocks();	
-                    player.sendMessage("§aVocê fechou a sala de eventos.");
+                    player.sendMessage("§aVocÃª fechou a sala de eventos.");
                     EventoUtils.getEventoPlayers().forEach(p -> {
                         p.sendMessage("§cO evento foi finalizado.");
 
@@ -360,7 +360,7 @@ public class EventoComando2 implements CommandExecutor {
                 }
                             EventoUtils.clearBlocks();
                             
-                            player.sendMessage("§aVocê limpou a arena");
+                            player.sendMessage("§aVocÃª limpou a arena");
                             break;
                         case "tpto":
                             if (args.length < 2) {
@@ -369,7 +369,7 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             EventType2 ev = EventType2.getEventoByName(args[1]);
                             if (ev == null) {
-                                player.sendMessage("§cOpção de evento inválida.");
+                                player.sendMessage("§cOpÃ§Ã£o de evento invÃ¡lida.");
                                 return true;
                             }
                             WaveWarp.valueOf(ev.getName().toUpperCase()).send(player);
@@ -393,7 +393,7 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             EventType2 ev2 = EventType2.getEventoByName(args[1]);
                             if (ev2 == null) {
-                                player.sendMessage("§cOpção de evento inválida.");
+                                player.sendMessage("§cOpÃ§Ã£o de evento invÃ¡lida.");
                                 return true;
                             }
                             EventoUtils.started = true;
@@ -489,16 +489,16 @@ public class EventoComando2 implements CommandExecutor {
                                 return true;
                             }
                             if (target == player) {
-                                player.sendMessage("§cNão expulse você mesmo.");
+                                player.sendMessage("§cNão expulse vocÃª mesmo.");
                                 return true;
                             }
                             if (WaveWarp.SPAWN.hasPlayer(player.getName())) {
-                                player.sendMessage("§cEsse jogador não está no evento.");
+                                player.sendMessage("§cEsse jogador Não estÃ¡ no evento.");
                                 return true;
                             }
                            WaveWarp.SPAWN.send(target);
-                            target.sendMessage("§cVocê foi expulso do evento.");
-                            player.sendMessage("§aVocê expulsou §e" + target.getName() + " §ado evento.");
+                            target.sendMessage("§cVocÃª foi expulso do evento.");
+                            player.sendMessage("§aVocÃª expulsou §e" + target.getName() + " §ado evento.");
                             break;
                         case "players":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -514,10 +514,10 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             if (EventoUtils.pvp) {
-                                player.sendMessage("§cVocê desativou o pvp. §7(Lembre-se de desativar o §4dano§7 também)");
+                                player.sendMessage("§cVocÃª desativou o pvp. §7(Lembre-se de desativar o §4dano§7 tambÃ©m)");
                                 EventoUtils.pvp = false;
                             } else {
-                                player.sendMessage("§aVocê ativou o pvp. §7(Lembre-se de ativar o §4dano§7 também)");
+                                player.sendMessage("§aVocÃª ativou o pvp. §7(Lembre-se de ativar o §4dano§7 tambÃ©m)");
                                 EventoUtils.pvp = true;
                             }
                             break;
@@ -548,7 +548,7 @@ public class EventoComando2 implements CommandExecutor {
                             			Player objeto2 = Bukkit.getPlayerExact(picked2);
                             			objeto2.teleport(l2);
                             			objeto1.teleport(l);
-                            			player.sendMessage(ChatColor.DARK_AQUA + "PUXANDO DOIS PLAYERS ALEATÓRIOS PARA BATALHA SUMO!");
+                            			player.sendMessage(ChatColor.DARK_AQUA + "PUXANDO DOIS PLAYERS ALEATÃ“RIOS PARA BATALHA SUMO!");
                             		}
                             	}
                             }
@@ -581,7 +581,7 @@ public class EventoComando2 implements CommandExecutor {
                             			Player objeto2 = Bukkit.getPlayerExact(picked2);
                             			objeto2.teleport(l2);
                             			objeto1.teleport(l);
-                            			player.sendMessage(ChatColor.RED + "PUXANDO DOIS PLAYERS ALEATÓRIOS PARA BATALHA 1v1!");
+                            			player.sendMessage(ChatColor.RED + "PUXANDO DOIS PLAYERS ALEATÃ“RIOS PARA BATALHA 1v1!");
                             		}
                             	}
                             }
@@ -691,14 +691,14 @@ public class EventoComando2 implements CommandExecutor {
                         	 }
                             Player tt = Bukkit.getPlayer(args[1]);
                             if (tt == null) {
-<<<<<<< HEAD
-                                player.sendMessage("�cWe cant find �e" + args[1] + "�c.");
-=======
+
+                                player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
+
                                 player.sendMessage("§cWe cant find §e" + args[2] + "§c.");
->>>>>>> 8a420278f69d9ac4730cc2ad1c225bd4979fbbb0
+
                                 return true;
                             }
-                            Bukkit.broadcastMessage("§a" + tt.getName() + " É O VENCEDOR DO EVENTO!!!");
+                            Bukkit.broadcastMessage("§a" + tt.getName() + " Ã‰ O VENCEDOR DO EVENTO!!!");
                             tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
                             tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
                             tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
@@ -764,7 +764,7 @@ public class EventoComando2 implements CommandExecutor {
                                 player.sendMessage("§aO player §e" + tt1.getName() + " §afoi §cremovido §ada whitelist.");
                                 return false;
                             } else {
-                                player.sendMessage("§cNão encontramos essa opção.");
+                                player.sendMessage("§cNão encontramos essa opÃ§Ã£o.");
                                 return false;
                                
                             }
