@@ -258,7 +258,7 @@ public class EventoComando2 implements CommandExecutor {
                     	return true;
                     }
                     EventoUtils.evento = true;
-                    player.sendMessage("§aVocÃª abriu a sala de eventos.");
+                    player.sendMessage("§aVocê abriu a sala de eventos.");
                     EventoUtils.whitelist.add(player.getUniqueId());
                    
                     for (Player p : Bukkit.getOnlinePlayers()) {
@@ -274,7 +274,7 @@ public class EventoComando2 implements CommandExecutor {
         }
         EventType2 evento = EventType2.getEventoByName(args[1]);
         if (evento == null) {
-            player.sendMessage("§cOpÃ§Ã£o de evento invÃ¡lida.");
+            player.sendMessage("§cOpção de evento inválida.");
             return true;
         }
 
@@ -301,7 +301,7 @@ public class EventoComando2 implements CommandExecutor {
                     EventoUtils.build = false;
                     EventoUtils.damage = false;
             		EventoUtils.clearBlocks();	
-                    player.sendMessage("§aVocÃª fechou a sala de eventos.");
+                    player.sendMessage("§aVocê fechou a sala de eventos.");
                     EventoUtils.getEventoPlayers().forEach(p -> {
                         p.sendMessage("§cO evento foi finalizado.");
 
@@ -360,7 +360,7 @@ public class EventoComando2 implements CommandExecutor {
                 }
                             EventoUtils.clearBlocks();
                             
-                            player.sendMessage("§aVocÃª limpou a arena");
+                            player.sendMessage("§aVocê limpou a arena");
                             break;
                         case "tpto":
                             if (args.length < 2) {
@@ -369,7 +369,7 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             EventType2 ev = EventType2.getEventoByName(args[1]);
                             if (ev == null) {
-                                player.sendMessage("§cOpÃ§Ã£o de evento invÃ¡lida.");
+                                player.sendMessage("§cOpção de evento inválida.");
                                 return true;
                             }
                             WaveWarp.valueOf(ev.getName().toUpperCase()).send(player);
@@ -393,7 +393,7 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             EventType2 ev2 = EventType2.getEventoByName(args[1]);
                             if (ev2 == null) {
-                                player.sendMessage("§cOpÃ§Ã£o de evento invÃ¡lida.");
+                                player.sendMessage("§cOpção de evento inválida.");
                                 return true;
                             }
                             EventoUtils.started = true;
@@ -489,7 +489,7 @@ public class EventoComando2 implements CommandExecutor {
                                 return true;
                             }
                             if (target == player) {
-                                player.sendMessage("§cNão expulse vocÃª mesmo.");
+                                player.sendMessage("§cNão expulse Você mesmo.");
                                 return true;
                             }
                             if (WaveWarp.SPAWN.hasPlayer(player.getName())) {
@@ -497,8 +497,8 @@ public class EventoComando2 implements CommandExecutor {
                                 return true;
                             }
                            WaveWarp.SPAWN.send(target);
-                            target.sendMessage("§cVocÃª foi expulso do evento.");
-                            player.sendMessage("§aVocÃª expulsou §e" + target.getName() + " §ado evento.");
+                            target.sendMessage("§cVocê foi expulso do evento.");
+                            player.sendMessage("§aVocê expulsou §e" + target.getName() + " §ado evento.");
                             break;
                         case "players":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -514,10 +514,10 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             if (EventoUtils.pvp) {
-                                player.sendMessage("§cVocÃª desativou o pvp. §7(Lembre-se de desativar o §4dano§7 tambÃ©m)");
+                                player.sendMessage("§cVocê desativou o pvp. §7(Lembre-se de desativar o §4dano§7 tambÃ©m)");
                                 EventoUtils.pvp = false;
                             } else {
-                                player.sendMessage("§aVocÃª ativou o pvp. §7(Lembre-se de ativar o §4dano§7 tambÃ©m)");
+                                player.sendMessage("§aVocê ativou o pvp. §7(Lembre-se de ativar o §4dano§7 tambÃ©m)");
                                 EventoUtils.pvp = true;
                             }
                             break;
@@ -764,7 +764,7 @@ public class EventoComando2 implements CommandExecutor {
                                 player.sendMessage("§aO player §e" + tt1.getName() + " §afoi §cremovido §ada whitelist.");
                                 return false;
                             } else {
-                                player.sendMessage("§cNão encontramos essa opÃ§Ã£o.");
+                                player.sendMessage("§cNão encontramos essa Opção.");
                                 return false;
                                
                             }
