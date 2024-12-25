@@ -20,14 +20,14 @@ public class EventoTabComplete implements TabCompleter {
         if (command.getName().equalsIgnoreCase("event")) {
             if (args[0].equalsIgnoreCase("explicar") || args[0].equalsIgnoreCase("tpto")) {
                 if (args[1].length() == 0) {
-                    for (EventType evento : EventType.values()) {
+                    for (EventType2 evento : EventType2.values()) {
                     	if (evento.getLocation() != null) {
                         list.add(evento.getName().toLowerCase());
                     }
                     }
                     return list;
                 } else {
-                    for (EventType evento : EventType.values()) {
+                    for (EventType2 evento : EventType2.values()) {
                         if (evento.getName().substring(0, args[1].length()).equalsIgnoreCase(args[1])) {
                         	if (evento.getLocation() != null) {
                             return Collections.singletonList(evento.getName().toLowerCase());

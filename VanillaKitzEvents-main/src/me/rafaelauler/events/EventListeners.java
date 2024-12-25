@@ -26,6 +26,7 @@ import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -37,22 +38,36 @@ import net.wavemc.core.bukkit.WaveBukkit;
 
 public class EventListeners implements Listener {
 
+	  @EventHandler(priority = EventPriority.HIGHEST)
+	    public void BlockBreak(BlockBreakEvent event) {
+	    	if (event.getPlayer().getWorld().equals(Bukkit.getWorld("hg"))) {
+	    		return;
+	    	}
+	    	if (!EventoUtils.blocks.contains(event.getBlock().getLocation()) && !WaveWarp.CUSTOM.hasPlayer(event.getPlayer().getName())) {
+	    		event.setCancelled(true);   	       
+	    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode quebrar blocos da arena");
+	    	}
+	    	if (!EventoUtils.build) {
+	            event.setCancelled(true);
+
+	    		event.getPlayer().sendMessage(ChatColor.RED + "O Build está desativado");
+	        }
+	    	       
+	    	
+	    	
+	        
+	    	
+	    	       }
+    
     @EventHandler(priority = EventPriority.MONITOR)
-    public void BlockBreak(BlockBreakEvent event) {
-    	if (!EventoUtils.blocks.contains(event.getBlock().getLocation())) {
-    		event.setCancelled(true);
-    	       return;
+    public void onMove(PlayerMoveEvent event) {
+    	if (WaveWarp.CUSTOM.hasPlayer(event.getPlayer().getName())) {
+    		if (event.getPlayer().getLocation().getY() < 82 && !EventoUtils.build) {
+    			event.getPlayer().sendMessage(ChatColor.RED + "Você só pode sair do spawn do evento Custom assim que o build for ativo");
+    			event.getPlayer().teleport(new Location (Bukkit.getWorld("hg"), 572.688, 97.00000, 585.974, (float)89.99, (float)-11.1));
+    		}
     	}
-    	else if (!EventoUtils.build) {
-            event.setCancelled(true);
-            return;
-        }
-    	       
-    	
-    	
-        
-    	
-    	       }
+    	}
         
     
     @EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=false)
@@ -88,14 +103,11 @@ public class EventListeners implements Listener {
             	   return;
                }
                 p.setHealth(Math.min(p.getMaxHealth(), p.getHealth() + 7));
-                p.setFoodLevel(Math.min(20, p.getFoodLevel() + 7));
-              
-                    p.getInventory().setItemInHand(new ItemStack(Material.BOWL));
-                  }
-              
+                p.setFoodLevel(Math.min(20, p.getFoodLevel() + 7));              
+                p.getInventory().setItemInHand(new ItemStack(Material.BOWL));            
                 p.updateInventory();
                 e.setCancelled(true);
-            
+        }
     }
     
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -126,6 +138,8 @@ public class EventListeners implements Listener {
     public void BlockPlace(BlockPlaceEvent event) {
     	if (WaveWarp.SPAWN.hasPlayer(event.getPlayer().getName()) && !event.getPlayer().hasPermission("kombo.cmd.evento")) {
         	event.setCancelled(true);
+    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar blocos da arena");
+    	    
         	return;
         	}
     	
@@ -133,6 +147,8 @@ public class EventListeners implements Listener {
         
         if (!EventoUtils.build) {
             event.setCancelled(true);
+    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar blocos agora!");
+    	    
             return;
         }
         
@@ -141,30 +157,36 @@ public class EventListeners implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void BucketFill(PlayerBucketFillEvent event) {
+    	if (event.getPlayer().getWorld().equals(Bukkit.getWorld("hg"))) {
+    		return;
+    	}
     	if (WaveWarp.SPAWN.hasPlayer(event.getPlayer().getName()) && !event.getPlayer().hasPermission("kombo.cmd.evento")) {
         	event.setCancelled(true);
-        	}
-        if (!EventoUtils.started) return;
-        
-        Player player = event.getPlayer();
-        
+
+    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar agua/lava agora!");
+        	} 
         if (!EventoUtils.build) {
             event.setCancelled(true);
+
+    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar agua/lava agora!");
         }
 
         
     }
     @EventHandler(priority = EventPriority.HIGHEST)
     public void BucketFill(PlayerBucketEmptyEvent event) {
+    	if (event.getPlayer().getWorld().equals(Bukkit.getWorld("hg"))) {
+    		return;
+    	}
     	if (WaveWarp.SPAWN.hasPlayer(event.getPlayer().getName()) && !event.getPlayer().hasPermission("kombo.cmd.evento")) {
         	event.setCancelled(true);
+
+    		event.getPlayer().sendMessage(ChatColor.DARK_RED + "Você não pode colocar agua/lava agora!");
         	}
-        if (!EventoUtils.started) return;
-        
-        Player player = event.getPlayer();
-        
         if (!EventoUtils.build) {
             event.setCancelled(true);
+
+    		event.getPlayer().sendMessage(ChatColor.DARK_RED + "Você não pode colocar agua/lava agora!");
         }
 
         EventoUtils.blocks.add(event.getBlock().getLocation());

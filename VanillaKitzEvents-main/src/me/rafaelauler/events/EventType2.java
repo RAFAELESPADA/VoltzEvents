@@ -4,6 +4,7 @@ package me.rafaelauler.events;
 
 
 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import org.bukkit.Sound;
 import lombok.Getter;
 
 @Getter
-public enum EventType {
+public enum EventType2 {
 
 
     ARENAPVP("ArenaPvP", Arrays.asList("Olá a todos! Bem vindo ao &c&lArena PvP&l&f!", "No evento, vocês receberam um kit com items", "Com o tempo com jogadores diminuindo vocês serão teleportados a um novo local.", "Todos tem 20 segundos para se preparar.", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNão tente escapar da arena pvp.", "&fNão faça mais times que o promotor deixar." , "Começando evento! Boa sorte"), WaveWarp.ARENAPVP.getLocation()),
@@ -24,20 +25,20 @@ public enum EventType {
     SUMO("Sumo", Arrays.asList("Bem vindo ao evento Sumô!", "No início do evento vocês serão puxados de 2 em 2 para uma luta individual", "Quem ganhar voltará ao evento!", "E quem perder voltará ao spawn!", "Começando evento. Divirta-se"), WaveWarp.SUMO.getLocation()),
     ARENANINJA("ArenaNinja", Arrays.asList("Olá a todos! Bem vindo ao &c&lArena NINJA&l&f!", "No evento, vocês receberam um kit com items", "Com o tempo com jogadores diminuindo vocês serão teleportados a um novo local.", "Todos tem 20 segundos para se preparar.", "Todos tem a habilidade do kit NINJA durante o evento", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNão tente escapar da arena pvp.", "&fNão faça mais times que o promotor deixar." , "Começando evento! Boa sorte"), WaveWarp.ARENANINJA.getLocation()),
     ONEVSONE("OnevsOne", Arrays.asList("Bem vindo ao evento 1vs1!", "No início do evento vocês serão puxados de 2 em 2 para uma luta individual", "Quem ganhar voltará ao evento!", "E quem perder voltará ao spawn!", "Começando evento. Divirta-se"), WaveWarp.ONEVSONE.getLocation()),
-    CUSTOM("Customizado", Arrays.asList("Olá a todos! Bem vindo ao &c&lCUSTOM&l&f!", "No evento, vocês receberam um kit com items escolhidos pelo staff", "O Staff que decidirá como será o evento.", "Todos tem 20 segundos para se preparar.", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNão tente escapar da arena.", "&fNão faça mais times que o promotor deixar." , "Começando evento! Boa sorte"), WaveWarp.CUSTOM.getLocation()),
+    CUSTOM("Custom", Arrays.asList("Olá a todos! Bem vindo ao &c&lCUSTOM&l&f!", "No evento, vocês receberam um kit com items escolhidos pelo staff", "O Staff que decidirá como será o evento.", "Todos tem 20 segundos para se preparar.", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNão tente escapar da arena.", "&fNão faça mais times que o promotor deixar." , "Começando evento! Boa sorte"), WaveWarp.CUSTOM.getLocation()),
     
     ;
     private final String name;
     private final List<String> explicacao;
     private final Location location;
-    EventType(String name, List<String> explicacao, Location location) {
+    EventType2(String name, List<String> explicacao, Location location) {
         this.name = name;
         this.explicacao = explicacao;
         this.location = location;
     }
 
-    public static EventType getEventoByName(String name) {
-        for (EventType evento : EventType.values()) {
+    public static EventType2 getEventoByName(String name) {
+        for (EventType2 evento : EventType2.values()) {
         	 if (evento.getName().equalsIgnoreCase(name))
                  return evento;
          }
@@ -53,7 +54,7 @@ public enum EventType {
 		return location;
 	}
 
-    public static void explicarEvento(EventType evento) {
+    public static void explicarEvento(EventType2 evento) {
         List<String> explic = evento.getExplicacao();
         int actualsec = 1;
         for (String message : explic) {

@@ -271,13 +271,13 @@ public class EventoComando2 implements CommandExecutor {
             player.sendMessage("§cEscolha um evento para explicar");
             return true;
         }
-        EventType evento = EventType.getEventoByName(args[1]);
+        EventType2 evento = EventType2.getEventoByName(args[1]);
         if (evento == null) {
             player.sendMessage("§cOpção de evento inválida.");
             return true;
         }
         player.sendMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
-        EventType.explicarEvento(evento);
+        EventType2.explicarEvento(evento);
         break;
                 case "stop": 
                     if (!EventoUtils.evento) {
@@ -362,7 +362,7 @@ public class EventoComando2 implements CommandExecutor {
                                 player.sendMessage("§cEscolha algum evento para teleportar.");
                                 return true;
                             }
-                            EventType ev = EventType.getEventoByName(args[1]);
+                            EventType2 ev = EventType2.getEventoByName(args[1]);
                             if (ev == null) {
                                 player.sendMessage("§cOpção de evento inválida.");
                                 return true;
@@ -386,7 +386,7 @@ public class EventoComando2 implements CommandExecutor {
                                 player.sendMessage("§cEscolha algum evento para teleportar.");
                                 return true;
                             }
-                            EventType ev2 = EventType.getEventoByName(args[1]);
+                            EventType2 ev2 = EventType2.getEventoByName(args[1]);
                             if (ev2 == null) {
                                 player.sendMessage("§cOpção de evento inválida.");
                                 return true;
@@ -680,13 +680,13 @@ public class EventoComando2 implements CommandExecutor {
                             	player.sendMessage("NO ACESS");
                             	return true;
                             }
-                        	 if (args.length < 1) {
+                        	 if (args.length < 2) {
                         		 player.sendMessage("Use /event setwinner <PLAYER>");
                         		 return true;
                         	 }
                             Player tt = Bukkit.getPlayer(args[1]);
                             if (tt == null) {
-                                player.sendMessage("§cWe cant find §e" + args[2] + "§c.");
+                                player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
                                 return true;
                             }
                             Bukkit.broadcastMessage("§a" + tt.getName() + " É O VENCEDOR DO EVENTO!!!");

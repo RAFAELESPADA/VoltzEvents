@@ -67,7 +67,7 @@ Bukkit.getConsoleSender().sendMessage(prefix + " PLUGIN ENABLED!");
     	this.scoreboardBuilder = new ScoreboardBuilder();
     	ScoreboardBuilder.init();
     	setupRecipes();
-    	Bukkit.getPluginManager().registerEvents(new EventListeners(),this);
+        Bukkit.getPluginManager().registerEvents(new EventListeners(),this);
         getCommand("event").setExecutor(new EventoComando2());
         getCommand("setwarp").setExecutor(new SetWarp(this));
         getCommand("vanish").setExecutor(new Vanish());
