@@ -12,6 +12,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import lombok.Getter;
 
@@ -19,7 +22,6 @@ import lombok.Getter;
 public enum EventType2 {
 
 
-<<<<<<< HEAD
     ARENAPVP("ArenaPvP", Arrays.asList("Olá a todos! Bem vindo ao &c&lArena PvP&l&f!", "No evento, vocês receberam um kit com items", "Com o tempo com jogadores diminuindo vocês serão teleportados a um novo local.", "Todos tem 20 segundos para se preparar.", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNão tente escapar da arena pvp.", "&fNão faça mais times que o promotor deixar." , "Começando evento! Boa sorte"), WaveWarp.ARENAPVP.getLocation()),
     LAVA("LavaChallenge", Arrays.asList("Olá a todos! Bem vindo ao evento &4&lLava Challenge", "&fAo inicio do evento todos receberam um kit com sopas.", "Todos precisarão tankar a lava que vocês serão colocados!", "Suas sopas NÃO serão reabastecidas durante o evento, então use elas com cautela.", "Vocês terão 10 segundos para se prepararem!", "Começando evento! Boa sorte!"), WaveWarp.LAVACHALLENGE.getLocation()),
     MESTREMANDOU("MestreMandou", Arrays.asList("Olá a todos! Bem vindo ao evento &4&lMestre Mandou", "&fAo inicio do evento todos serão dados ordens aleatórias.", "Como craftar certos itens e fazer certas ações!", "Se não cumprir a ação dentro do prazo determinado será kikado.", "Vocês terão 10 segundos para se prepararem!", "Começando evento! Boa sorte!"), WaveWarp.MESTREMANDOU.getLocation()),
@@ -27,15 +29,6 @@ public enum EventType2 {
     ARENANINJA("ArenaNinja", Arrays.asList("Olá a todos! Bem vindo ao &c&lArena NINJA&l&f!", "No evento, vocês receberam um kit com items", "Com o tempo com jogadores diminuindo vocês serão teleportados a um novo local.", "Todos tem 20 segundos para se preparar.", "Todos tem a habilidade do kit NINJA durante o evento", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNão tente escapar da arena pvp.", "&fNão faça mais times que o promotor deixar." , "Começando evento! Boa sorte"), WaveWarp.ARENANINJA.getLocation()),
     ONEVSONE("OnevsOne", Arrays.asList("Bem vindo ao evento 1vs1!", "No início do evento vocês serão puxados de 2 em 2 para uma luta individual", "Quem ganhar voltará ao evento!", "E quem perder voltará ao spawn!", "Começando evento. Divirta-se"), WaveWarp.ONEVSONE.getLocation()),
     CUSTOM("Custom", Arrays.asList("Olá a todos! Bem vindo ao &c&lCUSTOM&l&f!", "No evento, vocês receberam um kit com items escolhidos pelo staff", "O Staff que decidirá como será o evento.", "Todos tem 20 segundos para se preparar.", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNão tente escapar da arena.", "&fNão faça mais times que o promotor deixar." , "Começando evento! Boa sorte"), WaveWarp.CUSTOM.getLocation()),
-=======
-    ARENAPVP("ArenaPvP", Arrays.asList("OlÃ¡ a todos! Bem vindo ao &c&lArena PvP&l&f!", "No evento, vocÃªs receberam um kit com items", "Com o tempo com jogadores diminuindo vocÃªs serÃ£o teleportados a um novo local.", "Todos tem 20 segundos para se preparar.", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNÃ£o tente escapar da arena pvp.", "&fNÃ£o faÃ§a mais times que o promotor deixar." , "ComeÃ§ando evento! Boa sorte"), WaveWarp.ARENAPVP.getLocation()),
-    LAVA("LavaChallenge", Arrays.asList("OlÃ¡ a todos! Bem vindo ao evento &4&lLava Challenge", "&fAo inicio do evento todos receberam um kit com sopas.", "Todos precisarÃ£o tankar a lava que vocÃªs serÃ£o colocados!", "Suas sopas NÃƒO serÃ£o reabastecidas durante o evento, entÃ£o use elas com cautela.", "VocÃªs terÃ£o 10 segundos para se prepararem!", "ComeÃ§ando evento! Boa sorte!"), WaveWarp.LAVACHALLENGE.getLocation()),
-    MESTREMANDOU("MestreMandou", Arrays.asList("OlÃ¡ a todos! Bem vindo ao evento &4&lMestre Mandou", "&fAo inicio do evento todos serÃ£o dados ordens aleatÃ³rias.", "Como craftar certos itens e fazer certas aÃ§Ãµes!", "Se nÃ£o cumprir a aÃ§Ã£o dentro do prazo determinado serÃ¡ kikado.", "VocÃªs terÃ£o 10 segundos para se prepararem!", "ComeÃ§ando evento! Boa sorte!"), WaveWarp.MESTREMANDOU.getLocation()),
-    SUMO("Sumo", Arrays.asList("Bem vindo ao evento SumÃ´!", "No inÃ­cio do evento vocÃªs serÃ£o puxados de 2 em 2 para uma luta individual", "Quem ganhar voltarÃ¡ ao evento!", "E quem perder voltarÃ¡ ao spawn!", "ComeÃ§ando evento. Divirta-se"), WaveWarp.SUMO.getLocation()),
-    ARENANINJA("ArenaNinja", Arrays.asList("OlÃ¡ a todos! Bem vindo ao &c&lArena NINJA&l&f!", "No evento, vocÃªs receberam um kit com items", "Com o tempo com jogadores diminuindo vocÃªs serÃ£o teleportados a um novo local.", "Todos tem 20 segundos para se preparar.", "Todos tem a habilidade do kit NINJA durante o evento", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNÃ£o tente escapar da arena pvp.", "&fNÃ£o faÃ§a mais times que o promotor deixar." , "ComeÃ§ando evento! Boa sorte"), WaveWarp.ARENANINJA.getLocation()),
-    ONEVSONE("OnevsOne", Arrays.asList("Bem vindo ao evento 1vs1!", "No inÃ­cio do evento vocÃªs serÃ£o puxados de 2 em 2 para uma luta individual", "Quem ganhar voltarÃ¡ ao evento!", "E quem perder voltarÃ¡ ao spawn!", "ComeÃ§ando evento. Divirta-se"), WaveWarp.ONEVSONE.getLocation()),
-    CUSTOM("Custom", Arrays.asList("OlÃ¡ a todos! Bem vindo ao &c&lCUSTOM&l&f!", "No evento, vocÃªs receberam um kit com items escolhidos pelo staff", "O Staff que decidirÃ¡ como serÃ¡ o evento.", "Todos tem 20 segundos para se preparar.", "Agora vamos as &c&lREGRAS DO EVENTO&l&f:", "&fNÃ£o tente escapar da arena.", "&fNÃ£o faÃ§a mais times que o promotor deixar." , "ComeÃ§ando evento! Boa sorte"), WaveWarp.CUSTOM.getLocation()),
->>>>>>> 5b4d6e78b041025f8b3790b564ac214e917a0cef
 
     ;
     private final String name;
@@ -70,7 +63,7 @@ public enum EventType2 {
         for (String message : explic) {
             Bukkit.getScheduler().runTaskLater(Main.instance, () -> {
             	EventoUtils.getEventoPlayers().forEach(p -> {
-               p.sendMessage("§6§lKOMBO" + " §f" + ChatColor.translateAlternateColorCodes('&', message));
+               p.sendMessage("§6§lVOLTZ" + " §f" + ChatColor.translateAlternateColorCodes('&', message));
                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         });
             	
@@ -78,8 +71,41 @@ public enum EventType2 {
             actualsec += 5;
         }
 }
+
+public static void tirarEfeitos(final Player p) {
+    p.removePotionEffect(PotionEffectType.ABSORPTION);
+    p.removePotionEffect(PotionEffectType.BLINDNESS);
+    p.removePotionEffect(PotionEffectType.NAUSEA);
+    p.removePotionEffect(PotionEffectType.RESISTANCE);
+    p.removePotionEffect(PotionEffectType.HASTE);
+    p.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
+    p.removePotionEffect(PotionEffectType.INSTANT_DAMAGE);
+    p.removePotionEffect(PotionEffectType.INSTANT_HEALTH);
+    p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
+    p.removePotionEffect(PotionEffectType.HUNGER);
+    p.removePotionEffect(PotionEffectType.INSTANT_DAMAGE);
+    p.removePotionEffect(PotionEffectType.INVISIBILITY);
+    p.removePotionEffect(PotionEffectType.JUMP_BOOST);
+    p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+    p.removePotionEffect(PotionEffectType.POISON);
+    p.removePotionEffect(PotionEffectType.REGENERATION);
+    p.removePotionEffect(PotionEffectType.SATURATION);
+    p.removePotionEffect(PotionEffectType.SLOWNESS);
+    p.removePotionEffect(PotionEffectType.STRENGTH);
+    p.removePotionEffect(PotionEffectType.SPEED);
+    p.removePotionEffect(PotionEffectType.WATER_BREATHING);
+    p.removePotionEffect(PotionEffectType.WEAKNESS);
+    p.removePotionEffect(PotionEffectType.WITHER);
 }
 
+
+public static void darEfeito(final Player p, final PotionEffectType tipo, final int duracao, final int level) {
+      p.addPotionEffect(new PotionEffect(tipo, 20 * duracao, level));
+  }
+	public static String cor(String s) {
+		return s.replace("&", "§");
+	}
+}
 
 // mdr 801.5 100 519.5
 // lava 641.5 118 518.5

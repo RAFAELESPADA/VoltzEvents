@@ -229,14 +229,14 @@ public class EventListeners implements Listener {
 		EventoUtils.setEvento(true, player);
 	WaveWarp.SPAWN.send(player);
 
-	p.sendMessage(ChatColor.GOLD + "KOMBO - SISTEMA DE EVENTOS v2.0");
+	p.sendMessage(ChatColor.GOLD + "VOLTZ - SISTEMA DE EVENTOS v2.0");
 	p.sendMessage(ChatColor.RED + "Bem vindo ao Servidor de Eventos");
 
 	p.sendMessage(ChatColor.RED + "Caso tenha um promotor online o evento");
 
 	p.sendMessage(ChatColor.RED + "Irá começar em breve!");
 
-	p.sendMessage(ChatColor.RED + "Acesse nosso discord: " + ChatColor.BLUE + "https://discord.gg/kombo");
+	p.sendMessage(ChatColor.RED + "Acesse nosso discord: " + ChatColor.BLUE + "https://discord.gg/voltz");
 	}
 	
     @EventHandler

@@ -61,8 +61,8 @@ public class EventoComando2 implements CommandExecutor {
 			private Integer[] cocoaSlots2 = { 23, 24, 25 };
 	public static HashMap<String, ItemStack[]> saveinv = new HashMap();
     private static void sendHelp(Player player) {
-        if (player.hasPermission("kombo.kombo.cmd.evento")) {
-            player.sendMessage("§a§lKOMBO §7- §eEvents");
+        if (player.hasPermission("kombo.cmd.evento")) {
+            player.sendMessage("§a§lVOLTZ §7- §eEvents");
             player.sendMessage(" ");
             player.sendMessage("§e/event §7- §fDisplay this help page.");
             player.sendMessage("§e/event join §7- §fJoin the event.");
@@ -96,7 +96,7 @@ public class EventoComando2 implements CommandExecutor {
             player.sendMessage("§e/event whitelist <add/remove/list> <player> §7- §fLet a individual player join the event in whitelist.");
             player.sendMessage(" ");
         } else {
-            player.sendMessage("§a§lKOMBO §7- §eSistema de eventos");
+            player.sendMessage("§a§lVOLTZ §7- §eSistema de eventos");
             player.sendMessage(" ");
             player.sendMessage("§eCRIADO POR RAFAEL AULER EM 27/07/2024");
             player.sendMessage(" ");
@@ -233,6 +233,8 @@ public class EventoComando2 implements CommandExecutor {
 	}
 
 
+
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
@@ -278,26 +280,16 @@ public class EventoComando2 implements CommandExecutor {
             return true;
         }
 
-<<<<<<< HEAD
         player.sendMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
         EventType2.explicarEvento(evento);
 
-        player.sendMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
-=======
-        player.sendMessage("Â§aIniciando explicaÃ§Ã£o do evento Â§e" + evento.getName().toUpperCase() + "Â§a...");
-        EventType2.explicarEvento(evento);
 
-        player.sendMessage("Â§aIniciando explicaÃ§Ã£o do evento Â§e" + evento.getName().toUpperCase() + "Â§a...");
->>>>>>> 5b4d6e78b041025f8b3790b564ac214e917a0cef
-        EventType2.explicarEvento(evento);
         break;
+                
                 case "stop": 
                     if (!EventoUtils.evento) {
-<<<<<<< HEAD
-                        player.sendMessage("§cA sala de eventos estÃ¡ fechada.");
-=======
-                        player.sendMessage("Â§cA sala de eventos estÃƒÂ¡ fechada.");
->>>>>>> 5b4d6e78b041025f8b3790b564ac214e917a0cef
+                        player.sendMessage("§cA sala de eventos está fechada.");
+
                         return true;
                     }
                     if (!player.hasPermission("kombo.cmd.evento")) {
@@ -313,7 +305,7 @@ public class EventoComando2 implements CommandExecutor {
                     EventoUtils.damage = false;
             		EventoUtils.clearBlocks();	
                     player.sendMessage("§aVocê fechou a sala de eventos.");
-                    EventoUtils.getEventoPlayers().forEach(p -> {
+                    for (Player p : EventoUtils.getEventoPlayers()) {
                         p.sendMessage("§cO evento foi finalizado.");
 
                         EventoUtils.started = false;
@@ -331,8 +323,7 @@ public class EventoComando2 implements CommandExecutor {
                       
                        EventoUtils.setEvento(false, player);
                        player.sendMessage("§cO evento foi finalizado.");
-                        p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
-                    });
+                    }
                     EventoUtils.resetEventoClass();
                 break;
              
@@ -439,7 +430,9 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             if (args.length == 2) {
                                 if (args[1].equalsIgnoreCase("clear")) {
-                                    EventoUtils.getEventoPlayers().forEach(p -> p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType())));
+                                	for (Player p : EventoUtils.getEventoPlayers()) {
+                                  EventType2.tirarEfeitos(p);  
+                                }
                                     player.sendMessage("§aYou cleared the effect of all players.");
                                     return false;
                                 }
@@ -465,8 +458,10 @@ public class EventoComando2 implements CommandExecutor {
                                 return true;
                             }
                             if (args[4].equalsIgnoreCase("all")) {
-                                EventoUtils.getEventoPlayers().forEach(p -> p.addPotionEffect(new PotionEffect(potionEffectType, secs * 20, amplif - 1)));
-                                player.sendMessage("§aEffect §e"+potionEffectType.getName() + " " + amplif + " §aapplied for §e" + secs + " seconds§a.");
+                                for (Player p : EventoUtils.getEventoPlayers()) {
+                                	EventType2.darEfeito(player, potionEffectType, amplif, secs);
+                                }
+                            	player.sendMessage("§aEffect §e"+potionEffectType.getName() + " " + amplif + " §aapplied for §e" + secs + " seconds§a.");
                                 return false;
                             } else {
                                 Player target = Bukkit.getPlayer(args[4]);
@@ -484,6 +479,7 @@ public class EventoComando2 implements CommandExecutor {
                                 target.addPotionEffect(new PotionEffect(potionEffectType, secs * 20, amplif));
                                 player.sendMessage("§aEffect §e"+potionEffectType.getName() + " " + amplif + " §aapplied to §e" + target.getName() + " §afor §e" + secs + " seconds§a.");
                             }
+                            
                             break;
                         case "kick":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -500,19 +496,17 @@ public class EventoComando2 implements CommandExecutor {
                                 return true;
                             }
                             if (target == player) {
-<<<<<<< HEAD
                                 player.sendMessage("§cNão expulse Você mesmo.");
                                 return true;
                             }
                             if (WaveWarp.SPAWN.hasPlayer(player.getName())) {
                                 player.sendMessage("§cEsse jogador Não estÃ¡ no evento.");
-=======
                                 player.sendMessage("Â§cNÃ£o expulse VocÃª mesmo.");
                                 return true;
                             }
                             if (WaveWarp.SPAWN.hasPlayer(player.getName())) {
                                 player.sendMessage("Â§cEsse jogador NÃ£o estÃƒÂ¡ no evento.");
->>>>>>> 5b4d6e78b041025f8b3790b564ac214e917a0cef
+
                                 return true;
                             }
                            WaveWarp.SPAWN.send(target);
@@ -533,18 +527,12 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             if (EventoUtils.pvp) {
-<<<<<<< HEAD
-                                player.sendMessage("§cVocê desativou o pvp. §7(Lembre-se de desativar o §4dano§7 tambÃ©m)");
+                                player.sendMessage("§cVocê desativou o pvp. §7(Lembre-se de desativar o §4dano§7 também)");
                                 EventoUtils.pvp = false;
                             } else {
-                                player.sendMessage("§aVocê ativou o pvp. §7(Lembre-se de ativar o §4dano§7 tambÃ©m)");
-=======
-                                player.sendMessage("Â§cVocÃª desativou o pvp. Â§7(Lembre-se de desativar o Â§4danoÂ§7 tambÃƒÂ©m)");
+                                player.sendMessage("§aVocê ativou o pvp. §7(Lembre-se de ativar o §4dano§7 também)");
+                                player.sendMessage("§cVocê desativou o pvp. §7(Lembre-se de desativar o §4danoÂ§7 também)");
                                 EventoUtils.pvp = false;
-                            } else {
-                                player.sendMessage("Â§aVocÃª ativou o pvp. Â§7(Lembre-se de ativar o Â§4danoÂ§7 tambÃƒÂ©m)");
->>>>>>> 5b4d6e78b041025f8b3790b564ac214e917a0cef
-                                EventoUtils.pvp = true;
                             }
                             break;
                         case "sumofight":
@@ -574,7 +562,7 @@ public class EventoComando2 implements CommandExecutor {
                             			Player objeto2 = Bukkit.getPlayerExact(picked2);
                             			objeto2.teleport(l2);
                             			objeto1.teleport(l);
-                            			player.sendMessage(ChatColor.DARK_AQUA + "PUXANDO DOIS PLAYERS ALEATÃƒâ€œRIOS PARA BATALHA SUMO!");
+                            			player.sendMessage(ChatColor.DARK_AQUA + "PUXANDO DOIS PLAYERS ALEATÓRIOS PARA BATALHA SUMO!");
                             		}
                             	}
                             }
@@ -607,7 +595,7 @@ public class EventoComando2 implements CommandExecutor {
                             			Player objeto2 = Bukkit.getPlayerExact(picked2);
                             			objeto2.teleport(l2);
                             			objeto1.teleport(l);
-                            			player.sendMessage(ChatColor.RED + "PUXANDO DOIS PLAYERS ALEATÃƒâ€œRIOS PARA BATALHA 1v1!");
+                            			player.sendMessage(ChatColor.RED + "PUXANDO DOIS PLAYERS ALEATÓRIOS PARA BATALHA 1v1!");
                             		}
                             	}
                             }
@@ -636,135 +624,6 @@ public class EventoComando2 implements CommandExecutor {
                             EventoUtils.quitLoc = player.getLocation();
                             player.sendMessage("§aQuit location set.");
                             break;
-                        case "skit":
-                        	if (!player.hasPermission("kombo.cmd.evento")) {
-                            	player.sendMessage("NO ACESS");
-                            	return true;
-                            }
-                            if (args.length < 2) {
-                                sendHelp(player);
-                                return true;
-                            }
-                            if (args[1].equalsIgnoreCase("all")) {
-                                EventoUtils.getEventoPlayers().forEach(p -> {
-                                    if (p == player) return;
-                                    p.closeInventory();
-                                    p.getInventory().setArmorContents(player.getInventory().getArmorContents());
-                                    p.getInventory().setContents(player.getInventory().getContents());
-                                    p.sendMessage("§aYou receive the event kits.");
-                                });
-                                player.sendMessage("§aAll players received the kit.");
-                                return false;
-                            }
-                            Player t = Bukkit.getPlayer(args[1]);
-                            if (t == null) {
-                                player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
-                                return true;
-                            }
-                            t.closeInventory();
-                            t.getInventory().setArmorContents(player.getInventory().getArmorContents());
-                            t.getInventory().setContents(player.getInventory().getContents());
-                            t.sendMessage("§aYou received the event kit.");
-                            player.sendMessage("§aThe player §e" + t.getName() + " §areceived the kit.");
-                            break;
-                        case "specs":
-                        	if (!player.hasPermission("kombo.cmd.evento")) {
-                            	player.sendMessage("NO ACESS");
-                            	return true;
-                            }
-                            if (!EventoUtils.specs) {
-                                if (EventoUtils.specLoc == null) {
-                                    player.sendMessage("§cSet spectator location spawn first.");
-                                    return true;
-                                }
-                                EventoUtils.specs = true;
-                                player.sendMessage("§aYou enabled the spectators.");
-                            } else {
-                                EventoUtils.specs = false;
-                                player.sendMessage("§cYou disabled the spectators.");
-                            }
-                            break;
-                        case "toggle":
-                        	if (!player.hasPermission("kombo.cmd.evento")) {
-                            	player.sendMessage("NO ACESS");
-                            	return true;
-                            }
-                            if (!EventoUtils.tp) {
-                                player.sendMessage("§aYou enabled new players event join.");
-                                EventoUtils.tp = true;
-                            } else {
-                                player.sendMessage("§cYou disabled new players event join.");
-                                EventoUtils.tp = false;
-                            }
-                            break;
-                        case "tpall":
-                        	if (!player.hasPermission("kombo.cmd.evento")) {
-                            	player.sendMessage("NO ACESS");
-                            	return true;
-                            }
-                            EventoUtils.getEventoPlayers().forEach(p -> p.teleport(player.getLocation()));
-                            player.sendMessage("§aYou teleported everyone to you.");
-                            break;
-                
-                        case "setwinner":
-                        	if (!player.hasPermission("kombo.cmd.evento")) {
-                            	player.sendMessage("NO ACESS");
-                            	return true;
-                            }
-                        	 if (args.length < 2) {
-                        		 player.sendMessage("Use /event setwinner <PLAYER>");
-                        		 return true;
-                        	 }
-                            Player tt = Bukkit.getPlayer(args[1]);
-                            if (tt == null) {
-
-<<<<<<< HEAD
-                                player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
-
-                                player.sendMessage("§cWe cant find §e" + args[2] + "§c.");
-
-                                return true;
-                            }
-                            Bukkit.broadcastMessage("§a" + tt.getName() + " Ã‰ O VENCEDOR DO EVENTO!!!");
-=======
-                                player.sendMessage("Â§cWe cant find Â§e" + args[1] + "Â§c.");
-
-                                player.sendMessage("Â§cWe cant find Â§e" + args[2] + "Â§c.");
-
-                                return true;
-                            }
-                            Bukkit.broadcastMessage("Â§a" + tt.getName() + " Ãƒâ€° O VENCEDOR DO EVENTO!!!");
->>>>>>> 5b4d6e78b041025f8b3790b564ac214e917a0cef
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
-                            EventoUtils.getEventoPlayers().forEach(p -> {
-                                WaveWarp.SPAWN.send(p);
-                            });
-                break;
                         case "whitelist":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
                             	player.sendMessage("NO ACESS");
@@ -800,21 +659,149 @@ public class EventoComando2 implements CommandExecutor {
                                 player.sendMessage("§aO player §e" + tt1.getName() + " §afoi §cremovido §ada whitelist.");
                                 return false;
                             } else {
-<<<<<<< HEAD
+
                                 player.sendMessage("§cNão encontramos essa Opção.");
-=======
-                                player.sendMessage("Â§cNÃ£o encontramos essa OpÃ§Ã£o.");
->>>>>>> 5b4d6e78b041025f8b3790b564ac214e917a0cef
+
+
                                 return false;
                                
+                            }    
+                        case "skit":
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
+                            	player.sendMessage("NO ACESS");
+                            	return true;
                             }
+                            if (args.length < 2) {
+                                sendHelp(player);
+                                return true;
+                            }
+                            if (args[1].equalsIgnoreCase("all")) {
+                                EventoUtils.getEventoPlayers().forEach(p -> {
+                                    if (p == player) return;
+                                    p.closeInventory();
+                                    p.getInventory().setArmorContents(player.getInventory().getArmorContents());
+                                    p.getInventory().setContents(player.getInventory().getContents());
+                                    p.sendMessage("§aVocê recebeu o kit do evento.");
+                                });
+                                player.sendMessage("§aVocê deu a todos os items do seu inventário.");
+                                return false;
+                            }
+                            Player t = Bukkit.getPlayer(args[1]);
+                            if (t == null) {
+                                player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
+                                return true;
+                            }
+                            t.closeInventory();
+                            t.getInventory().setArmorContents(player.getInventory().getArmorContents());
+                            t.getInventory().setContents(player.getInventory().getContents());
+                            t.sendMessage("§aYou received the event kit.");
+                            player.sendMessage("§aThe player §e" + t.getName() + " §areceived the kit.");
+                            break;
+                        case "specs":
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
+                            	player.sendMessage("NO ACESS");
+                            	return true;
+                            }
+                            if (!EventoUtils.specs) {
+                                if (EventoUtils.specLoc == null) {
+                                    player.sendMessage("§cSet spectator location spawn first.");
+                                    return true;
+                                }
+                                EventoUtils.specs = true;
+                                player.sendMessage("§aYou enabled the spectators.");
+                            } else {
+                                EventoUtils.specs = false;
+                                player.sendMessage("§cYou disabled the spectators.");
+                            }
+                            break;
+                        case "toggle":
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
+                            	player.sendMessage(ChatColor.RED + "SEM PERMISSÃO!");
+                            	return true;
+                            }
+                            if (!EventoUtils.tp) {
+                                player.sendMessage("§aYou enabled new players event join.");
+                                EventoUtils.tp = true;
+                            } else {
+                                player.sendMessage("§cYou disabled new players event join.");
+                                EventoUtils.tp = false;
+                            }
+                            break;
+                        case "tpall":
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
+                            	player.sendMessage("NO ACESS");
+                            	return true;
+                            }
+                            for (Player p : EventoUtils.getEventoPlayers()) {
+                            p.teleport(player);
+                            }
+                            
+                            player.sendMessage("§aVocê puxou todos até você.");
+                            break;
+                
+                        case "setwinner":
+                        	if (!player.hasPermission("kombo.cmd.evento")) {
+                            	player.sendMessage("NO ACESS");
+                            	return true;
+                            }
+                        	 if (args.length < 2) {
+                        		 player.sendMessage("Use /event setwinner <PLAYER>");
+                        		 return true;
+                        	 }
+                            Player tt = Bukkit.getPlayer(args[1]);
+                            if (tt == null) {
+
+
+                                player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
+
+
+                                return true;
+                            }
+                            Bukkit.broadcastMessage("§a" + tt.getName() + " É O VENCEDOR DO EVENTO!!!");
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
+                            for (Player p : EventoUtils.getEventoPlayers()) {
+                                p.sendMessage("§cO evento foi finalizado.");
+
+                                EventoUtils.started = false;
+                               WaveWarp.SPAWN.send(p);
+}
+                break;
+                       
                             
                     }
             
-                }
+                
    
             
         
         return false;
     }
+		return false;
 }
+    
+    }

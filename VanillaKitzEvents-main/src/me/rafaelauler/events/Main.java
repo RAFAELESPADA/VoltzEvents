@@ -18,7 +18,7 @@ import net.wavemc.core.bukkit.WaveBukkit;
 public final class Main extends JavaPlugin {
 
     public static final PluginManager pm = Bukkit.getPluginManager();
-    public static final String prefix = "§7[§6KomboEventos§7] ";
+    public static final String prefix = "§7[§6VoltzEventos§7] ";
     public static Main instance;
 
 	private ScoreboardBuilder scoreboardBuilder;
