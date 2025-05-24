@@ -151,7 +151,7 @@ public static void init() {
 					String l3 = " §f";
 					String lx = " §f";
 					String l2 = "§0";
-					String l1 = "§ekombopvp.com";
+					String l1 = "§evoltzmc.com";
 					
 		
 					objective.getScore(l12).setScore(11);
@@ -181,14 +181,14 @@ public static void init() {
 					objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 					
 					String l12 = "§3Jogando ArenaPvP";
-					String l11 = " §aNo §6§lKombo";
+					String l11 = " §aNo §6§lVOLTZ";
 					String l10 = " §aMate todos";
 					String l9 = " §aE seja o ultimo";
 					
 					
 					String l5 = "§aSobrevivente";
 					String l2 = "§0";
-					String l1 = "§ekombopvp.com";
+					String l1 = "§evoltzmc.com";
 					
 				//	if (KitManager.getPlayer(player.getName()).hasKit()) {
 		
@@ -214,14 +214,14 @@ public static void init() {
 					objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 					
 					String l12 = "§3Jogando Evento §b§lCustom";
-					String l11 = " §aNo §6§lKombo";
+					String l11 = " §aNo §6§lVOLTZ";
 					String l10 = " §aMate todos";
 					String l9 = " §aE seja o ultimo";
 					
 					
 					String l5 = "§aSobrevivente";
 					String l2 = "§0";
-					String l1 = "§ekombopvp.com";
+					String l1 = "§evoltzmc.com";
 					
 				//	if (KitManager.getPlayer(player.getName()).hasKit()) {
 		
@@ -247,14 +247,14 @@ public static void init() {
 					objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 					
 					String l12 = "§3Jogando §a§lMestreMandou";
-					String l11 = " §aNo §6§lKombo";
+					String l11 = " §aNo §6§lVOLTZ";
 					String l10 = " §aSiga todas as ordens";
 					String l9 = " §aDo promotor";
 					
 					
 					String l5 = "§aOu seja kikado do evento";
 					String l2 = "§0";
-					String l1 = "§ekombopvp.com";
+					String l1 = "§evoltzmc.com";
 					
 				//	if (KitManager.getPlayer(player.getName()).hasKit()) {
 		
@@ -286,7 +286,7 @@ public static void init() {
 					
 					
 					String l2 = "§0";
-					String l1 = "§ekombopvp.com";
+					String l1 = "§evoltzmc.com";
 					
 				//	if (KitManager.getPlayer(player.getName()).hasKit()) {
 		
@@ -317,7 +317,7 @@ public static void init() {
 					String l4 = "§fSobrevivente";
 					String l3 = "§2Divirta-se";
 					String l2 = "§0";
-					String l1 = "§fkombopvp.com"; 
+					String l1 = "§fvoltzmc.com"; 
 					objective2.getScore(l8).setScore(8);
 					objective2.getScore(l9).setScore(8);
 					objective2.getScore(l8).setScore(7);
@@ -348,7 +348,7 @@ public static void init() {
 					String l4 = "§fAo sobreviver";
 					String l3 = "§2Divirta-se";
 					String l2 = "§0";
-					String l1 = "§fkombopvp.com"; 
+					String l1 = "§fvoltzmc.com"; 
 					objective2.getScore(l8).setScore(8);
 					objective2.getScore(l9).setScore(8);
 					objective2.getScore(l8).setScore(7);
@@ -379,7 +379,7 @@ objective2.setDisplayName(textx1);
 					String l4 = "§fE seja o ultimo";
 					String l3 = "§2Ao sobreviver";
 					String l2 = "§0";
-					String l1 = "§fkombopvp.com"; 
+					String l1 = "§fvoltzmc.com"; 
 					objective2.getScore(l8).setScore(8);
 					objective2.getScore(l9).setScore(8);
 					objective2.getScore(l8).setScore(7);

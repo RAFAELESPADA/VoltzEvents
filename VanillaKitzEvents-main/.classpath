@@ -11,27 +11,22 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/EVENTOS/plugins/WaveCore-v1.0.0.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/VOLTZMC/PVP-KP/plugins/LuckPerms-Bukkit-5.4.134.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/EVENTOS/plugins/LuckPerms-Bukkit-5.4.134.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/VOLTZMC/PVP-KP/plugins/KP-CORE-v4.0.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/EVENTOS/plugins/TAB v4.1.6 (1).jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/VOLTZMC/RANKUP VOLTZ/plugins/TAB v5.2.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-api-1.21.1-R0.1-20241006.210546-49.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Desktop/KOMBO-BACKUP-TOTAL/EVENTOS/plugins/multiverse-core-4.3.12.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/Home/Downloads/spigot-api-1.21.1-R0.1-20241022.152140-54.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

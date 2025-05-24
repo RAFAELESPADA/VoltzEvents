@@ -31,6 +31,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import net.wavemc.core.bukkit.item.ItemBuilder;
 
+
 public class EventoComando2 implements CommandExecutor {
 
 	Path path1 = Paths.get(Bukkit.getServer().getWorldContainer().getAbsolutePath() + "/plugins/WaveCore/", "warps.yml");
@@ -52,7 +53,7 @@ public class EventoComando2 implements CommandExecutor {
 			lava = new ItemBuilder(Material.LAVA_BUCKET).toStack(),
 			capacete = new ItemBuilder(Material.IRON_HELMET).toStack(),
 			peitoral = new ItemBuilder(Material.IRON_CHESTPLATE).toStack(),
-			calÃ§a = new ItemBuilder(Material.IRON_LEGGINGS).toStack(),
+			calça = new ItemBuilder(Material.IRON_LEGGINGS).toStack(),
 			bota = new ItemBuilder(Material.IRON_BOOTS).toStack();
 	public static List<Location> blocksV = new ArrayList<>();
 			private Integer[] soupSlots = { 4, 5, 6, 7, 29, 30, 31, 32, 33, 34, 35};
@@ -61,43 +62,43 @@ public class EventoComando2 implements CommandExecutor {
 	public static HashMap<String, ItemStack[]> saveinv = new HashMap();
     private static void sendHelp(Player player) {
         if (player.hasPermission("kombo.kombo.cmd.evento")) {
-            player.sendMessage("Â§aÂ§lKOMBO Â§7- Â§eEvents");
+            player.sendMessage("§a§lKOMBO §7- §eEvents");
             player.sendMessage(" ");
-            player.sendMessage("Â§e/event Â§7- Â§fDisplay this help page.");
-            player.sendMessage("Â§e/event join Â§7- Â§fJoin the event.");
-            player.sendMessage("Â§e/event leave Â§7- Â§fLeave the event.");
-            player.sendMessage("Â§e/event spec Â§7- Â§fSpectate the event.");
+            player.sendMessage("§e/event §7- §fDisplay this help page.");
+            player.sendMessage("§e/event join §7- §fJoin the event.");
+            player.sendMessage("§e/event leave §7- §fLeave the event.");
+            player.sendMessage("§e/event spec §7- §fSpectate the event.");
             player.sendMessage(" ");
-            player.sendMessage("Â§e/event tpto Â§7- Â§fTeleport players to event.");
-            player.sendMessage("Â§e/event ativarall Â§7- Â§fEnable all event options.");
-            player.sendMessage("Â§e/event desativarall Â§7- Â§fDisable all event options.");
-            player.sendMessage("Â§e/event 1v1fight Â§7- Â§fCall two random players to fight in 1v1 event.");
-            player.sendMessage("Â§e/event sumofight Â§7- Â§fCall two random players to fight in sumo event.");
+            player.sendMessage("§e/event tpto §7- §fTeleport players to event.");
+            player.sendMessage("§e/event ativarall §7- §fEnable all event options.");
+            player.sendMessage("§e/event desativarall §7- §fDisable all event options.");
+            player.sendMessage("§e/event 1v1fight §7- §fCall two random players to fight in 1v1 event.");
+            player.sendMessage("§e/event sumofight §7- §fCall two random players to fight in sumo event.");
             
-            player.sendMessage("Â§e/event setwinner Â§7- Â§fSet the event winner and end the event.");
+            player.sendMessage("§e/event setwinner §7- §fSet the event winner and end the event.");
             
-            player.sendMessage("Â§e/event build Â§7- Â§fLet players build in the event.");
-            player.sendMessage("Â§e/event cleararena Â§7- Â§fClear event arena.");
-            player.sendMessage("Â§e/event damage Â§7- Â§fAlter the damage (except pvp).");
-            player.sendMessage("Â§e/event effect <effect/clear> <amplifier> <seconds> <player/all>Â§7- Â§fGive potion effects to the event players.");
-            player.sendMessage("Â§e/event kick <player> Â§7- Â§fKick a player from the event.");
-            player.sendMessage("Â§e/event players Â§7- Â§fList all players in the event.");
-            player.sendMessage("Â§e/event pvp Â§7- Â§fAlter the pvp.");
-            player.sendMessage("Â§e/event setspecloc Â§7- Â§fSet the spectators spawn location.");
-            player.sendMessage("Â§e/event setspawnloc Â§7- Â§fSet the event spawn location.");
-            player.sendMessage("Â§e/event setquit Â§7- Â§fSet the event quit location.");
-            player.sendMessage("Â§e/event skit <player/all> Â§7- Â§fAlter the event kit.");
-            player.sendMessage("Â§e/event specs Â§7- Â§fEnable/Disable spectators.");
-            player.sendMessage("Â§e/event start Â§7- Â§fStart the event.");
-            player.sendMessage("Â§e/event stop Â§7- Â§fStops the event.");
-            player.sendMessage("Â§e/event toggle Â§7- Â§fEnable/Disable the join of players in the event.");
-            player.sendMessage("Â§e/event tpall Â§7- Â§fTeleport everyone in the event to you.");
-            player.sendMessage("Â§e/event whitelist <add/remove/list> <player> Â§7- Â§fLet a individual player join the event in whitelist.");
+            player.sendMessage("§e/event build §7- §fLet players build in the event.");
+            player.sendMessage("§e/event cleararena §7- §fClear event arena.");
+            player.sendMessage("§e/event damage §7- §fAlter the damage (except pvp).");
+            player.sendMessage("§e/event effect <effect/clear> <amplifier> <seconds> <player/all>§7- §fGive potion effects to the event players.");
+            player.sendMessage("§e/event kick <player> §7- §fKick a player from the event.");
+            player.sendMessage("§e/event players §7- §fList all players in the event.");
+            player.sendMessage("§e/event pvp §7- §fAlter the pvp.");
+            player.sendMessage("§e/event setspecloc §7- §fSet the spectators spawn location.");
+            player.sendMessage("§e/event setspawnloc §7- §fSet the event spawn location.");
+            player.sendMessage("§e/event setquit §7- §fSet the event quit location.");
+            player.sendMessage("§e/event skit <player/all> §7- §fAlter the event kit.");
+            player.sendMessage("§e/event specs §7- §fEnable/Disable spectators.");
+            player.sendMessage("§e/event start §7- §fStart the event.");
+            player.sendMessage("§e/event stop §7- §fStops the event.");
+            player.sendMessage("§e/event toggle §7- §fEnable/Disable the join of players in the event.");
+            player.sendMessage("§e/event tpall §7- §fTeleport everyone in the event to you.");
+            player.sendMessage("§e/event whitelist <add/remove/list> <player> §7- §fLet a individual player join the event in whitelist.");
             player.sendMessage(" ");
         } else {
-            player.sendMessage("Â§aÂ§lKOMBO Â§7- Â§eSistema de eventos");
+            player.sendMessage("§a§lKOMBO §7- §eSistema de eventos");
             player.sendMessage(" ");
-            player.sendMessage("Â§eCRIADO POR RAFAEL AULER EM 27/07/2024");
+            player.sendMessage("§eCRIADO POR RAFAEL AULER EM 27/07/2024");
             player.sendMessage(" ");
         }
     }
@@ -129,15 +130,15 @@ public class EventoComando2 implements CommandExecutor {
     public static void cogu(final Player p) {
         final ItemStack verleho = new ItemStack(Material.RED_MUSHROOM, 64);
         final ItemMeta mverleho = verleho.getItemMeta();
-        mverleho.setDisplayName("Â§cCogumelo");
+        mverleho.setDisplayName("§cCogumelo");
         verleho.setItemMeta(mverleho);
         final ItemStack BROWN = new ItemStack(Material.BROWN_MUSHROOM, 64);
         final ItemMeta mBROWN = BROWN.getItemMeta();
-        mBROWN.setDisplayName("Â§6Cogumelo");
+        mBROWN.setDisplayName("§6Cogumelo");
         BROWN.setItemMeta(mBROWN);
         final ItemStack pot = new ItemStack(Material.BOWL, 64);
         final ItemMeta mpot = pot.getItemMeta();
-        mpot.setDisplayName("Â§7Pote");
+        mpot.setDisplayName("§7Pote");
         pot.setItemMeta(mpot);
         p.getInventory().setItem(13, verleho);
         p.getInventory().setItem(14, BROWN);
@@ -151,7 +152,7 @@ public class EventoComando2 implements CommandExecutor {
     public static void sopa(final Player p) {
         final ItemStack espada = new ItemStack(Material.STONE_SWORD);
         final ItemMeta mespada = espada.getItemMeta();
-        mespada.setDisplayName("Â§6Espada");
+        mespada.setDisplayName("§6Espada");
         espada.setItemMeta(mespada);
         p.getInventory().setItem(0, espada);
     }
@@ -204,7 +205,7 @@ public class EventoComando2 implements CommandExecutor {
 		player.getInventory().setItem(17, machado);
 		player.getInventory().setItem(18, capacete);
 		player.getInventory().setItem(19, peitoral);
-		player.getInventory().setItem(20, calÃ§a);
+		player.getInventory().setItem(20, calça);
 		player.getInventory().setItem(21, bota);
 		player.getInventory().setItem(26, picareta);
 		player.getInventory().setItem(27, lava);
@@ -212,7 +213,7 @@ public class EventoComando2 implements CommandExecutor {
 
 		player.getInventory().setHelmet(capacete);
 		player.getInventory().setChestplate(peitoral);
-		player.getInventory().setLeggings(calÃ§a);
+		player.getInventory().setLeggings(calça);
 		player.getInventory().setBoots(bota);
 		
 		player.getInventory().setItem(13, pote);
@@ -248,7 +249,7 @@ public class EventoComando2 implements CommandExecutor {
                 switch (args[0].toLowerCase()) {    
     case "start": 
                     if (EventoUtils.evento) {
-                        player.sendMessage("Â§cThe event room is already open.");
+                        player.sendMessage("§cThe event room is already open.");
                         return true;
                     }
                     
@@ -257,7 +258,7 @@ public class EventoComando2 implements CommandExecutor {
                     	return true;
                     }
                     EventoUtils.evento = true;
-                    player.sendMessage("Â§aVocÃª abriu a sala de eventos.");
+                    player.sendMessage("§aVocê abriu a sala de eventos.");
                     EventoUtils.whitelist.add(player.getUniqueId());
                    
                     for (Player p : Bukkit.getOnlinePlayers()) {
@@ -268,25 +269,24 @@ public class EventoComando2 implements CommandExecutor {
                 
     case "explicar":
         if (args.length < 2) {
-            player.sendMessage("Â§cEscolha um evento para explicar");
+            player.sendMessage("§cEscolha um evento para explicar");
             return true;
         }
         EventType2 evento = EventType2.getEventoByName(args[1]);
         if (evento == null) {
-            player.sendMessage("Â§cOpÃ§Ã£o de evento invÃ¡lida.");
+            player.sendMessage("§cOpção de evento inválida.");
             return true;
         }
-<<<<<<< HEAD
+
         player.sendMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
         EventType2.explicarEvento(evento);
-=======
-        player.sendMessage("Â§aIniciando explicaÃ§Ã£o do evento Â§e" + evento.getName().toUpperCase() + "Â§a...");
-        EventType.explicarEvento(evento);
->>>>>>> 8a420278f69d9ac4730cc2ad1c225bd4979fbbb0
+
+        player.sendMessage("§aIniciando explicação do evento §e" + evento.getName().toUpperCase() + "§a...");
+        EventType2.explicarEvento(evento);
         break;
                 case "stop": 
                     if (!EventoUtils.evento) {
-                        player.sendMessage("Â§cA sala de eventos estÃ¡ fechada.");
+                        player.sendMessage("§cA sala de eventos estÃ¡ fechada.");
                         return true;
                     }
                     if (!player.hasPermission("kombo.cmd.evento")) {
@@ -301,13 +301,13 @@ public class EventoComando2 implements CommandExecutor {
                     EventoUtils.build = false;
                     EventoUtils.damage = false;
             		EventoUtils.clearBlocks();	
-                    player.sendMessage("Â§aVocÃª fechou a sala de eventos.");
+                    player.sendMessage("§aVocê fechou a sala de eventos.");
                     EventoUtils.getEventoPlayers().forEach(p -> {
-                        p.sendMessage("Â§cO evento foi finalizado.");
+                        p.sendMessage("§cO evento foi finalizado.");
 
                         EventoUtils.started = false;
                        WaveWarp.SPAWN.send(player);
-                       player.sendMessage("Â§aPlayers que sobraram do evento: Â§e" + EventoUtils.getEventoPlayersNames());
+                       player.sendMessage("§aPlayers que sobraram do evento: §e" + EventoUtils.getEventoPlayersNames());
                        WaveWarp.SPAWN.send(p);
                        p.getLocation().getWorld().strikeLightning(p.getLocation());
 
@@ -319,7 +319,7 @@ public class EventoComando2 implements CommandExecutor {
                        player.getInventory().clear();
                       
                        EventoUtils.setEvento(false, player);
-                       player.sendMessage("Â§cO evento foi finalizado.");
+                       player.sendMessage("§cO evento foi finalizado.");
                         p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType()));
                     });
                     EventoUtils.resetEventoClass();
@@ -327,15 +327,15 @@ public class EventoComando2 implements CommandExecutor {
              
                         case "spec":
                             if (EventoUtils.game.contains(player.getName())) {
-                                player.sendMessage("Â§cYou are in the event.");
+                                player.sendMessage("§cYou are in the event.");
                                 return true;
                             }
                             if (!EventoUtils.specs) {
-                                player.sendMessage("Â§cSpectators are disabled.");
+                                player.sendMessage("§cSpectators are disabled.");
                                 return true;
                             }
                             player.teleport(EventoUtils.specLoc);
-                            player.sendMessage("Â§aYou are now spectating the event.");
+                            player.sendMessage("§aYou are now spectating the event.");
                             break;
                         case "build":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -343,10 +343,10 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             if (EventoUtils.build) {
-                                player.sendMessage("Â§cYou disabled the build.");
+                                player.sendMessage("§cYou disabled the build.");
                                 EventoUtils.build = false;
                             } else {
-                                player.sendMessage("Â§aYou enabled the build.");
+                                player.sendMessage("§aYou enabled the build.");
                                 EventoUtils.build = true;
                             }
                             break;
@@ -360,40 +360,40 @@ public class EventoComando2 implements CommandExecutor {
                 }
                             EventoUtils.clearBlocks();
                             
-                            player.sendMessage("Â§aVocÃª limpou a arena");
+                            player.sendMessage("§aVocê limpou a arena");
                             break;
                         case "tpto":
                             if (args.length < 2) {
-                                player.sendMessage("Â§cEscolha algum evento para teleportar.");
+                                player.sendMessage("§cEscolha algum evento para teleportar.");
                                 return true;
                             }
                             EventType2 ev = EventType2.getEventoByName(args[1]);
                             if (ev == null) {
-                                player.sendMessage("Â§cOpÃ§Ã£o de evento invÃ¡lida.");
+                                player.sendMessage("§cOpção de evento inválida.");
                                 return true;
                             }
                             WaveWarp.valueOf(ev.getName().toUpperCase()).send(player);
                             break;
                         case "ativarall":
-                        	 player.sendMessage("Â§bFoi ativado a build o pvp e o dano no evento.");
+                        	 player.sendMessage("§bFoi ativado a build o pvp e o dano no evento.");
                         	 EventoUtils.build = true;
                         	 EventoUtils.pvp = true;
                         	 EventoUtils.damage = true;
                             break;
                         case "desativarall":
-                       	 player.sendMessage("Â§bFoi desativado a build o pvp e o dano no evento.");
+                       	 player.sendMessage("§bFoi desativado a build o pvp e o dano no evento.");
                        	 EventoUtils.build = false;
                        	 EventoUtils.pvp = false;
                        	 EventoUtils.damage = false;
                            break;
                         case "tptoall":
                             if (args.length < 2) {
-                                player.sendMessage("Â§cEscolha algum evento para teleportar.");
+                                player.sendMessage("§cEscolha algum evento para teleportar.");
                                 return true;
                             }
                             EventType2 ev2 = EventType2.getEventoByName(args[1]);
                             if (ev2 == null) {
-                                player.sendMessage("Â§cOpÃ§Ã£o de evento invÃ¡lida.");
+                                player.sendMessage("§cOpção de evento inválida.");
                                 return true;
                             }
                             EventoUtils.started = true;
@@ -414,10 +414,10 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             if (EventoUtils.damage) {
-                                player.sendMessage("Â§cYou disabled the damage. Â§7(Remember to disable the Â§4pvpÂ§7)");
+                                player.sendMessage("§cYou disabled the damage. §7(Remember to disable the §4pvp§7)");
                                 EventoUtils.damage = false;
                             } else {
-                                player.sendMessage("Â§aYou enabled the damage. Â§7(Remember to enable the Â§4pvpÂ§7)");
+                                player.sendMessage("§aYou enabled the damage. §7(Remember to enable the §4pvp§7)");
                                 EventoUtils.damage = true;
                             }
                             break;
@@ -429,10 +429,10 @@ public class EventoComando2 implements CommandExecutor {
                             if (args.length == 2) {
                                 if (args[1].equalsIgnoreCase("clear")) {
                                     EventoUtils.getEventoPlayers().forEach(p -> p.getActivePotionEffects().forEach(ef -> p.removePotionEffect(ef.getType())));
-                                    player.sendMessage("Â§aYou cleared the effect of all players.");
+                                    player.sendMessage("§aYou cleared the effect of all players.");
                                     return false;
                                 }
-                                else player.sendMessage("Â§cUse /event effect <effect/clear> <amplifier> <seconds> <player/all>");
+                                else player.sendMessage("§cUse /event effect <effect/clear> <amplifier> <seconds> <player/all>");
                                 return false;
                             }
                             if (args.length < 5) {
@@ -441,7 +441,7 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             PotionEffectType potionEffectType = EventoUtils.getPotionEffectTypeByName(args[1]);
                             if (potionEffectType == null) {
-                                player.sendMessage("Â§cInvalid effect.");
+                                player.sendMessage("§cInvalid effect.");
                                 return true;
                             }
                             int amplif;
@@ -455,23 +455,23 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             if (args[4].equalsIgnoreCase("all")) {
                                 EventoUtils.getEventoPlayers().forEach(p -> p.addPotionEffect(new PotionEffect(potionEffectType, secs * 20, amplif - 1)));
-                                player.sendMessage("Â§aEffect Â§e"+potionEffectType.getName() + " " + amplif + " Â§aapplied for Â§e" + secs + " secondsÂ§a.");
+                                player.sendMessage("§aEffect §e"+potionEffectType.getName() + " " + amplif + " §aapplied for §e" + secs + " seconds§a.");
                                 return false;
                             } else {
                                 Player target = Bukkit.getPlayer(args[4]);
                                 if (target == null) {
-                                    player.sendMessage("Â§cCannot find player Â§e" + args[4] + "Â§c.");
+                                    player.sendMessage("§cCannot find player §e" + args[4] + "§c.");
                                     return true;
                                 }
                                 if (target == player) {
-                                    player.sendMessage("Â§cYou cannot give the effects to yourself.");
+                                    player.sendMessage("§cYou cannot give the effects to yourself.");
                                 }
                                 if (!EventoUtils.game.contains(target.getName())) {
-                                    player.sendMessage("Â§cThis player is not on event.");
+                                    player.sendMessage("§cThis player is not on event.");
                                     return true;
                                 }
                                 target.addPotionEffect(new PotionEffect(potionEffectType, secs * 20, amplif));
-                                player.sendMessage("Â§aEffect Â§e"+potionEffectType.getName() + " " + amplif + " Â§aapplied to Â§e" + target.getName() + " Â§afor Â§e" + secs + " secondsÂ§a.");
+                                player.sendMessage("§aEffect §e"+potionEffectType.getName() + " " + amplif + " §aapplied to §e" + target.getName() + " §afor §e" + secs + " seconds§a.");
                             }
                             break;
                         case "kick":
@@ -485,20 +485,20 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             Player target = Bukkit.getPlayer(args[1]);
                             if (target == null) {
-                                player.sendMessage("Â§cNÃ£o pude encontrar o jogador Â§e" + args[1] + "Â§c.");
+                                player.sendMessage("§cNão pude encontrar o jogador §e" + args[1] + "§c.");
                                 return true;
                             }
                             if (target == player) {
-                                player.sendMessage("Â§cNÃ£o expulse vocÃª mesmo.");
+                                player.sendMessage("§cNão expulse Você mesmo.");
                                 return true;
                             }
                             if (WaveWarp.SPAWN.hasPlayer(player.getName())) {
-                                player.sendMessage("Â§cEsse jogador nÃ£o estÃ¡ no evento.");
+                                player.sendMessage("§cEsse jogador Não estÃ¡ no evento.");
                                 return true;
                             }
                            WaveWarp.SPAWN.send(target);
-                            target.sendMessage("Â§cVocÃª foi expulso do evento.");
-                            player.sendMessage("Â§aVocÃª expulsou Â§e" + target.getName() + " Â§ado evento.");
+                            target.sendMessage("§cVocê foi expulso do evento.");
+                            player.sendMessage("§aVocê expulsou §e" + target.getName() + " §ado evento.");
                             break;
                         case "players":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -506,7 +506,7 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             int size = EventoUtils.getEventoPlayersNames().size();
-                            player.sendMessage("Â§aO evento tem Â§e" + size + " playersÂ§a, sendo eles: Â§7" + StringUtils.join(EventoUtils.getEventoPlayersNames(), "Â§a, Â§7"));
+                            player.sendMessage("§aO evento tem §e" + size + " players§a, sendo eles: §7" + StringUtils.join(EventoUtils.getEventoPlayersNames(), "§a, §7"));
                             break;
                         case "pvp":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -514,10 +514,10 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             if (EventoUtils.pvp) {
-                                player.sendMessage("Â§cVocÃª desativou o pvp. Â§7(Lembre-se de desativar o Â§4danoÂ§7 tambÃ©m)");
+                                player.sendMessage("§cVocê desativou o pvp. §7(Lembre-se de desativar o §4dano§7 tambÃ©m)");
                                 EventoUtils.pvp = false;
                             } else {
-                                player.sendMessage("Â§aVocÃª ativou o pvp. Â§7(Lembre-se de ativar o Â§4danoÂ§7 tambÃ©m)");
+                                player.sendMessage("§aVocê ativou o pvp. §7(Lembre-se de ativar o §4dano§7 tambÃ©m)");
                                 EventoUtils.pvp = true;
                             }
                             break;
@@ -592,7 +592,7 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             EventoUtils.specLoc = player.getLocation();
-                            player.sendMessage("Â§aSpectator location set.");
+                            player.sendMessage("§aSpectator location set.");
                             break;
                         case "setspawn":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -600,7 +600,7 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             EventoUtils.spawnLoc = player.getLocation();
-                            player.sendMessage("Â§aSpawn location set.");
+                            player.sendMessage("§aSpawn location set.");
                             break;
                         case "setquit":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -608,7 +608,7 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             EventoUtils.quitLoc = player.getLocation();
-                            player.sendMessage("Â§aQuit location set.");
+                            player.sendMessage("§aQuit location set.");
                             break;
                         case "skit":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -625,21 +625,21 @@ public class EventoComando2 implements CommandExecutor {
                                     p.closeInventory();
                                     p.getInventory().setArmorContents(player.getInventory().getArmorContents());
                                     p.getInventory().setContents(player.getInventory().getContents());
-                                    p.sendMessage("Â§aYou receive the event kits.");
+                                    p.sendMessage("§aYou receive the event kits.");
                                 });
-                                player.sendMessage("Â§aAll players received the kit.");
+                                player.sendMessage("§aAll players received the kit.");
                                 return false;
                             }
                             Player t = Bukkit.getPlayer(args[1]);
                             if (t == null) {
-                                player.sendMessage("Â§cWe cant find Â§e" + args[1] + "Â§c.");
+                                player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
                                 return true;
                             }
                             t.closeInventory();
                             t.getInventory().setArmorContents(player.getInventory().getArmorContents());
                             t.getInventory().setContents(player.getInventory().getContents());
-                            t.sendMessage("Â§aYou received the event kit.");
-                            player.sendMessage("Â§aThe player Â§e" + t.getName() + " Â§areceived the kit.");
+                            t.sendMessage("§aYou received the event kit.");
+                            player.sendMessage("§aThe player §e" + t.getName() + " §areceived the kit.");
                             break;
                         case "specs":
                         	if (!player.hasPermission("kombo.cmd.evento")) {
@@ -648,14 +648,14 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             if (!EventoUtils.specs) {
                                 if (EventoUtils.specLoc == null) {
-                                    player.sendMessage("Â§cSet spectator location spawn first.");
+                                    player.sendMessage("§cSet spectator location spawn first.");
                                     return true;
                                 }
                                 EventoUtils.specs = true;
-                                player.sendMessage("Â§aYou enabled the spectators.");
+                                player.sendMessage("§aYou enabled the spectators.");
                             } else {
                                 EventoUtils.specs = false;
-                                player.sendMessage("Â§cYou disabled the spectators.");
+                                player.sendMessage("§cYou disabled the spectators.");
                             }
                             break;
                         case "toggle":
@@ -664,10 +664,10 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             if (!EventoUtils.tp) {
-                                player.sendMessage("Â§aYou enabled new players event join.");
+                                player.sendMessage("§aYou enabled new players event join.");
                                 EventoUtils.tp = true;
                             } else {
-                                player.sendMessage("Â§cYou disabled new players event join.");
+                                player.sendMessage("§cYou disabled new players event join.");
                                 EventoUtils.tp = false;
                             }
                             break;
@@ -677,7 +677,7 @@ public class EventoComando2 implements CommandExecutor {
                             	return true;
                             }
                             EventoUtils.getEventoPlayers().forEach(p -> p.teleport(player.getLocation()));
-                            player.sendMessage("Â§aYou teleported everyone to you.");
+                            player.sendMessage("§aYou teleported everyone to you.");
                             break;
                 
                         case "setwinner":
@@ -691,14 +691,14 @@ public class EventoComando2 implements CommandExecutor {
                         	 }
                             Player tt = Bukkit.getPlayer(args[1]);
                             if (tt == null) {
-<<<<<<< HEAD
+
                                 player.sendMessage("§cWe cant find §e" + args[1] + "§c.");
-=======
-                                player.sendMessage("Â§cWe cant find Â§e" + args[2] + "Â§c.");
->>>>>>> 8a420278f69d9ac4730cc2ad1c225bd4979fbbb0
+
+                                player.sendMessage("§cWe cant find §e" + args[2] + "§c.");
+
                                 return true;
                             }
-                            Bukkit.broadcastMessage("Â§a" + tt.getName() + " Ã‰ O VENCEDOR DO EVENTO!!!");
+                            Bukkit.broadcastMessage("§a" + tt.getName() + " Ã‰ O VENCEDOR DO EVENTO!!!");
                             tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
                             tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
                             tt.getWorld().strikeLightning(new Location (tt.getWorld(), tt.getLocation().getX() - 4, tt.getLocation().getY(), tt.getLocation().getZ() + 4));
@@ -736,7 +736,7 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             if (args.length < 3) {
                                 if (args[1].equalsIgnoreCase("list")) {
-                                    player.sendMessage("Â§aPlayers in event whitelist: Â§7" + StringUtils.join(EventoUtils.getWhitelistPlayersNames(), "Â§a, Â§7"));
+                                    player.sendMessage("§aPlayers in event whitelist: §7" + StringUtils.join(EventoUtils.getWhitelistPlayersNames(), "§a, §7"));
                                     return false;
                                 }
                                 sendHelp(player);
@@ -744,27 +744,27 @@ public class EventoComando2 implements CommandExecutor {
                             }
                             Player tt1 = Bukkit.getPlayer(args[2]);
                             if (tt1 == null) {
-                                player.sendMessage("Â§cWe cant find Â§e" + args[2] + "Â§c.");
+                                player.sendMessage("§cWe cant find §e" + args[2] + "§c.");
                                 return true;
                             }
                             if (args[1].equalsIgnoreCase("add")) {
                                 if (EventoUtils.whitelist.contains(tt1.getUniqueId())) {
-                                    player.sendMessage("Â§cPlayer Â§e" + tt1.getName() + " Â§cis already on whitelist.");
+                                    player.sendMessage("§cPlayer §e" + tt1.getName() + " §cis already on whitelist.");
                                     return true;
                                 }
                                 EventoUtils.whitelist.add(tt1.getUniqueId());
-                                player.sendMessage("Â§aPlayer Â§e" + tt1.getName() + " Â§agets added on event whitelist.");
+                                player.sendMessage("§aPlayer §e" + tt1.getName() + " §agets added on event whitelist.");
                                 return true;
                             } else if (args[1].equalsIgnoreCase("remove")) {
                                 if (!EventoUtils.whitelist.contains(tt1.getUniqueId())) {
-                                    player.sendMessage("Â§cPlayer Â§e" + tt1.getName() + " Â§cis not on whitelist.");
+                                    player.sendMessage("§cPlayer §e" + tt1.getName() + " §cis not on whitelist.");
                                     return true;
                                 }
                                 EventoUtils.whitelist.remove(tt1.getUniqueId());
-                                player.sendMessage("Â§aO player Â§e" + tt1.getName() + " Â§afoi Â§cremovido Â§ada whitelist.");
+                                player.sendMessage("§aO player §e" + tt1.getName() + " §afoi §cremovido §ada whitelist.");
                                 return false;
                             } else {
-                                player.sendMessage("Â§cNÃ£o encontramos essa opÃ§Ã£o.");
+                                player.sendMessage("§cNão encontramos essa Opção.");
                                 return false;
                                
                             }
