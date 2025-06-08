@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 @AllArgsConstructor
 public class SetWarp implements CommandExecutor {
 
-    private final Main plugin;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -22,12 +21,12 @@ public class SetWarp implements CommandExecutor {
         }
 
         if (!sender.hasPermission("wave.cmd.setwarp")) {
-            sender.sendMessage("§cVocê não tem permissão.");
+            sender.sendMessage("Â§cVocÃª nÃ£o tem permissÃ£o.");
             return true;
         }
 
         if (args.length == 0) {
-            sender.sendMessage("§b/" + label + " <warp>");
+            sender.sendMessage("Â§b/" + label + " <warp>");
             return true;
         }
 
@@ -38,7 +37,7 @@ public class SetWarp implements CommandExecutor {
         warp.setLocation(((Player)sender).getLocation());
         warp.setWorldpenis(((Player)sender).getWorld());
         WaveBukkit.getInstance().getWarpManager().getData().save(warp);
-        sender.sendMessage("§6Warp setada");
+        sender.sendMessage("Â§6Warp setada");
         return true;
     }
 }
