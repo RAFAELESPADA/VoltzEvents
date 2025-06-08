@@ -45,12 +45,12 @@ public class EventListeners implements Listener {
 	    	}
 	    	if (!EventoUtils.blocks.contains(event.getBlock().getLocation()) && !WaveWarp.CUSTOM.hasPlayer(event.getPlayer().getName())) {
 	    		event.setCancelled(true);   	       
-	    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode quebrar blocos da arena");
+	    		event.getPlayer().sendMessage(ChatColor.RED + "VocÃª nÃ£o pode quebrar blocos da arena");
 	    	}
 	    	if (!EventoUtils.build) {
 	            event.setCancelled(true);
 
-	    		event.getPlayer().sendMessage(ChatColor.RED + "O Build está desativado");
+	    		event.getPlayer().sendMessage(ChatColor.RED + "O Build estÃ¡ desativado");
 	        }
 	    	       
 	    	
@@ -63,7 +63,7 @@ public class EventListeners implements Listener {
     public void onMove(PlayerMoveEvent event) {
     	if (WaveWarp.CUSTOM.hasPlayer(event.getPlayer().getName())) {
     		if (event.getPlayer().getLocation().getY() < 82 && !EventoUtils.build) {
-    			event.getPlayer().sendMessage(ChatColor.RED + "Você só pode sair do spawn do evento Custom assim que o build for ativo");
+    			event.getPlayer().sendMessage(ChatColor.RED + "VocÃª sÃ³ pode sair do spawn do evento Custom assim que o build for ativo");
     			event.getPlayer().teleport(new Location (Bukkit.getWorld("hg"), 572.688, 97.00000, 585.974, (float)89.99, (float)-11.1));
     		}
     	}
@@ -84,7 +84,7 @@ public class EventListeners implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=false)
     public void aAntiSpam(AsyncPlayerChatEvent e) {
     if (!EventoUtils.started && !e.getPlayer().hasPermission("kombo.cmd.evento")) {
-  	  e.getPlayer().sendMessage("§cVocê só pode falar no chat quando o evento começar.");
+  	  e.getPlayer().sendMessage("Â§cVocÃª sÃ³ pode falar no chat quando o evento comeÃ§ar.");
   	  e.setCancelled(true);
     }
     }
@@ -129,8 +129,8 @@ public class EventListeners implements Listener {
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
         event.getPlayer().sendMessage("");
-        event.getPlayer().sendMessage("§aUm evento está ocorrendo");
-        event.getPlayer().sendMessage("§aAgora mesmo e você tem que esperar começar um novo");
+        event.getPlayer().sendMessage("Â§aUm evento estÃ¡ ocorrendo");
+        event.getPlayer().sendMessage("Â§aAgora mesmo e vocÃª tem que esperar comeÃ§ar um novo");
     }
 
 
@@ -138,7 +138,7 @@ public class EventListeners implements Listener {
     public void BlockPlace(BlockPlaceEvent event) {
     	if (WaveWarp.SPAWN.hasPlayer(event.getPlayer().getName()) && !event.getPlayer().hasPermission("kombo.cmd.evento")) {
         	event.setCancelled(true);
-    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar blocos da arena");
+    		event.getPlayer().sendMessage(ChatColor.RED + "VocÃª nÃ£o pode colocar blocos da arena");
     	    
         	return;
         	}
@@ -147,7 +147,7 @@ public class EventListeners implements Listener {
         
         if (!EventoUtils.build) {
             event.setCancelled(true);
-    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar blocos agora!");
+    		event.getPlayer().sendMessage(ChatColor.RED + "VocÃª nÃ£o pode colocar blocos agora!");
     	    
             return;
         }
@@ -163,12 +163,12 @@ public class EventListeners implements Listener {
     	if (WaveWarp.SPAWN.hasPlayer(event.getPlayer().getName()) && !event.getPlayer().hasPermission("kombo.cmd.evento")) {
         	event.setCancelled(true);
 
-    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar agua/lava agora!");
+    		event.getPlayer().sendMessage(ChatColor.RED + "VocÃª nÃ£o pode colocar agua/lava agora!");
         	} 
         if (!EventoUtils.build) {
             event.setCancelled(true);
 
-    		event.getPlayer().sendMessage(ChatColor.RED + "Você não pode colocar agua/lava agora!");
+    		event.getPlayer().sendMessage(ChatColor.RED + "VocÃª nÃ£o pode colocar agua/lava agora!");
         }
 
         
@@ -181,12 +181,12 @@ public class EventListeners implements Listener {
     	if (WaveWarp.SPAWN.hasPlayer(event.getPlayer().getName()) && !event.getPlayer().hasPermission("kombo.cmd.evento")) {
         	event.setCancelled(true);
 
-    		event.getPlayer().sendMessage(ChatColor.DARK_RED + "Você não pode colocar agua/lava agora!");
+    		event.getPlayer().sendMessage(ChatColor.DARK_RED + "VocÃª nÃ£o pode colocar agua/lava agora!");
         	}
         if (!EventoUtils.build) {
             event.setCancelled(true);
 
-    		event.getPlayer().sendMessage(ChatColor.DARK_RED + "Você não pode colocar agua/lava agora!");
+    		event.getPlayer().sendMessage(ChatColor.DARK_RED + "VocÃª nÃ£o pode colocar agua/lava agora!");
         }
 
         EventoUtils.blocks.add(event.getBlock().getLocation());
@@ -224,7 +224,7 @@ public class EventListeners implements Listener {
 		e.setJoinMessage(null);
 		if (VanishUtil.has(player.getName())) {
 			VanishUtil.remove(player.getName());
-			player.sendMessage("§c§lVANISH §fVocê saiu do vanish.");
+			player.sendMessage("Â§cÂ§lVANISH Â§fVocÃª saiu do vanish.");
 		}
 		EventoUtils.setEvento(true, player);
 	WaveWarp.SPAWN.send(player);
@@ -234,7 +234,7 @@ public class EventListeners implements Listener {
 
 	p.sendMessage(ChatColor.RED + "Caso tenha um promotor online o evento");
 
-	p.sendMessage(ChatColor.RED + "Irá começar em breve!");
+	p.sendMessage(ChatColor.RED + "IrÃ¡ comeÃ§ar em breve!");
 
 	p.sendMessage(ChatColor.RED + "Acesse nosso discord: " + ChatColor.BLUE + "https://discord.gg/voltz");
 	}
@@ -245,7 +245,7 @@ public class EventListeners implements Listener {
 		Player p = event.getEntity();
 		event.setDeathMessage(null);
 		Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " perdeu o evento!");
-		player.sendMessage(ChatColor.DARK_RED + "Você perdeu o evento!");
+		player.sendMessage(ChatColor.DARK_RED + "VocÃª perdeu o evento!");
 		WaveWarp.SPAWN.send(player);
 		Player k = player.getKiller();
 		if (k != null) {
@@ -281,11 +281,23 @@ public class EventListeners implements Listener {
     	}
     	Player p = (Player) e.getDamager();
     	if (EventoUtils.game.contains(p.getName())) {
+    		if (p.getInventory().getBoots() != null) {
+
+        		p.getInventory().getBoots().setDurability((short)0);
+    		}
+    		if (p.getItemInHand() != null) {
     		p.getItemInHand().setDurability((short)0);
-    		p.getInventory().getBoots().setDurability((short)0);
+    		}
+    		if (p.getInventory().getHelmet() != null) {
     		p.getInventory().getHelmet().setDurability((short)0);
+    		}
+    		if (p.getInventory().getLeggings() != null) {
+    		p.getInventory().getLeggings().setDurability((short)0);
+    		}
+    		if (p.getInventory().getChestplate() != null) {
+
     		p.getInventory().getChestplate().setDurability((short)0);
-    		p.getInventory().getBoots().setDurability((short)0);
+   		}
     		p.updateInventory();
     	}
     	}
